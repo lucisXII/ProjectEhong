@@ -12,12 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { LoginComponent } from './auth/login/login.component';
 import { BlankComponent } from './pages/blank/blank.component';
+import { UncheckedComponent } from './pages/branch/unchecked/unchecked.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    BlankComponent
+    BlankComponent,
+    UncheckedComponent
   ],
   entryComponents: [],
   imports: [

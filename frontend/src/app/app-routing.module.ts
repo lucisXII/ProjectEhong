@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { BlankComponent } from './pages/blank/blank.component';
+import { UncheckedComponent } from './pages/branch/unchecked/unchecked.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
   },
   { path: 'login' , component: LoginComponent },
   { path: 'blank' , component: BlankComponent },
+  { path: 'branch/uncheked' , component: UncheckedComponent },
 ];
 
 @NgModule({

@@ -22,6 +22,7 @@ Route::get('zone','API\ZoneController@index');
 
 Route::get('branchs/unCheked','API\BranchController@unCheked');
 Route::get('branchs/Cheked','API\BranchController@Cheked');
+Route::get('branchs/showBranch/{branchID}','API\BranchController@showBranch');
 
 Route::get('conclude/{branchID}','API\ConcludeController@confirm');
 

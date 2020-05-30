@@ -39,7 +39,7 @@ class CostController extends Controller
     public function store(Request $request, $tcost_id)
     {
         $totalcost = totalcosts::findOrFail($tcost_id);
-        return $totalcost;
+        $totalcost;
         $cost = Cost::create([
             'br_id' => $totalcost->br_id,
             'user_id' => '1',

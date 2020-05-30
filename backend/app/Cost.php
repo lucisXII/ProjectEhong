@@ -17,4 +17,5 @@ class Cost extends Model
         'comment',
         'date'
     ];
+    const CREATED_AT = 'date';
 }

@@ -10,7 +10,12 @@ export class BranchService {
 
   constructor(private http: HttpClient) { }
 
+  getBranch() {
+    return this.http.get<{data: any}>(BACKEND_URL + '/branchs/unCheked');
+  }
+
   getUnchecked() {
     return this.http.get<{data: any}>(BACKEND_URL + '/branchs/unCheked');
   }
+  
 }

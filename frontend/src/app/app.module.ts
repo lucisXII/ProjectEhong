@@ -13,13 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { BlankComponent } from './pages/blank/blank.component';
 import { UncheckedComponent } from './pages/branch/unchecked/unchecked.component';
+import { CheckListComponent } from './pages/branch/check-list/check-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     BlankComponent,
-    UncheckedComponent
+    UncheckedComponent,
+    CheckListComponent
   ],
   entryComponents: [],
   imports: [

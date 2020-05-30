@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('zone','API\ZoneController@index');
+Route::post('zone/add','API\ZoneController@store');
 
 Route::get('branchs/unCheked','API\BranchController@unCheked');
 Route::get('branchs/Cheked','API\BranchController@Cheked');
@@ -42,7 +43,8 @@ Route::get('showTool/{branchID}','API\ToolController@showTool');
 Route::get('showAmountTool/{branchID}','API\ToolController@showAmountTool');
 Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
-Route::post('addcost/{tcostID}/costs','API\CostController@store');
+Route::get('addcost/{tcostID}','API\CostController@store');
+// Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 
 Route::get('chekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@ChekedMotorcycle');

@@ -39,7 +39,20 @@ class CostController extends Controller
     public function store($tcostID)
     {
         $totalcost = Totalcost::findOrFail($tcostID);
-        return response()->json($totalcost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        $cost = Cost::create([
+            'br_id' => $totalcost->br_id,
+            'user_id' => '1',
+            'totalamount' => $totalcost->totalamount,
+            'storefront' => $totalcost->storefront,
+            'checkmoney' => $request->checkmoney,
+            'receipt' => $request->receipt,
+            'agreement' => $request->agreement,
+            'date' => timestamp('created_at'),
+            'comment' => $request->comment,
+        ]);
+        $cost->save();
+
+        return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
         // $cost = Cost::create([
         //     'br_id' => $totalcost->br_id,

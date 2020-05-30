@@ -22,6 +22,8 @@ class BranchController extends Controller
         $unCheked = DB::table('branches')
                     ->join('concludes','concludes.br_id','!=','branches.br_id' )
                     ->whereMonth('concludes.date', '=', today()->month)
+                    //->where('branches.close_date','=',null)
+                    ->whereNull('branches.close_date')
                     ->select('branches.br_id','branches.branchName')
                     ->get();
         return response()->json($unCheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
@@ -36,9 +38,21 @@ class BranchController extends Controller
         $cheked = DB::table('branches')
                     ->join('concludes','concludes.br_id','=','branches.br_id' )
                     ->whereMonth('concludes.date', '=', today()->month)
+                    ->whereNull('branches.close_date')
                     ->select('branches.br_id','branches.branchName')
                     ->get();
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showBranch($branchID)
+    {
+        $branch = DB::table('branches')
+                    ->where('branches.br_id', '=', $branchID)
+                    ->select('branches.*')
+                    ->get();
+
+        return response()->json($branch, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
 }

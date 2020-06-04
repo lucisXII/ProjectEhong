@@ -1,0 +1,92 @@
+<!-- <ion-header [translucent]="true"> -->
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onLogout()">
+        <ion-icon color="danger" slot="icon-only" ios="power-outline" md="power-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="start">
+      ยินดีต้อนรับ
+    </ion-title>
+  </ion-toolbar>
+<!-- </ion-header> -->
+<ion-content fullscreen="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title>รายการตรวจสาขา</ion-title> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="4" size="12">
+        <ion-card class="ion-text-center" [routerLink]="['/branch/unchecked']">
+          <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
+            <ion-icon color="danger" slot="icon-only" name="enter-outline"></ion-icon>
+          </ion-button>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title>สาขาที่ยังไม่ตรวจ</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            รายการตรวจสาขาที่ยังไม่มีการตรวจสอบ
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size-md="4" size="12">
+        <ion-card class="ion-text-center" [routerLink]="['/branch/checked']">
+          <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
+            <ion-icon color="danger" slot="icon-only" name="checkbox-outline"></ion-icon>
+          </ion-button>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title>สาขาที่ตรวจสอบแล้ว</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            รายการตรวจสาขาที่ผ่านการตรวจสอบเรียบร้อยแล้ว
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size-md="4" size="12">
+        <ion-card class="ion-text-center">
+          <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
+            <ion-icon color="danger" slot="icon-only" name="albums-outline"></ion-icon>
+          </ion-button>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title>ย้อนหลัง</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            ดูข้อมูลสาขาย้อนหลัง
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title>รายงานและผลการตรวจสอบสาขา</ion-title> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="4" size-sm="6">
+        <ion-card class="ion-text-center">
+          <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
+            <ion-icon color="danger" slot="icon-only" name="reader-outline"></ion-icon>
+          </ion-button>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title>รายงาน</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            สรุปรายงานการตรวจสอบสาขา
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

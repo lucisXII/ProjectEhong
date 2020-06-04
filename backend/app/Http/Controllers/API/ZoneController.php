@@ -16,6 +16,13 @@ class ZoneController extends Controller
         //return $this->showAllTransform("load data banks successfully" , $zones , 200);
     }
 
+    public function show($id)
+    {
+        $zone = Zone::where('zone_id', $id)->firstOrFail();
+        return $zone;
+        //$zone = Zone::findOrFail($id);
+    }
+
     public function store(Request $request)
     {
         $zone = new Zone([

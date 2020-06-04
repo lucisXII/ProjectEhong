@@ -18,11 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('register','API\CheckingSparesController@create');
+
 Route::get('zone','API\ZoneController@index');
+Route::get('zone/{id}','API\ZoneController@show');
 Route::post('zone/add','API\ZoneController@store');
 
 Route::get('branchs/unCheked','API\BranchController@unCheked');
-Route::get('branchs/Cheked','API\BranchController@Cheked');
+Route::get('branchs/cheked','API\BranchController@Cheked');
 Route::get('branchs/showBranch/{branchID}','API\BranchController@showBranch');
 
 Route::get('conclude/{branchID}','API\ConcludeController@confirm');
@@ -44,7 +47,7 @@ Route::get('showTool/{branchID}','API\ToolController@showTool');
 Route::get('showAmountTool/{branchID}','API\ToolController@showAmountTool');
 Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
-Route::get('addcost/{tcostID}','API\CostController@store');
+Route::post('addcost/{id}','API\CostController@store');
 // Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 

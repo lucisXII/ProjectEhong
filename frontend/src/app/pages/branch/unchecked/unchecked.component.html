@@ -1,15 +1,18 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true"> -->
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="index"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       สาขาที่ยังไม่ตรวจ
     </ion-title>
   </ion-toolbar>
-</ion-header>
+<!-- </ion-header> -->
 
 <ion-content [fullscreen]="true">
 <ion-list>
   <ion-item *ngFor="let unCheck of unChecked">
-    <ion-label><a (click)="viewBranch(unCheck.br_id)">{{unCheck.branchName}}</a></ion-label>
+    <ion-label (click)="viewBranch(unCheck.br_id)">{{unCheck.branchName}}</ion-label>
   </ion-item>
 </ion-list>
 </ion-content>

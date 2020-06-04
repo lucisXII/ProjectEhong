@@ -1,0 +1,81 @@
+<ion-toolbar>
+  <!-- <ion-buttons slot="start">
+    <ion-button routerLink="/branch/checked/{{id}}">
+      <ion-icon color="danger" slot="icon-only" ios="menu-outline" md="menu-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons> -->
+  <ion-buttons slot="start">
+    <ion-back-button color="danger" defaultHref="/branch/checked/{{id}}"></ion-back-button>
+  </ion-buttons>
+  <ion-title>
+    ตรวจสอบคลังอะไหล่
+  </ion-title>
+</ion-toolbar>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-title>อะไหล่ทั้งหมด</ion-title>
+        <ion-list class="line-input">
+          <ion-item class="ion-margin">
+            <ion-input value="{{amount}} บาท" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-title>คงเหลือ</ion-title>
+        <ion-list class="line-input">
+          <ion-item class="ion-margin">
+            <ion-input value="0 บาท" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   <ion-grid>
+     <ion-card>
+     <ion-row class="ion-text-center ion-margin-vertical">
+       <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
+       <ion-col size="2"><ion-title>รหัสสินค้า</ion-title></ion-col>
+       <ion-col size="3"><ion-title>ชื่อสินค้า</ion-title></ion-col>
+       <ion-col size="2"><ion-title>คงเหลือ</ion-title></ion-col>
+       <ion-col size="2"><ion-title>ตรวจเช็ค</ion-title></ion-col>
+       <ion-col size="2"><ion-title>คอมเม้นต์</ion-title></ion-col>
+     </ion-row>
+     <ion-row class="ion-text-center" *ngFor="let spare of spares;let i = index">
+      <ion-col size="1">{{i + 1}}</ion-col>
+      <ion-col size="2">{{spare.code}}</ion-col>
+      <ion-col size="3">{{spare.name}}</ion-col>
+      <ion-col size="2">{{spare.remain}}</ion-col>
+      <!-- <ion-col>
+        <ion-item>
+          <ion-label>เพิ่มข้อมูล</ion-label>
+          <ion-select interface="popover">
+            <ion-select-option value="nes" ngFor="let number of count(spare.remain)">{{number}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col> -->
+      <ion-col size="2">
+        <ion-input type="number" 
+        placeholder="เพิ่มข้อมูล" 
+        clearInput
+        ></ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-input type="text" 
+        placeholder="เพิ่มข้อมูล" 
+        clearInput
+        ></ion-input>
+      </ion-col>
+    </ion-row>
+    </ion-card>
+   </ion-grid>
+   <ion-grid>
+     <ion-row>
+       <ion-col>
+        
+        <ion-button color="danger" expand="block" size="large"><ion-icon slot="start" name="add-outline"></ion-icon> บันทึกข้อมูล</ion-button>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+</ion-content>

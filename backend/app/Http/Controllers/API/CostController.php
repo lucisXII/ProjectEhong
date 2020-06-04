@@ -36,9 +36,10 @@ class CostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($tcostID)
+    public function store($id)
     {
-        $totalcost = Totalcost::findOrFail($tcostID);
+        $totalcost = Totalcost::where('tcost_id', $id)->fristOrFail();
+        return $totalcost;
         $cost = Cost::create([
             'br_id' => $totalcost->br_id,
             'user_id' => '1',
@@ -50,10 +51,10 @@ class CostController extends Controller
             'date' => timestamp('created_at'),
             'comment' => $request->comment,
         ]);
-        $cost->save();
+        // $cost->save();
 
-        return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);
+        // return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        // ,JSON_UNESCAPED_UNICODE);
         // $cost = Cost::create([
         //     'br_id' => $totalcost->br_id,
         //     'user_id' => '1',

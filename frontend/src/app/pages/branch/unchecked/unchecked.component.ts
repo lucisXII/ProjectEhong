@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./unchecked.component.scss'],
 })
 export class UncheckedComponent implements OnInit {
-  public unChecked: any;
+  unChecked: any;
 
   constructor(private branchService: BranchService, private router: Router) { }
 
@@ -22,7 +22,7 @@ export class UncheckedComponent implements OnInit {
 
   viewBranch(id) {
     console.log(id);
-    this.router.navigate(['branch/uncheked/' + id]);
+    this.router.navigate(['branch/unchecked/' + id]);
   }
 
 }

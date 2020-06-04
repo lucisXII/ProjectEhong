@@ -47,10 +47,11 @@ class BranchController extends Controller
 
     public function showBranch($branchID)
     {
-        $branch = DB::table('branches')
-                    ->where('branches.br_id', '=', $branchID)
-                    ->select('branches.*')
-                    ->get();
+        // $branch = DB::table('branches')
+        //             ->where('branches.br_id', '=', $branchID)
+        //             ->select('branches.*')
+        //             ->get();
+        $branch = Branch::where('br_id', $branchID)->firstOrFail();
 
         return response()->json($branch, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);

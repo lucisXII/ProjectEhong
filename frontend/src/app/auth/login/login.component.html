@@ -1,20 +1,34 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>Login</ion-card-title>
-    <ion-card-subtitle>Plase fill in username and password</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    <form (ngSubmit)="logForm()">
-    <ion-item>
-      <ion-label position="floating">Username</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-    <ion-button expand="block" class="ion-margin-top">Login</ion-button>
-  </form>
-  </ion-card-content>
-</ion-card>
+<ion-content fullscreen="true">
+  <ion-grid>
+    <div id="container">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-sm="12"  size-md="6">
+      <ion-card>
+        <div class="ion-padding ion-text-center">
+          <img src="./assets/logo.png" />
+        </div>
+        <ion-card-header class="ion-text-center">
+          <ion-card-title class="ion-margin-bottom">เข้าสู่ระบบ</ion-card-title>
+          <ion-card-subtitle>กรุณากรอกชื่อผู้เช้าใช้งานและรหัสผ่านของคุณ</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+          <ion-list class="line-input">
+            <ion-item class="ion-margin-bottom ion-no-padding">
+              <!-- <ion-label>Username</ion-label> -->
+              <ion-input type="text" name="username" ngModel #usernameInput="ngModel" placeholder="กรุณากรอกชื่อผู้เช้าใช้งานของคุณ" required></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin-bottom ion-no-padding">
+              <!-- <ion-label>Password</ion-label> -->
+              <ion-input type="password" name="password" ngModel #passwordInput="ngModel" placeholder="กรุณากรอกรหัสผ่านของคุณ" required></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-button color="danger" type="submit" expand="block">เข้าสู่ระบบ</ion-button>
+        </form>
+        </ion-card-content>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+    </div> 
+  </ion-grid>
+</ion-content>

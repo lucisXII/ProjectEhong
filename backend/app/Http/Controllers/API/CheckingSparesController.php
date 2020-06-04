@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Spares;
 use App\CheckingSpares;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use DB;
 class CheckingSparesController extends Controller
 {
@@ -26,7 +28,16 @@ class CheckingSparesController extends Controller
      */
     public function create()
     {
-        //
+        User::create([
+            'name' => 'Teerayut Khunsuk',
+	        'email' => 'teerayut@gmail.com',
+	        'username' => 'teerayut',
+	        'status' => '1',
+	        'position' => 'Member',
+            'address' => 'Kalasin',
+            'phone' => '0921526980',
+	        'password' => Hash::make('123456') // password
+        ]);
     }
 
     /**

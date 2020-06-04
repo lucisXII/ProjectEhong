@@ -16,4 +16,13 @@ class ZoneController extends Controller
         //return $this->showAllTransform("load data banks successfully" , $zones , 200);
     }
 
+    public function store(Request $request)
+    {
+        $zone = new Zone([
+            'zoneName' => $request->zone,
+        ]);
+        $zone->save();
+        return response()->json($zone, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],JSON_UNESCAPED_UNICODE);
+    }
+
 }

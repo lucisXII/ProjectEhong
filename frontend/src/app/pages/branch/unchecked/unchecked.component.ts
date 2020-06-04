@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BranchService } from './../../../services/branch.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-unchecked',
@@ -7,9 +8,9 @@ import { BranchService } from './../../../services/branch.service';
   styleUrls: ['./unchecked.component.scss'],
 })
 export class UncheckedComponent implements OnInit {
-  unChecked: any;
+  public unChecked: any;
 
-  constructor(private branchService: BranchService) { }
+  constructor(private branchService: BranchService, private router: Router) { }
 
   ngOnInit() {
     this.branchService.getUnchecked()
@@ -17,6 +18,11 @@ export class UncheckedComponent implements OnInit {
         this.unChecked = unChecked;
         console.log(unChecked);
     });
+  }
+
+  viewBranch(id) {
+    console.log(id);
+    this.router.navigate(['branch/uncheked/' + id]);
   }
 
 }

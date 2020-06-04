@@ -95,4 +95,81 @@ class CheckingSparesController extends Controller
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+
+    public function alldataChekedSpares($branchID)
+    {
+        $alldata = DB::table('checking_spares')
+                    ->join('spares','spares.s_id','=', 'checking_spares.s_id')
+                    ->where('checking_spares.br_id', '=', $branchID)
+                    ->whereMonth('checking_spares.date', '=', today()->month)
+                    ->select('checking_spares.*','spares.*')
+                    ->get();
+
+        return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showAmountSparesremain($branchID)
+    {     
+        $chekedSpares = DB::table('checking_spares')
+                        ->join('spares','spares.s_id','=', 'checking_spares.s_id')
+                        ->where('checking_spares.br_id', '=', $branchID)
+                        ->whereMonth('checking_spares.date', '=', today()->month)
+                        ->select('checking_spares.remain','spares.costprice')
+                        ->get();
+
+        $amount = 0.00;
+
+        foreach ($chekedSpares as  $chekedSpare) {
+            $sum = 0.00;
+            $sum = $chekedSpare->remain * $chekedSpare->costprice;
+            $amount = $amount + $sum;
+        }
+          
+       return response()->json($amount, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);    
+    }
+
+    public function showAmountChekedSpares($branchID)
+    {     
+        $chekedSpares = DB::table('checking_spares')
+                        ->join('spares','spares.s_id','=', 'checking_spares.s_id')
+                        ->where('checking_spares.br_id', '=', $branchID)
+                        ->whereMonth('checking_spares.date', '=', today()->month)
+                        ->select('checking_spares.check','spares.costprice')
+                        ->get();
+
+        $amount = 0.00;
+
+        foreach ($chekedSpares as  $chekedSpare) {
+            $sum = 0.00;
+            $sum = $chekedSpare->check * $chekedSpare->costprice;
+            $amount = $amount + $sum;
+        }
+        //echo  $amount;   
+       return response()->json($amount, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);    
+    }
+
+    public function showNumberSparesremain($branchID)
+    {     
+        $chekedSpares = DB::table('checking_spares')
+                        ->where('checking_spares.br_id', '=', $branchID)
+                        ->whereMonth('checking_spares.date', '=', today()->month)
+                        ->sum('checking_spares.remain');
+
+       return response()->json( $chekedSpares, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);    
+    }
+
+    public function showNumberChekedSpares($branchID)
+    {     
+        $chekedSpares = DB::table('checking_spares')
+                        ->where('checking_spares.br_id', '=', $branchID)
+                        ->whereMonth('checking_spares.date', '=', today()->month)
+                        ->sum('checking_spares.check');
+                        
+       return response()->json( $chekedSpares, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);    
+    }
 }

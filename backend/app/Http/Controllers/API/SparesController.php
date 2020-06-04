@@ -43,19 +43,18 @@ class SparesController extends Controller
 
     public function showNumberSpares($branchID)
     {     
-        $spares = DB::table('spares')
+        $sum= DB::table('spares')
                 ->where('br_id', '=', $branchID)
                 ->where('remain', '>', '0')
-                ->select('spares.*')
-                ->get();
+                ->sum('spares.remain');
 
-        $num = 0.00;
+        /*$num = 0.00;
 
         foreach ($spares as  $spare) {
             $num = $num + $spare->remain;
-        }
+        }*/
         
-       return response()->json($num, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
        ,JSON_UNESCAPED_UNICODE);    
     }
 }

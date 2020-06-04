@@ -96,4 +96,70 @@ class CheckingMotorcyclesController extends Controller
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+
+    public function alldataChekedMotorcycle($branchID)
+    {
+        $alldata = DB::table('checking_motorcycles')
+                    ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
+                    ->where('checking_motorcycles.br_id', '=', $branchID)
+                    ->whereMonth('checking_motorcycles.date', '=', today()->month)
+                    ->select('checking_motorcycles.*','motorcycles.*')
+                    ->get();
+
+        return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showvolume($branchID)
+    {
+        
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->whereMonth('checking_motorcycles.date', '=', today()->month)
+                            ->count();
+        
+        return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
+    public function showvolumeChekedMotorcycle($branchID)
+    {
+
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->where('checking_motorcycles.status', '=', '1')
+                            ->whereMonth('checking_motorcycles.date', '=', today()->month)
+                            ->count();
+        
+        return response()->json($ChekedMotorcycle , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
+    public function outstanding($branchID)
+    {
+        
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->where('checking_motorcycles.comment', '=', 'ยึดค้างส่ง')
+                            ->whereMonth('checking_motorcycles.date', '=', today()->month)
+                            ->count();
+        
+        return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
+    public function unready($branchID)
+    {
+        
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->where('checking_motorcycles.comment', '=', 'ไม่พร้อมขาย')
+                            ->whereMonth('checking_motorcycles.date', '=', today()->month)
+                            ->count();
+        
+        return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
 }

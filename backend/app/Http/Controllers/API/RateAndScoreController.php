@@ -17,7 +17,9 @@ class RateAndScoreController extends Controller
      */
     public function index()
     {
-        //
+        //$alldata = RateAndScore::all();
+       // return response()->json($zones, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        //,JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -113,4 +115,43 @@ class RateAndScoreController extends Controller
             ,JSON_UNESCAPED_UNICODE); 
         }
     }
+
+    public function showalldataRates($branchID,$groupID)
+    {
+        $list = DB::table('groups')
+                ->join('headings','headings.group_id','=', 'groups.group_id')
+                ->join('subheadings','subheadings.hd_id','=', 'headings.hd_id')
+                ->join('rate_and_scores','rate_and_scores.sh_id','=','subheadings.sh_id' )
+                ->where('groups.group_id', '=', $groupID)
+                ->where('rate_and_scores.br_id', '=', $branchID)
+                ->whereMonth('rate_and_scores.date', '=', today()->month)
+                ->select('rate_and_scores.*')
+                ->get();
+
+        return response()->json($list, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
+    public function showRatesFullScore($branchID,$groupID)
+    {
+        $lists = DB::table('groups')
+                ->join('headings','headings.group_id','=', 'groups.group_id')
+                ->join('subheadings','subheadings.hd_id','=', 'headings.hd_id')
+                ->join('rate_and_scores','rate_and_scores.sh_id','=','subheadings.sh_id' )
+                ->where('groups.group_id', '=', $groupID)
+                ->where('rate_and_scores.br_id', '=', $branchID)
+                ->whereMonth('rate_and_scores.date', '=', today()->month)
+                ->select('rate_and_scores.*')
+                ->get();
+
+        $sum = 0.00;
+
+        foreach ($lists as  $list) {
+            $sum = $sum + $list->score;
+        }
+                
+        return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
 }

@@ -127,4 +127,15 @@ class CostController extends Controller
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+
+    public function alldataChekedCost($branchID)
+    {
+        $alldata = DB::table('costs')
+                    ->where('costs.br_id', '=', $branchID)
+                    ->whereMonth('costs.date', '=', today()->month)
+                    ->get();
+
+        return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
 }

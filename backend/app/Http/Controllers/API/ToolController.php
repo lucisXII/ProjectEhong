@@ -43,19 +43,12 @@ class ToolController extends Controller
 
     public function showNumberTool($branchID)
     {     
-        $tools = DB::table('tools')
+        $sum = DB::table('tools')
                 ->where('br_id', '=', $branchID)
                 ->where('remain', '>', '0')
-                ->select('tools.*')
-                ->get();
+                ->sum('tools.remain');
 
-        $num = 0.00;
-
-        foreach ($tools as  $tool) {
-            $num = $num + $tool->remain;
-        }
-        
-       return response()->json($num, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
        ,JSON_UNESCAPED_UNICODE);    
     }
 }

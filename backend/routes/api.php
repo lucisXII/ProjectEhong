@@ -33,6 +33,7 @@ Route::get('conclude/{branchID}','API\ConcludeController@confirm');
 Route::get('group','API\GroupController@index');
 Route::get('heading','API\HeadingController@index');
 Route::get('subheading/{groupID}','API\SubheadingController@showlist');
+Route::get('FullscoreGroup/{groupID}','API\SubheadingController@showFullscoreGroup');
 
 Route::get('totalcost/{branchID}','API\TotalcostController@showTotalcost');
 
@@ -50,11 +51,30 @@ Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 Route::post('addcost/{id}','API\CostController@store');
 // Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
+Route::get('alldataChekedCost/{branchID}','API\CostController@alldataChekedCost');
 
 Route::get('chekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@ChekedMotorcycle');
+Route::get('alldatachekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@alldataChekedMotorcycle');
+Route::get('showvolume/{branchID}','API\CheckingMotorcyclesController@showvolume');
+Route::get('showvolumeChekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@showvolumeChekedMotorcycle');
+Route::get('outstanding/{branchID}','API\CheckingMotorcyclesController@outstanding');
+Route::get('unready/{branchID}','API\CheckingMotorcyclesController@unready');
 
 Route::get('ChekedSpares/{branchID}','API\CheckingSparesController@ChekedSpares');
+Route::get('alldataChekedSpares/{branchID}','API\CheckingSparesController@alldataChekedSpares');
+Route::get('showAmountSparesremain/{branchID}','API\CheckingSparesController@showAmountSparesremain');
+Route::get('showAmountChekedSpares/{branchID}','API\CheckingSparesController@showAmountChekedSpares');
+Route::get('showNumberSparesremain/{branchID}','API\CheckingSparesController@showNumberSparesremain');
+Route::get('showNumberChekedSpares/{branchID}','API\CheckingSparesController@showNumberChekedSpares');
 
 Route::get('ChekedTool/{branchID}','API\CheckingToolController@ChekedTool');
 
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
+Route::get('alldataChekedTools/{branchID}','API\CheckingToolController@alldataChekedTools');
+Route::get('showAmountToolremain/{branchID}','API\CheckingToolController@showAmountToolremain');
+Route::get('showAmountChekedTools/{branchID}','API\CheckingToolController@showAmountChekedTools');
+Route::get('showNumberToolremain/{branchID}','API\CheckingToolController@showNumberToolremain');
+Route::get('showNumberChekedTools/{branchID}','API\CheckingToolController@showNumberChekedTools');
+
+Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
+Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');

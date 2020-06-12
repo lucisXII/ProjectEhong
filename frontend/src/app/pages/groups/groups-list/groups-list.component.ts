@@ -4,15 +4,19 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-groups',
-  templateUrl: './groups.component.html',
-  styleUrls: ['./groups.component.scss'],
+  selector: 'app-groups-list',
+  templateUrl: './groups-list.component.html',
+  styleUrls: ['./groups-list.component.scss'],
 })
-export class GroupsComponent implements OnInit {
+export class GroupsListComponent implements OnInit {
   private id:string;
   groups: any;
 
-  constructor(private groupsService: GroupsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private groupsService: GroupsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
@@ -27,6 +31,11 @@ export class GroupsComponent implements OnInit {
         this.groups = groups;
         console.log(groups);
     });
+  }
+
+  viewGroup(GroupId) {
+    console.log(GroupId);
+    this.router.navigate(['branch/' + this.id + '/groups/' + GroupId]);
   }
 
 }

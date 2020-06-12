@@ -1,17 +1,19 @@
+<ion-header [translucent]="true">
 <ion-toolbar>
   <ion-buttons slot="start">
-    <ion-back-button color="danger" defaultHref="/branch/uncheked/{{id}}"></ion-back-button>
+    <ion-back-button color="danger" defaultHref="/branch/unchecked/{{id}}"></ion-back-button>
   </ion-buttons>
   <ion-title>
     ประเมินให้คะแนนสาขา
   </ion-title>
 </ion-toolbar>
+</ion-header>
 
 <ion-content fullscreen="true">
   <ion-grid>
     <ion-row>
       <ion-col size-md="3" size="6" *ngFor="let group of groups">
-        <ion-card class="ion-text-center">
+        <ion-card class="ion-text-center" (click)="viewGroup(group.group_id)">
           <!-- <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
             <ion-icon color="danger" slot="icon-only" name="enter-outline"></ion-icon>
           </ion-button> -->

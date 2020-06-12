@@ -85,7 +85,7 @@ class CheckingToolController extends Controller
     {
         //
     }
-    
+
     public function ChekedTool($branchID)
     {
         $cheked = DB::table('checking_tools')
@@ -103,7 +103,7 @@ class CheckingToolController extends Controller
                     ->join('tools','tools.tool_id','=', 'checking_tools.tool_id')
                     ->where('checking_tools.br_id', '=', $branchID)
                     ->whereMonth('checking_tools.date', '=', today()->month)
-                    ->select('checking_tools.*','tools.*')
+                    ->select('checking_tools.*','tools.code','tools.name')
                     ->get();
 
         return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
@@ -111,7 +111,7 @@ class CheckingToolController extends Controller
     }
 
     public function showAmountToolremain($branchID)
-    {     
+    {
         $chekedTools = DB::table('checking_tools')
                         ->join('tools','tools.tool_id','=', 'checking_tools.tool_id')
                         ->where('checking_tools.br_id', '=', $branchID)
@@ -126,13 +126,13 @@ class CheckingToolController extends Controller
             $sum =  $chekedTool->remain *  $chekedTool->costprice;
             $amount = $amount + $sum;
         }
-          
+
        return response()->json($amount, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-       ,JSON_UNESCAPED_UNICODE);    
+       ,JSON_UNESCAPED_UNICODE);
     }
 
     public function showAmountChekedTools($branchID)
-    {     
+    {
         $chekedTools = DB::table('checking_tools')
                         ->join('tools','tools.tool_id','=', 'checking_tools.tool_id')
                         ->where('checking_tools.br_id', '=', $branchID)
@@ -147,30 +147,30 @@ class CheckingToolController extends Controller
             $sum =  $chekedTool->check *  $chekedTool->costprice;
             $amount = $amount + $sum;
         }
-          
+
        return response()->json($amount, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-       ,JSON_UNESCAPED_UNICODE);    
+       ,JSON_UNESCAPED_UNICODE);
     }
 
     public function showNumberToolremain($branchID)
-    {     
+    {
         $chekedTools = DB::table('checking_tools')
                         ->where('checking_tools.br_id', '=', $branchID)
                         ->whereMonth('checking_tools.date', '=', today()->month)
                         ->sum('checking_tools.remain');
 
        return response()->json($chekedTools, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-       ,JSON_UNESCAPED_UNICODE);    
+       ,JSON_UNESCAPED_UNICODE);
     }
 
     public function showNumberChekedTools($branchID)
-    {     
+    {
         $chekedTools = DB::table('checking_tools')
                         ->where('checking_tools.br_id', '=', $branchID)
                         ->whereMonth('checking_tools.date', '=', today()->month)
                         ->sum('checking_tools.check');
 
        return response()->json($chekedTools , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-       ,JSON_UNESCAPED_UNICODE);    
+       ,JSON_UNESCAPED_UNICODE);
     }
 }

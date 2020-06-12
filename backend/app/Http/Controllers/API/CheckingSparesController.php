@@ -113,7 +113,7 @@ class CheckingSparesController extends Controller
                     ->join('spares','spares.s_id','=', 'checking_spares.s_id')
                     ->where('checking_spares.br_id', '=', $branchID)
                     ->whereMonth('checking_spares.date', '=', today()->month)
-                    ->select('checking_spares.*','spares.*')
+                    ->select('checking_spares.*','spares.code','spares.name')
                     ->get();
 
         return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']

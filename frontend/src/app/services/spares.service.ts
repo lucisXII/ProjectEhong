@@ -14,6 +14,11 @@ export class SparesService {
     return this.http.get<{data: any}>(BACKEND_URL + '/showSpares/' + id);
   }
 
+  getSparesChecked(id: string){
+    return this.http.get<{data: any}>(BACKEND_URL + '/alldataChekedSpares/' + id);
+    
+  }
+
   getAmountSpares(id: string){
     return this.http.get<{data: any}>(BACKEND_URL + '/showAmountSpares/' + id);
   }
@@ -23,7 +28,7 @@ export class SparesService {
   }
 
   
-  checkSpares(id: string) {
+  checkedSpares(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/ChekedSpares/' + id);
   }
 

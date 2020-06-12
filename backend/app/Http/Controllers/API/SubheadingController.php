@@ -17,12 +17,12 @@ class SubheadingController extends Controller
                 ->where('groups.group_id', '=', $groupID)
                 ->select('subheadings.*')
                 ->get();
-        
+
         return response()->json($list, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
 
     }
-    
+
     public function showFullscoreGroup($groupID)
     {
         $lists = DB::table('groups')
@@ -31,14 +31,14 @@ class SubheadingController extends Controller
                 ->where('groups.group_id', '=', $groupID)
                 ->select('subheadings.score')
                 ->get();
-        
+
         $sum = 0.00;
 
         foreach ($lists as  $list) {
             $sum = $sum + $list->score;
         }
-        
+
         return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 }

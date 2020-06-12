@@ -1,3 +1,4 @@
+<ion-header [translucent]="true">
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-back-button color="danger" defaultHref="branch/checked"></ion-back-button>
@@ -6,9 +7,10 @@
     รายการตรวจสาขาที่ตรวจแล้ว
   </ion-title>
 </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
+  <ion-grid class="ion-margin-top">
     <ion-row>
       <ion-col>
         <ion-title>{{branch?.branchName}}</ion-title> 
@@ -24,7 +26,7 @@
             <ion-label>ประเมินให้คะแนนสาขา</ion-label>
           </ion-item>
         
-          <ion-item href="#">
+          <ion-item (click)="viewMotocycles(checkMotocycles)">
             <ion-icon name="aperture-outline" slot="start"></ion-icon>
             <ion-label>ตรวจสอบคลังรถจักรยานยนต์</ion-label>
           </ion-item>
@@ -34,11 +36,11 @@
             <ion-label>ตรวจสอบคลังอะไหล่</ion-label>
           </ion-item>
         
-          <ion-item>
+          <ion-item (click)="viewTools(checkTools)">
             <ion-icon name="build-outline" slot="start"></ion-icon>
             <ion-label>ตรวจสอบคลังเครื่องมือ</ion-label>
           </ion-item>
-          <ion-item>
+          <ion-item (click)="viewCost(checkCost)">
             <ion-icon name="receipt-outline" slot="start"></ion-icon>
             <ion-label>ตรวจสอบยอดชำระค่างวด</ion-label>
           </ion-item>

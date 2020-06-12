@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ZoneService } from './../../services/zone.service';
 
+
 @Component({
   selector: 'app-blank',
   templateUrl: './blank.component.html',

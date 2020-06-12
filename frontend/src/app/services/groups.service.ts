@@ -13,4 +13,12 @@ export class GroupsService {
   getGroups() {
     return this.http.get<{data: any}>(BACKEND_URL + '/group');
   }
+
+  getHeadings(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showheading/' + id);
+  }
+
+  getSubHeadings(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/subheading/' + id);
+  }
 }

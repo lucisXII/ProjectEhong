@@ -1,15 +1,17 @@
-  <ion-toolbar>
+<ion-header [translucent]="true">
+<ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button color="danger" defaultHref="branch/unchecked"></ion-back-button>
     </ion-buttons>
     <ion-title>
       รายการตรวจสาขา
     </ion-title>
-  </ion-toolbar>
+</ion-toolbar>
+</ion-header>
 
 
 <ion-content [fullscreen]="true">
-<ion-grid>
+<ion-grid class="ion-margin-top">
   <ion-row>
     <ion-col>
       <ion-title>{{branch?.branchName}}</ion-title> 

@@ -34,6 +34,7 @@ Route::get('group','API\GroupController@index');
 Route::get('heading','API\HeadingController@index');
 Route::get('subheading/{groupID}','API\SubheadingController@showlist');
 Route::get('FullscoreGroup/{groupID}','API\SubheadingController@showFullscoreGroup');
+Route::get('showheading/{groupID}','API\HeadingController@showHeading');
 
 Route::get('totalcost/{branchID}','API\TotalcostController@showTotalcost');
 
@@ -67,7 +68,7 @@ Route::get('showAmountChekedSpares/{branchID}','API\CheckingSparesController@sho
 Route::get('showNumberSparesremain/{branchID}','API\CheckingSparesController@showNumberSparesremain');
 Route::get('showNumberChekedSpares/{branchID}','API\CheckingSparesController@showNumberChekedSpares');
 
-Route::get('ChekedTool/{branchID}','API\CheckingToolController@ChekedTool');
+Route::get('chekedTools/{branchID}','API\CheckingToolController@ChekedTool');
 
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('alldataChekedTools/{branchID}','API\CheckingToolController@alldataChekedTools');

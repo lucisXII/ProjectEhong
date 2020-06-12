@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SparesService } from 'src/app/services/spares.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-spares-checked',
@@ -42,6 +43,15 @@ export class SparesCheckedComponent implements OnInit {
         });
       }
     });
+  }
+
+  onAddSpares(form: NgForm) {
+    if(form.invalid) {
+      return;
+    }
+    console.log(form.value);
+    console.log(this.spares);
+    // this.authService.login(form.value.username, form.value.password);
   }
 
 }

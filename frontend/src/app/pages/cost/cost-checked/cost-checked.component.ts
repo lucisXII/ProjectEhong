@@ -1,22 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { SparesService } from 'src/app/services/spares.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-spares-unchecked',
-  templateUrl: './spares-unchecked.component.html',
-  styleUrls: ['./spares-unchecked.component.scss'],
+  selector: 'app-cost-checked',
+  templateUrl: './cost-checked.component.html',
+  styleUrls: ['./cost-checked.component.scss'],
 })
-export class SparesUncheckedComponent implements OnInit {
-  spares: any;
-  amount: any;
-  number: any;
+export class CostCheckedComponent implements OnInit {
   private id: string;
 
   constructor(
     private route: ActivatedRoute,
-    private sparesService: SparesService
   ) { }
 
   ngOnInit() {
@@ -26,6 +20,7 @@ export class SparesUncheckedComponent implements OnInit {
         console.log(this.id);
       }
     });
+    
   }
 
 }

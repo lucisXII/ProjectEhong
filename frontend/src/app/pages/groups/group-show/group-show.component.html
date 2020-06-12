@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/branch/{{id}}/groups"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ประเมิน
+    </ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content fullscreen="true">
+    <ion-grid class="ion-margin-top" *ngFor="let heading of headings">
+      <ion-row>
+        <ion-col>
+          <ion-title size="large">{{heading.headingName}}</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-card>
+        <ion-row class="ion-text-center ion-margin-vertical">
+          <ion-col class="ion-text-left" size="8"><ion-title>รายละเอียด</ion-title></ion-col>
+          <ion-col size="2"><ion-title>คะแนนเต็ม</ion-title></ion-col>
+          <ion-col size="2"><ion-title>คะแนนได้</ion-title></ion-col>
+        </ion-row>
+        <ion-row class="ion-text-center ion-margin-bottom ion-margin-start">
+         <ion-col class="ion-text-left ion-padding-start" size="8">
+           <ion-text>ทดสอบ</ion-text>
+          </ion-col>
+         <ion-col size="2">10</ion-col>
+         <ion-col size="2">10</ion-col>
+       </ion-row>
+       </ion-card>
+    </ion-grid>
+    
+    
+  </ion-content>

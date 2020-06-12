@@ -33,7 +33,7 @@ export class UncheckedListComponent implements OnInit {
           console.log(this.branch);
         });
 
-        this.sparesService.checkSpares(this.id)
+        this.sparesService.checkedSpares(this.id)
         .subscribe(response => {
           this.checkSpares = response;
           console.log(this.checkSpares);

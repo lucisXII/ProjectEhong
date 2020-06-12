@@ -19,9 +19,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { CheckedComponent } from './pages/branch/checked/checked.component';
 import { UncheckedListComponent } from './pages/branch/unchecked-list/unchecked-list.component';
 import { CheckedListComponent } from './pages/branch/checked-list/checked-list.component';
-import { GroupsComponent } from './pages/groups/groups.component';
 import { SparesUncheckedComponent } from './pages/spares/spares-unchecked/spares-unchecked.component';
 import { SparesCheckedComponent } from './pages/spares/spares-checked/spares-checked.component';
+import { GroupsListComponent } from './pages/groups/groups-list/groups-list.component';
+import { GroupShowComponent } from './pages/groups/group-show/group-show.component';
+import { MotorcyclesCheckedComponent } from './pages/motorcycles/motorcycles-checked/motorcycles-checked.component';
+import { MotorcyclesUncheckedComponent } from './pages/motorcycles/motorcycles-unchecked/motorcycles-unchecked.component';
+import { ToolsCheckedComponent } from './pages/tools/tools-checked/tools-checked.component';
+import { ToolsUncheckedComponent } from './pages/tools/tools-unchecked/tools-unchecked.component';
+import { CostCheckedComponent } from './pages/cost/cost-checked/cost-checked.component';
+import { CostUncheckedComponent } from './pages/cost/cost-unchecked/cost-unchecked.component';
 
 
 @NgModule({
@@ -34,9 +41,16 @@ import { SparesCheckedComponent } from './pages/spares/spares-checked/spares-che
     UncheckedListComponent,
     CheckedComponent,
     CheckedListComponent,
-    GroupsComponent,
     SparesCheckedComponent,
-    SparesUncheckedComponent
+    SparesUncheckedComponent,
+    GroupsListComponent,
+    GroupShowComponent,
+    MotorcyclesCheckedComponent,
+    MotorcyclesUncheckedComponent,
+    ToolsCheckedComponent,
+    ToolsUncheckedComponent,
+    CostCheckedComponent,
+    CostUncheckedComponent
   ],
   entryComponents: [],
   imports: [

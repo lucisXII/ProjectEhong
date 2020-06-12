@@ -1,3 +1,96 @@
-<p>
-  cost-unchecked works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/branch/unchecked/{{id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ตรวจสอบยอดชำระค่างวด
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (submit)="addCost(formCost)" #formCost="ngForm">
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>ยอดรวมจากระบบ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="dark-input">
+          <ion-item>
+            <ion-input type="number" value="{{total?.totalamount}}" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>ยอดส่งเงินรอตรวจ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="dark-input">
+          <ion-item>
+            <ion-input type="number" value="{{total?.storefront}}" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>เงินสดหน้าร้าน</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="number" placeholder="เพิ่มจำนวนเงินสด" name="money" ngModel #moneyInput="ngModel" required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>หมายเหตุ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="text" name="comment" ngModel #commentInput="ngModel" placeholder="เพิ่มหมายเหตุ"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>ใบเสร็จไม่ลงรับ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="text" name="bill" ngModel #billInput="ngModel" placeholder="เพิ่มข้อความ"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="3" size="12">
+        <ion-text><h5>สัญญาค้างชำระเกิน 15 วัน</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="5" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="text" name="agreement" ngModel #agreementInput="ngModel" placeholder="เพิ่มข้อความ"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-col size-md="8" size="12">
+        <ion-button type="submit" color="danger" expand="block" size="large" [disabled]="!formCost.valid">
+          <ion-icon slot="start" name="add-outline"></ion-icon> บันทึก
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+  </ion-content>

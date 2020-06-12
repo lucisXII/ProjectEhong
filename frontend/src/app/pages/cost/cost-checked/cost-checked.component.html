@@ -16,9 +16,9 @@
       <ion-text><h5>ยอดรวมจากระบบ</h5></ion-text>
     </ion-col>
     <ion-col size-md="6" size="12">
-      <ion-list class="line-input">
+      <ion-list class="dark-input">
         <ion-item>
-          <ion-input type="number" value="" disabled></ion-input>
+          <ion-input type="number" value="{{cost?.totalamount}}" disabled></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -28,9 +28,9 @@
       <ion-text><h5>ยอดส่งเงินรอตรวจ</h5></ion-text>
     </ion-col>
     <ion-col size-md="6" size="12">
-      <ion-list class="line-input">
+      <ion-list class="dark-input">
         <ion-item>
-          <ion-input type="number" value="" disabled></ion-input>
+          <ion-input type="number" value="{{cost?.storefront}}" disabled></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -40,9 +40,9 @@
       <ion-text><h5>เงินสดหน้าร้าน</h5></ion-text>
     </ion-col>
     <ion-col size-md="6" size="12">
-      <ion-list class="line-input">
+      <ion-list class="light-input">
         <ion-item>
-          <ion-input type="number" placeholder="เพิ่มจำนวนเงินสด"></ion-input>
+          <ion-input type="number" value="{{cost?.checkmoney}}" placeholder="เพิ่มจำนวนเงินสด"></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -52,9 +52,9 @@
       <ion-text><h5>หมายเหตุ</h5></ion-text>
     </ion-col>
     <ion-col size-md="6" size="12">
-      <ion-list class="line-input">
+      <ion-list class="light-input">
         <ion-item>
-          <ion-input type="text" placeholder="เพิ่มหมายเหตุ"></ion-input>
+          <ion-input type="text" value="{{cost?.comment}}" placeholder="เพิ่มหมายเหตุ"></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -64,9 +64,9 @@
       <ion-text><h5>ใบเสร็จไม่ลงรับ</h5></ion-text>
     </ion-col>
     <ion-col size-md="6" size="12">
-      <ion-list class="line-input">
+      <ion-list class="light-input">
         <ion-item>
-          <ion-input type="text" placeholder="เพิ่มข้อความ"></ion-input>
+          <ion-input type="text" value="{{cost?.receipt}}" placeholder="เพิ่มข้อความ"></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -76,19 +76,16 @@
       <ion-text><h5>สัญญาค้างชำระเกิน 15 วัน</h5></ion-text>
     </ion-col>
     <ion-col size-md="5" size="12">
-      <ion-list class="line-input">
+      <ion-list class="light-input">
         <ion-item>
-          <ion-input type="text" placeholder="เพิ่มข้อความ"></ion-input>
+          <ion-input type="text" value="{{cost?.agreement}}" placeholder="เพิ่มข้อความ"></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
   </ion-row>
   <ion-row class="ion-justify-content-center ion-margin-top">
-    <ion-col size-md="5" size="12">
-      <ion-button color="danger" expand="block" size="large">บันทึก</ion-button>
-    </ion-col>
-    <ion-col size-md="3" size="12">
-      <ion-button color="danger" expand="block" size="large" fill="outline">ยกเลิก</ion-button>
+    <ion-col size-md="8" size="12">
+      <ion-button color="danger" expand="block" size="large"><ion-icon slot="start" name="download-outline"></ion-icon>แก้ไข</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

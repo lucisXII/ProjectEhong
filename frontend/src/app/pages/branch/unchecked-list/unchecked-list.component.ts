@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BranchService } from './../../../services/branch.service';
 import { Router } from '@angular/router';
 import { SparesService } from 'src/app/services/spares.service';
+import { CostService } from 'src/app/services/cost.service';
 
 @Component({
   selector: 'app-unchecked-list',
@@ -10,13 +11,15 @@ import { SparesService } from 'src/app/services/spares.service';
   styleUrls: ['./unchecked-list.component.scss'],
 })
 export class UncheckedListComponent implements OnInit {
-  public branch: any;
-  public checkSpares: any;
+  branch: any;
+  checkSpares: any;
+  checkCost: any;
   private id: string;
 
   constructor(
     private branchService: BranchService,
     private sparesService: SparesService, 
+    private costService: CostService,
     private route: ActivatedRoute, 
     private router: Router
     ) { }
@@ -39,6 +42,12 @@ export class UncheckedListComponent implements OnInit {
           console.log(this.checkSpares);
         });
 
+        this.costService.checkedCost(this.id)
+        .subscribe(response => {
+          this.checkCost = response;
+          console.log(this.checkCost);
+        });
+
       }
     });
   }
@@ -50,11 +59,18 @@ export class UncheckedListComponent implements OnInit {
 
   viewSpares(id) {
     if(id == 0){
-      this.router.navigate(['branch/' + id + '/spares/unchecked']);
+      this.router.navigate(['branch/' + this.id + '/spares/unchecked']);
     } else {
-      this.router.navigate(['branch/' + id + '/spares/checked']);
+      this.router.navigate(['branch/' + this.id + '/spares/checked']);
     }
-    // this.router.navigate(['branch/' + id + '/groups']);
+  }
+
+  viewCost(id) {
+    if(id == 0){
+      this.router.navigate(['branch/' + this.id + '/cost/unchecked']);
+    } else {
+      this.router.navigate(['branch/' + this.id + '/cost/checked']);
+    }
   }
 
 }

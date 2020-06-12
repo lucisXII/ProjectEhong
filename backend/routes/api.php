@@ -49,7 +49,7 @@ Route::get('showTool/{branchID}','API\ToolController@showTool');
 Route::get('showAmountTool/{branchID}','API\ToolController@showAmountTool');
 Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
-Route::post('addcost/{id}','API\CostController@store');
+Route::post('addCost/{id}','API\CostController@store');
 // Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 Route::get('alldataChekedCost/{branchID}','API\CostController@alldataChekedCost');

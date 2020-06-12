@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Totalcost;
+use App\Branch;
 use App\Cost;
 use DB;
 
@@ -36,17 +37,16 @@ class CostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store($id, Request $request)
     {
         $totalcost = Totalcost::where('tcost_id', $id)->fristOrFail();
-        return $totalcost;
         $cost = Cost::create([
             'br_id' => $totalcost->br_id,
-            'user_id' => '1',
+            'user_id' => '2',
             'totalamount' => $totalcost->totalamount,
             'storefront' => $totalcost->storefront,
-            'checkmoney' => $request->checkmoney,
-            'receipt' => $request->receipt,
+            'checkmoney' => $request->money,
+            'receipt' => $request->bill,
             'agreement' => $request->agreement,
             'date' => timestamp('created_at'),
             'comment' => $request->comment,
@@ -125,6 +125,19 @@ class CostController extends Controller
                     ->count();
 
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function alldataChekedCost($branchID)
+    {
+        // $alldata = DB::table('costs')
+        //             ->where('costs.br_id', '=', $branchID)
+        //             ->whereMonth('costs.date', '=', today()->month)
+        //             ->get();
+
+        $cost = Cost::where('br_id', $branchID)->whereMonth('date', today()->month)->firstOrFail();
+
+        return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
 }

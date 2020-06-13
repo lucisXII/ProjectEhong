@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('register','API\CheckingSparesController@create');
+Route::post('register','API\CheckingSparesController@create');
 
 Route::get('zone','API\ZoneController@index');
 Route::get('zone/{id}','API\ZoneController@show');
@@ -53,6 +53,8 @@ Route::post('addCost/{id}','API\CostController@store');
 // Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 Route::get('alldataChekedCost/{branchID}','API\CostController@alldataChekedCost');
+//API เพิ่ม 13/06
+Route::get('showAgreement/{branchID}','API\CostController@showAgreement');
 
 Route::get('chekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@ChekedMotorcycle');
 Route::get('alldatachekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@alldataChekedMotorcycle');
@@ -79,3 +81,22 @@ Route::get('showNumberChekedTools/{branchID}','API\CheckingToolController@showNu
 
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
+
+Route::get('ShowHeadReportPDF/{branchID}','API\ReportController@ShowHeadReportPDF');
+Route::get('ShowHeadReportPDFdate/{branchID}','API\ReportController@ShowHeadReportPDFdate');
+Route::get('ShowUserPDF/{branchID}','API\ReportController@ShowNameUserPDF');
+Route::get('ShowScoreGroupPDF/{branchID}','API\ReportController@ShowScoreGroupPDF');
+Route::get('ShowScoreSumPDF/{branchID}','API\ReportController@ShowScoreSumPDF');
+Route::get('ShowBranchExcel','API\ReportController@ShowBranchExcel');
+Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
+Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
+
+//ดูข้อมูลย้อนหลัง
+Route::get('branchs/search/{year}/{month}','API\BranchController@search');
+//แสดงข้อมูลสาขาย้อนหลัง -> มอเตอร์ไซต์
+Route::get('watchAlldataChekedMotorcycle/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchAlldataChekedMotorcycle');
+Route::get('watchShowvolume/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchShowvolume');
+Route::get('watchShowvolumeChekedMotorcycle/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchShowvolumeChekedMotorcycle');
+Route::get('watchOutstanding/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchOutstanding');
+Route::get('watchUnready/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchUnready');
+//แสดงข้อมูลสาขาย้อนหลัง -> อะไหล่

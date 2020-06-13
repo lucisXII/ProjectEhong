@@ -56,5 +56,19 @@ class BranchController extends Controller
         return response()->json($branch, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+
+    public function search($year,$month)
+    {
+        $showBranch = DB::table('branches')
+                        ->join('concludes','concludes.br_id','=','branches.br_id' )
+                        ->whereMonth('concludes.date', '=', $month)
+                        ->whereYear('concludes.date', '=', $year)
+                        ->whereNull('branches.close_date')
+                        ->select('branches.br_id','branches.branchName')
+                        ->get();
+
+        return response()->json($showBranch, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
 }
 

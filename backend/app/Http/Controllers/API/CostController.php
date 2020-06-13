@@ -51,25 +51,6 @@ class CostController extends Controller
             'date' => timestamp('created_at'),
             'comment' => $request->comment,
         ]);
-        // $cost->save();
-
-        // return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        // ,JSON_UNESCAPED_UNICODE);
-        // $cost = Cost::create([
-        //     'br_id' => $totalcost->br_id,
-        //     'user_id' => '1',
-        //     'totalamount' => $totalcost->totalamount,
-        //     'storefront' => $totalcost->storefront,
-        //     'checkmoney' => $request->checkmoney,
-        //     'receipt' => $request->receipt,
-        //     'agreement' => $request->agreement,
-        //     'date' => timestamp('created_at'),
-        //     'comment' => $request->comment,
-        // ]);
-        // $cost->save();
-
-        // return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        // ,JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -140,4 +121,19 @@ class CostController extends Controller
         return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+
+    public function showAgreement($branchID)
+    {
+        $show = DB::table('costs')
+                        ->where('costs.br_id', '=', $branchID)
+                        ->whereMonth('costs.date', '=', today()->month)
+                        ->select('costs.agreement')
+                        ->get();
+
+        //$cost = Cost::where('br_id', $branchID)->whereMonth('date', today()->month)->firstOrFail();
+
+        return response()->json($show, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+    
 }

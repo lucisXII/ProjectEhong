@@ -143,6 +143,7 @@ class CheckingMotorcyclesController extends Controller
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
                             ->where('checking_motorcycles.comment', '=', 'ยึดค้างส่ง')
+                            ->orWhere('checking_motorcycles.comment', '=', 'รถยึดค้างส่ง')
                             ->whereMonth('checking_motorcycles.date', '=', today()->month)
                             ->count();
 
@@ -156,7 +157,83 @@ class CheckingMotorcyclesController extends Controller
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
                             ->where('checking_motorcycles.comment', '=', 'ไม่พร้อมขาย')
+                            ->orWhere('checking_motorcycles.comment', '=', 'รถไม่พร้อมขาย')
                             ->whereMonth('checking_motorcycles.date', '=', today()->month)
+                            ->count();
+
+        return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    //ดูข้อมูลย้อนหลัง
+    
+    public function watchAlldataChekedMotorcycle($branchID,$month,$year)
+    {
+        $alldata = DB::table('checking_motorcycles')
+                    ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
+                    ->where('checking_motorcycles.br_id', '=', $branchID)
+                    ->whereMonth('checking_motorcycles.date', '=', $month)
+                    ->whereYear('checking_motorcycles.date', '=', $year)
+                    ->select('checking_motorcycles.*','motorcycles.name','motorcycles.brand','motorcycles.color','motorcycles.condition')
+                    ->get();
+
+        return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function watchShowvolume($branchID,$month,$year)
+    {
+
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->whereMonth('checking_motorcycles.date', '=', $month)
+                            ->whereYear('checking_motorcycles.date', '=', $year)
+                            ->count();
+
+        return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function watchShowvolumeChekedMotorcycle($branchID,$month,$year)
+    {
+
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->where('checking_motorcycles.status', '=', '1')
+                            ->whereMonth('checking_motorcycles.date', '=', $month)
+                            ->whereYear('checking_motorcycles.date', '=', $year)
+                            ->count();
+
+        return response()->json($ChekedMotorcycle , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function watchOutstanding($branchID,$month,$year)
+    {
+
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->where('checking_motorcycles.comment', '=', 'ยึดค้างส่ง')
+                            ->orWhere('checking_motorcycles.comment', '=', 'รถยึดค้างส่ง')
+                            ->whereMonth('checking_motorcycles.date', '=', $month)
+                            ->whereYear('checking_motorcycles.date', '=', $year)
+                            ->count();
+
+        return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function watchUnready($branchID,$month,$year)
+    {
+
+         $ChekedMotorcycle = DB::table('checking_motorcycles')
+                            ->where('checking_motorcycles.br_id', '=', $branchID)
+                            ->where('checking_motorcycles.comment', '=', 'ไม่พร้อมขาย')
+                            ->orWhere('checking_motorcycles.comment', '=', 'รถไม่พร้อมขาย')
+                            ->whereMonth('checking_motorcycles.date', '=', $month)
+                            ->whereYear('checking_motorcycles.date', '=', $year)
                             ->count();
 
         return response()->json($ChekedMotorcycle, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']

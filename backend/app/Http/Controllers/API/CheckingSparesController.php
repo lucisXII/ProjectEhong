@@ -29,13 +29,13 @@ class CheckingSparesController extends Controller
     public function create()
     {
         User::create([
-            'name' => 'Teerayut Khunsuk',
-	        'email' => 'teerayut@gmail.com',
-	        'username' => 'teerayut',
+            'name' => 'Pirada maley',
+	        'email' => 'Pirada@gmail.com',
+	        'username' => 'Pirada',
 	        'status' => '1',
 	        'position' => 'Member',
             'address' => 'Kalasin',
-            'phone' => '0921526980',
+            'phone' => '0987475232',
 	        'password' => Hash::make('123456') // password
         ]);
     }

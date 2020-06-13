@@ -39,37 +39,35 @@ class CostController extends Controller
      */
     public function store($id, Request $request)
     {
-        $totalcost = Totalcost::where('tcost_id', $id)->fristOrFail();
-        $cost = Cost::create([
+        $user_id = \Auth::id();
+        $totalcost = Totalcost::findOrFail($id);
+        $cost = new Cost([
             'br_id' => $totalcost->br_id,
-            'user_id' => '2',
+            'user_id' => $user_id,
             'totalamount' => $totalcost->totalamount,
             'storefront' => $totalcost->storefront,
             'checkmoney' => $request->money,
             'receipt' => $request->bill,
             'agreement' => $request->agreement,
-            'date' => timestamp('created_at'),
+            'date' => date('Y-m-d'),
             'comment' => $request->comment,
         ]);
-        // $cost->save();
-
-        // return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        // ,JSON_UNESCAPED_UNICODE);
+        $cost->save();
         // $cost = Cost::create([
         //     'br_id' => $totalcost->br_id,
-        //     'user_id' => '1',
+        //     'user_id' => '2',
         //     'totalamount' => $totalcost->totalamount,
         //     'storefront' => $totalcost->storefront,
-        //     'checkmoney' => $request->checkmoney,
-        //     'receipt' => $request->receipt,
+        //     'checkmoney' => $request->money,
+        //     'receipt' => $request->bill,
         //     'agreement' => $request->agreement,
         //     'date' => timestamp('created_at'),
         //     'comment' => $request->comment,
         // ]);
-        // $cost->save();
 
-        // return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        // ,JSON_UNESCAPED_UNICODE);
+
+        return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     /**

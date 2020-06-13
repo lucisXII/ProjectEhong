@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MotocyclesService } from 'src/app/services/motocycles.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-motorcycles-unchecked',
-  templateUrl: './motorcycles-unchecked.component.html',
-  styleUrls: ['./motorcycles-unchecked.component.scss'],
+  selector: 'app-motorcycles-show',
+  templateUrl: './motorcycles-show.component.html',
+  styleUrls: ['./motorcycles-show.component.scss'],
 })
-export class MotorcyclesUncheckedComponent implements OnInit {
+export class MotorcyclesShowComponent implements OnInit {
   private id: string;
   motocycles: any;
   total: any;
@@ -26,7 +26,7 @@ export class MotorcyclesUncheckedComponent implements OnInit {
         this.id = paraMap.get('id');
         console.log(this.id);
 
-        this.motocyclesService.getMotocycles(this.id)
+        this.motocyclesService.getMotocyclesChecked(this.id)
         .subscribe(response => {
           this.motocycles = response;
           console.log(this.motocycles);

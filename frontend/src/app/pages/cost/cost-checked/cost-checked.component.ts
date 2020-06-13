@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { CostService } from 'src/app/services/cost.service';
+import { NgForm } from '@angular/forms';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-cost-checked',
@@ -9,11 +11,12 @@ import { CostService } from 'src/app/services/cost.service';
 })
 export class CostCheckedComponent implements OnInit {
   private id: string;
-  cost: any;
+  total: any;
 
   constructor(
     private route: ActivatedRoute,
-    private costService: CostService
+    private costService: CostService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -24,13 +27,21 @@ export class CostCheckedComponent implements OnInit {
 
         this.costService.getCost(this.id)
         .subscribe(response => {
-          this.cost = response;
-          console.log(this.cost);
+          this.total = response;
+          console.log(this.total);
         });
 
       }
     });
     
+  }
+
+  updateCost(form: NgForm) {
+    if(form.invalid) {
+      return;
+    }
+    this.loading.present();
+    this.costService.updateTotalCost(form.value.money, form.value.comment, form.value.bill, form.value.agreement, this.total.cost_id, this.id);
   }
 
 }

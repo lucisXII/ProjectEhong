@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="danger" defaultHref="/branch/checked/{{id}}"></ion-back-button>
+      <ion-back-button color="danger" defaultHref="/branch/unchecked/{{id}}"></ion-back-button>
     </ion-buttons>
     <ion-title>
       ตรวจสอบคลังเครื่องมือ
@@ -80,7 +80,7 @@
         <ion-col size="3">
           <ion-list class="ion-padding-horizontal checked-input">
             <ion-item>
-              <ion-input type="text" placeholder="เพิ่มข้อมูล"></ion-input>
+              <ion-input type="text" placeholder="เพิ่มข้อมูล" value="{{tool.comment}}"></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -88,7 +88,7 @@
       </ion-card>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="download-outline"></ion-icon> แก้ไขข้อมูล</ion-button>
+          <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="checkmark-outline"></ion-icon> แก้ไขข้อมูล</ion-button>
          </ion-col>
       </ion-row>
       </form>

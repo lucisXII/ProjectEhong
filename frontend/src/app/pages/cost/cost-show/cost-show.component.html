@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/branch/checked/{{id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ตรวจสอบยอดชำระค่างวด
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>ยอดรวมจากระบบ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="dark-input">
+          <ion-item>
+            <ion-input type="number" value="{{total?.totalamount}}" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>ยอดส่งเงินรอตรวจ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="dark-input">
+          <ion-item>
+            <ion-input type="number" value="{{total?.storefront}}" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>เงินสดหน้าร้าน</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="number" value="{{total?.checkmoney}}" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>หมายเหตุ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="text" value="{{total?.comment}}" placeholder="ไม่มีหมายเหตุ" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="2" size="12">
+        <ion-text><h5>ใบเสร็จไม่ลงรับ</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="6" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="text" value="{{total?.receipt}}" placeholder="ไม่มีข้อความ" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="3" size="12">
+        <ion-text><h5>สัญญาค้างชำระเกิน 15 วัน</h5></ion-text>
+      </ion-col>
+      <ion-col size-md="5" size="12">
+        <ion-list class="light-input">
+          <ion-item>
+            <ion-input type="text" value="{{total?.agreement}}" placeholder="ไม่มีข้อความ" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>

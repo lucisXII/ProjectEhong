@@ -10,8 +10,10 @@ import { NgForm } from '@angular/forms';
 })
 export class SparesCheckedComponent implements OnInit {
   spares: any;
-  amount: any;
-  number: any;
+  amountRemain: any;
+  amountChecked: any;
+  numberRemain: any;
+  numberChecked: any;
   private id: string;
 
   constructor(
@@ -25,21 +27,31 @@ export class SparesCheckedComponent implements OnInit {
         this.id = paraMap.get('id');
         console.log(this.id);
 
-        this.sparesService.getSpares(this.id)
+        this.sparesService.getSparesChecked(this.id)
         .subscribe(response => {
           this.spares = response;
           console.log(this.spares);
         });
 
-        this.sparesService.getAmountSpares(this.id)
+        this.sparesService.getAmountRemain(this.id)
         .subscribe(response => {
-          this.amount = response;
-          console.log(this.amount);
+          this.amountRemain = response;
+          console.log(this.amountRemain);
         });
-        this.sparesService.getNumberSpares(this.id)
+        this.sparesService.getAmountChecked(this.id)
         .subscribe(response => {
-          this.number = response;
-          console.log(this.number);
+          this.amountChecked = response;
+          console.log(this.amountChecked);
+        });
+        this.sparesService.getNumberRemain(this.id)
+        .subscribe(response => {
+          this.numberRemain = response;
+          console.log(this.numberRemain);
+        });
+        this.sparesService.getNumberChecked(this.id)
+        .subscribe(response => {
+          this.numberChecked = response;
+          console.log(this.numberChecked);
         });
       }
     });

@@ -20,6 +20,10 @@ import { ToolsUncheckedComponent } from './pages/tools/tools-unchecked/tools-unc
 import { ToolsCheckedComponent } from './pages/tools/tools-checked/tools-checked.component';
 import { CostUncheckedComponent } from './pages/cost/cost-unchecked/cost-unchecked.component';
 import { CostCheckedComponent } from './pages/cost/cost-checked/cost-checked.component';
+import { CostShowComponent } from './pages/cost/cost-show/cost-show.component';
+import { MotorcyclesShowComponent } from './pages/motorcycles/motorcycles-show/motorcycles-show.component';
+import { SparesShowComponent } from './pages/spares/spares-show/spares-show.component';
+import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.component';
 
 const routes: Routes = [
   {
@@ -42,12 +46,16 @@ const routes: Routes = [
   { path: 'branch/:id/groups/:groupId' , component: GroupShowComponent},
   { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent},
   { path: 'branch/:id/spares/checked' , component: SparesCheckedComponent},
+  { path: 'branch/:id/spares' , component: SparesShowComponent},
   { path: 'branch/:id/motocycles/unchecked' , component: MotorcyclesUncheckedComponent},
   { path: 'branch/:id/motocycles/checked' , component: MotorcyclesCheckedComponent},
+  { path: 'branch/:id/motocycles' , component: MotorcyclesShowComponent},
   { path: 'branch/:id/tools/unchecked' , component: ToolsUncheckedComponent},
   { path: 'branch/:id/tools/checked' , component: ToolsCheckedComponent},
+  { path: 'branch/:id/tools' , component: ToolsShowComponent},
   { path: 'branch/:id/cost/unchecked' , component: CostUncheckedComponent},
   { path: 'branch/:id/cost/checked' , component: CostCheckedComponent},
+  { path: 'branch/:id/cost' , component: CostShowComponent},
 ];
 
 @NgModule({

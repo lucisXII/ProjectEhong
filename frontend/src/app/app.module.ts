@@ -29,6 +29,10 @@ import { ToolsCheckedComponent } from './pages/tools/tools-checked/tools-checked
 import { ToolsUncheckedComponent } from './pages/tools/tools-unchecked/tools-unchecked.component';
 import { CostCheckedComponent } from './pages/cost/cost-checked/cost-checked.component';
 import { CostUncheckedComponent } from './pages/cost/cost-unchecked/cost-unchecked.component';
+import { CostShowComponent } from './pages/cost/cost-show/cost-show.component';
+import { MotorcyclesShowComponent } from './pages/motorcycles/motorcycles-show/motorcycles-show.component';
+import { SparesShowComponent } from './pages/spares/spares-show/spares-show.component';
+import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.component';
 
 
 @NgModule({
@@ -43,14 +47,18 @@ import { CostUncheckedComponent } from './pages/cost/cost-unchecked/cost-uncheck
     CheckedListComponent,
     SparesCheckedComponent,
     SparesUncheckedComponent,
+    SparesShowComponent,
     GroupsListComponent,
     GroupShowComponent,
     MotorcyclesCheckedComponent,
     MotorcyclesUncheckedComponent,
+    MotorcyclesShowComponent,
     ToolsCheckedComponent,
     ToolsUncheckedComponent,
+    ToolsShowComponent,
     CostCheckedComponent,
-    CostUncheckedComponent
+    CostUncheckedComponent,
+    CostShowComponent
   ],
   entryComponents: [],
   imports: [

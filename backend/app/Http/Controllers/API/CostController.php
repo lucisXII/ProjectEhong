@@ -64,8 +64,6 @@ class CostController extends Controller
         //     'date' => timestamp('created_at'),
         //     'comment' => $request->comment,
         // ]);
-
-
         return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
@@ -101,7 +99,14 @@ class CostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $totalcost = Totalcost::findOrFail($id);
+        $cost = Cost::findOrFail($id);
+        $cost->checkmoney = $request->money;
+        $cost->comment = $request->comment;
+        $cost->receipt = $request->bill;
+        $cost->agreement = $request->agreement;
+        $cost->save();
+        return $cost;
     }
 
     /**

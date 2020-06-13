@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="danger" defaultHref="/branch/checked/{{id}}"></ion-back-button>
+      <ion-back-button color="danger" defaultHref="/branch/unchecked/{{id}}"></ion-back-button>
     </ion-buttons>
     <ion-title>
       ตรวจสอบยอดชำระค่างวด
@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+<form (submit)="updateCost(formCost)" #formCost="ngForm">
 <ion-grid class="ion-margin-top">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="2" size="12">
@@ -18,7 +19,7 @@
     <ion-col size-md="6" size="12">
       <ion-list class="dark-input">
         <ion-item>
-          <ion-input type="number" value="{{cost?.totalamount}}" disabled></ion-input>
+          <ion-input type="number" value="{{total?.totalamount}}" disabled></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -30,7 +31,7 @@
     <ion-col size-md="6" size="12">
       <ion-list class="dark-input">
         <ion-item>
-          <ion-input type="number" value="{{cost?.storefront}}" disabled></ion-input>
+          <ion-input type="number" value="{{total?.storefront}}" disabled></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -42,7 +43,7 @@
     <ion-col size-md="6" size="12">
       <ion-list class="light-input">
         <ion-item>
-          <ion-input type="number" value="{{cost?.checkmoney}}" placeholder="เพิ่มจำนวนเงินสด"></ion-input>
+          <ion-input type="number" value="{{total?.checkmoney}}" placeholder="เพิ่มจำนวนเงินสด" name="money" ngModel required></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -54,7 +55,7 @@
     <ion-col size-md="6" size="12">
       <ion-list class="light-input">
         <ion-item>
-          <ion-input type="text" value="{{cost?.comment}}" placeholder="เพิ่มหมายเหตุ"></ion-input>
+          <ion-input type="text" value="{{total?.comment}}" placeholder="เพิ่มหมายเหตุ" name="comment" ngModel></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -66,7 +67,7 @@
     <ion-col size-md="6" size="12">
       <ion-list class="light-input">
         <ion-item>
-          <ion-input type="text" value="{{cost?.receipt}}" placeholder="เพิ่มข้อความ"></ion-input>
+          <ion-input type="text" value="{{total?.receipt}}" placeholder="เพิ่มข้อความ" name="bill" ngModel></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
@@ -78,15 +79,18 @@
     <ion-col size-md="5" size="12">
       <ion-list class="light-input">
         <ion-item>
-          <ion-input type="text" value="{{cost?.agreement}}" placeholder="เพิ่มข้อความ"></ion-input>
+          <ion-input type="text" value="{{total?.agreement}}" placeholder="เพิ่มข้อความ" name="agreement" ngModel></ion-input>
         </ion-item>
       </ion-list>
     </ion-col>
   </ion-row>
   <ion-row class="ion-justify-content-center ion-margin-top">
     <ion-col size-md="8" size="12">
-      <ion-button color="danger" expand="block" size="large"><ion-icon slot="start" name="checkmark-outline"></ion-icon>แก้ไข</ion-button>
+      <ion-button type="submit" color="danger" expand="block" size="large" [disabled]="!formCost.valid">
+        <ion-icon slot="start" name="checkmark-outline"></ion-icon>แก้ไข
+      </ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>
+</form>
 </ion-content>

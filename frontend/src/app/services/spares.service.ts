@@ -19,14 +19,21 @@ export class SparesService {
     
   }
 
-  getAmountSpares(id: string){
-    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountSpares/' + id);
+  getAmountRemain(id: string){
+    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountSparesremain/' + id);
   }
 
-  getNumberSpares(id: string){
-    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberSpares/' + id);
+  getAmountChecked(id: string){
+    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountChekedSpares/' + id);
   }
 
+  getNumberRemain(id: string){
+    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberSparesremain/' + id);
+  }
+
+  getNumberChecked(id: string){
+    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberChekedSpares/' + id);
+  }
   
   checkedSpares(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/ChekedSpares/' + id);

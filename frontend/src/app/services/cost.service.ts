@@ -50,5 +50,20 @@ export class CostService {
     });
   }
 
+  updateTotalCost(money: string, comment: string, bill: string, agreement: string, cost_id: string, id: string) {
+    const data = {
+      money: money, 
+      comment: comment, 
+      bill: bill, 
+      agreement: agreement
+    };
+    this.http.patch<{data: any}>(BACKEND_URL + '/updateCost/' + cost_id ,data)
+    .subscribe(response => {
+      console.log(response);
+      this.loading.dismiss();
+      this.router.navigate(['/branch/unchecked/' + id]);
+    });
+  }
+
   
 }

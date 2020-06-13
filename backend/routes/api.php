@@ -45,11 +45,12 @@ Route::get('showSpares/{branchID}','API\SparesController@showSpares');
 Route::get('showAmountSpares/{branchID}','API\SparesController@showAmountSpares');
 Route::get('showNumberSpares/{branchID}','API\SparesController@showNumberSpares');
 
-Route::get('showTool/{branchID}','API\ToolController@showTool');
+Route::get('showTools/{branchID}','API\ToolController@showTool');
 Route::get('showAmountTool/{branchID}','API\ToolController@showAmountTool');
 Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
-Route::post('addCost/{id}','API\CostController@store');
+Route::post('addCost/{id}','API\CostController@store')->middleware('auth:api');
+Route::patch('updateCost/{id}','API\CostController@update');
 // Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 Route::get('alldataChekedCost/{branchID}','API\CostController@alldataChekedCost');

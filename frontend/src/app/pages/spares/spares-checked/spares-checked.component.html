@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
 <ion-toolbar>
   <ion-buttons slot="start">
-    <ion-back-button color="danger" defaultHref="/branch/checked/{{id}}"></ion-back-button>
+    <ion-back-button color="danger" defaultHref="/branch/unchecked/{{id}}"></ion-back-button>
   </ion-buttons>
   <ion-title>
     ตรวจสอบคลังอะไหล่
@@ -13,63 +13,84 @@
   <ion-grid class="ion-margin-top">
     <ion-row>
       <ion-col>
-        <ion-title>อะไหล่ทั้งหมด</ion-title>
+        <ion-title>มูลค่าทั้งหมด</ion-title>
         <ion-list class="line-input">
           <ion-item class="ion-margin">
-            <ion-input value="{{amount}} บาท" disabled></ion-input>
+            <ion-input value="{{amountRemain}} บาท" disabled></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
       <ion-col>
-        <ion-title>คงเหลือ</ion-title>
+        <ion-title>มูลค่าคงเหลือ</ion-title>
         <ion-list class="line-input">
           <ion-item class="ion-margin">
-            <ion-input value="0 บาท" disabled></ion-input>
+            <ion-input value="{{amountChecked}} บาท" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-title>จำนวนทั้งหมด</ion-title>
+        <ion-list class="line-input">
+          <ion-item class="ion-margin">
+            <ion-input value="{{numberRemain}} ชิ้น" disabled></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-title>จำนวนคงเหลือ</ion-title>
+        <ion-list class="line-input">
+          <ion-item class="ion-margin">
+            <ion-input value="{{numberChecked}} ชิ้น" disabled></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
-   <ion-grid>
+  <ion-grid>
      <form (submit)="onAddSpares(SparesForm)" #SparesForm="ngForm">
-       <div>
+       <ion-card  color="dark">
+        <ion-row class="ion-text-center ion-margin-vertical">
+          <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
+          <ion-col size="2"><ion-title>รหัสสินค้า</ion-title></ion-col>
+          <ion-col size="3"><ion-title>ชื่อสินค้า</ion-title></ion-col>
+          <ion-col size="2"><ion-title>คงเหลือ</ion-title></ion-col>
+          <ion-col size="2"><ion-title>ตรวจเช็ค</ion-title></ion-col>
+          <ion-col size="2"><ion-title>คอมเม้นต์</ion-title></ion-col>
+        </ion-row>
+       </ion-card>
      <ion-card>
-     <ion-row class="ion-text-center ion-margin-vertical">
-       <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
-       <ion-col size="2"><ion-title>รหัสสินค้า</ion-title></ion-col>
-       <ion-col size="3"><ion-title>ชื่อสินค้า</ion-title></ion-col>
-       <ion-col size="2"><ion-title>คงเหลือ</ion-title></ion-col>
-       <ion-col size="2"><ion-title>ตรวจเช็ค</ion-title></ion-col>
-       <ion-col size="2"><ion-title>คอมเม้นต์</ion-title></ion-col>
-     </ion-row>
-     <ion-row class="ion-text-center" *ngFor="let spare of spares;let i = index">
-      <ion-col size="1">{{i + 1}}</ion-col>
-      <ion-col size="2">{{spare.code}}</ion-col>
-      <ion-col size="3">{{spare.name}}</ion-col>
-      <ion-col size="2">{{spare.remain}}</ion-col>
-      <ion-col size="2">
-        <ion-input type="number"
-        name="number"
-        #numberInput="ngModel" 
-         ngModel
-        placeholder="เพิ่มข้อมูล" 
-        clearInput
-        ></ion-input>
-      </ion-col>
-      <ion-col size="2">
-        <ion-input type="text" 
-        placeholder="เพิ่มข้อมูล" 
-        clearInput
-        ></ion-input>
-      </ion-col>
-    </ion-row>
+      <ion-row class="ion-text-center ion-margin-vertical" *ngFor="let spare of spares;let i = index">
+        <ion-col size="1"><ion-text><h5>{{i + 1}}</h5></ion-text></ion-col>
+        <ion-col size="2"><ion-text><h5>{{spare.code}}</h5></ion-text></ion-col>
+        <ion-col class="ion-text-left ion-padding-start" size="3">
+          <ion-text>
+            <h5>{{spare.name}}</h5>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text><h5>{{spare.remain}}</h5></ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-list class="checked-input">
+            <ion-item>
+              <ion-input type="number" value="{{spare.check}}" placeholder="เพิ่ม"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="3">
+          <ion-list class="ion-padding-horizontal checked-input">
+            <ion-item>
+              <ion-input type="text" value="{{spare.comment}}" placeholder="เพิ่มข้อมูล"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
     </ion-card>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="add-outline"></ion-icon> บันทึกข้อมูล</ion-button>
+        <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="checkmark-outline"></ion-icon> แก้ไขข้อมูล</ion-button>
        </ion-col>
     </ion-row>
-      </div>
     </form>
    </ion-grid>
 </ion-content>

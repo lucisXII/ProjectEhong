@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { CostService } from 'src/app/services/cost.service';
+import { LoadingService } from '../../../services/loading.service';
 
 @Component({
   selector: 'app-cost-unchecked',
@@ -14,7 +15,8 @@ export class CostUncheckedComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private costService: CostService
+    private costService: CostService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -35,8 +37,9 @@ export class CostUncheckedComponent implements OnInit {
     if(form.invalid) {
       return;
     }
+    this.loading.present();
     console.log(form.value);
-    this.costService.addTotalCost(form.value.money, form.value.comment, form.value.bill, form.value.agreement, this.id);
+    this.costService.addTotalCost(form.value.money, form.value.comment, form.value.bill, form.value.agreement, this.total.tcost_id, this.id);
     // console.log(this.spares);
     // this.authService.login(form.value.username, form.value.password);
   }

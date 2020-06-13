@@ -10,6 +10,10 @@ export class MotocyclesService {
 
   constructor(private http: HttpClient) { }
 
+  getMotocycles(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showMotorcycle/' + id);
+  }
+
   getMotocyclesChecked(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/alldatachekedMotorcycle/' + id);
   }

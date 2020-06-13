@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { GroupsService } from 'src/app/services/groups.service';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-group-show',
@@ -40,6 +41,10 @@ export class GroupShowComponent implements OnInit {
 
       }
     });
+  }
+
+  addScore(form: NgForm) {
+    console.log(form.value);
   }
 
 }

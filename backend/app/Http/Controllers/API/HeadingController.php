@@ -18,10 +18,8 @@ class HeadingController extends Controller
 
     public function showHeading($groupID)
     {
-        $heading = DB::table('headings')
-                ->join('groups','groups.group_id','=','headings.group_id')
-                ->where('groups.group_id', '=', $groupID)
-                ->select('headings.*')
+        $heading = Heading::where('group_id', $groupID)->with('group')
+                ->with('subHeading')
                 ->get();
 
         return response()->json($heading , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']

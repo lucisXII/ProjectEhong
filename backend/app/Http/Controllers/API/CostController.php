@@ -39,18 +39,23 @@ class CostController extends Controller
      */
     public function store($id, Request $request)
     {
-        $totalcost = Totalcost::where('tcost_id', $id)->fristOrFail();
-        $cost = Cost::create([
+        $user_id = \Auth::id();
+        $totalcost = Totalcost::findOrFail($id);
+        $cost = new Cost([
             'br_id' => $totalcost->br_id,
-            'user_id' => '2',
+            'user_id' => $user_id,
             'totalamount' => $totalcost->totalamount,
             'storefront' => $totalcost->storefront,
             'checkmoney' => $request->money,
             'receipt' => $request->bill,
             'agreement' => $request->agreement,
-            'date' => timestamp('created_at'),
+            'date' => date('Y-m-d'),
             'comment' => $request->comment,
         ]);
+        $cost->save();
+
+        return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -84,7 +89,14 @@ class CostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $totalcost = Totalcost::findOrFail($id);
+        $cost = Cost::findOrFail($id);
+        $cost->checkmoney = $request->money;
+        $cost->comment = $request->comment;
+        $cost->receipt = $request->bill;
+        $cost->agreement = $request->agreement;
+        $cost->save();
+        return $cost;
     }
 
     /**

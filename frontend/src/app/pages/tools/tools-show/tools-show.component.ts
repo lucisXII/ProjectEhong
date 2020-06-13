@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolsService } from 'src/app/services/tools.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { SparesService } from 'src/app/services/spares.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-spares-unchecked',
-  templateUrl: './spares-unchecked.component.html',
-  styleUrls: ['./spares-unchecked.component.scss'],
+  selector: 'app-tools-show',
+  templateUrl: './tools-show.component.html',
+  styleUrls: ['./tools-show.component.scss'],
 })
-export class SparesUncheckedComponent implements OnInit {
-  spares: any;
+export class ToolsShowComponent implements OnInit {
+  private id: string;
+  tools: any;
   amountRemain: any;
   amountChecked: any;
   numberRemain: any;
   numberChecked: any;
-  private id: string;
 
   constructor(
     private route: ActivatedRoute,
-    private sparesService: SparesService
+    private toolsService: ToolsService
   ) { }
 
   ngOnInit() {
@@ -27,33 +26,32 @@ export class SparesUncheckedComponent implements OnInit {
         this.id = paraMap.get('id');
         console.log(this.id);
 
-        this.sparesService.getSpares(this.id)
+        this.toolsService.getToolsChecked(this.id)
         .subscribe(response => {
-          this.spares = response;
-          console.log(this.spares);
+          this.tools = response;
+          console.log(this.tools);
         });
 
-        this.sparesService.getAmountRemain(this.id)
+        this.toolsService.getAmountRemain(this.id)
         .subscribe(response => {
           this.amountRemain = response;
           console.log(this.amountRemain);
         });
-        this.sparesService.getAmountChecked(this.id)
+        this.toolsService.getAmountChecked(this.id)
         .subscribe(response => {
           this.amountChecked = response;
           console.log(this.amountChecked);
         });
-        this.sparesService.getNumberRemain(this.id)
+        this.toolsService.getNumberRemain(this.id)
         .subscribe(response => {
           this.numberRemain = response;
           console.log(this.numberRemain);
         });
-        this.sparesService.getNumberChecked(this.id)
+        this.toolsService.getNumberChecked(this.id)
         .subscribe(response => {
           this.numberChecked = response;
           console.log(this.numberChecked);
         });
-
       }
     });
   }

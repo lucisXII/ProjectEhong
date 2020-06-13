@@ -10,6 +10,10 @@ export class ToolsService {
 
   constructor(private http: HttpClient) { }
 
+  getTools(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showTools/' + id);
+  }
+
   getToolsChecked(id: string){
     return this.http.get<{data: any}>(BACKEND_URL + '/alldataChekedTools/' + id);
   }

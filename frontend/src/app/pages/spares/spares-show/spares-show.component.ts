@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SparesService } from 'src/app/services/spares.service';
-import { NgForm } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-spares-unchecked',
-  templateUrl: './spares-unchecked.component.html',
-  styleUrls: ['./spares-unchecked.component.scss'],
+  selector: 'app-spares-show',
+  templateUrl: './spares-show.component.html',
+  styleUrls: ['./spares-show.component.scss'],
 })
-export class SparesUncheckedComponent implements OnInit {
+export class SparesShowComponent implements OnInit {
   spares: any;
   amountRemain: any;
   amountChecked: any;
@@ -27,7 +26,7 @@ export class SparesUncheckedComponent implements OnInit {
         this.id = paraMap.get('id');
         console.log(this.id);
 
-        this.sparesService.getSpares(this.id)
+        this.sparesService.getSparesChecked(this.id)
         .subscribe(response => {
           this.spares = response;
           console.log(this.spares);
@@ -53,7 +52,6 @@ export class SparesUncheckedComponent implements OnInit {
           this.numberChecked = response;
           console.log(this.numberChecked);
         });
-
       }
     });
   }

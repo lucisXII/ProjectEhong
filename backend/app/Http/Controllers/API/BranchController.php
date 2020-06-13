@@ -19,13 +19,46 @@ class BranchController extends Controller
 
     public function unCheked()
     {
-        $unCheked = DB::table('branches')
-                    ->join('concludes','concludes.br_id','!=','branches.br_id' )
-                    ->whereMonth('concludes.date', '=', today()->month)
-                    //->where('branches.close_date','=',null)
-                    ->whereNull('branches.close_date')
-                    ->select('branches.br_id','branches.branchName')
-                    ->get();
+
+        $cheked = DB::table('branches')
+                ->join('concludes','concludes.br_id','=','branches.br_id' )
+                ->whereMonth('concludes.date', '=', today()->month)
+                ->whereNull('branches.close_date')
+                ->select('branches.br_id','branches.branchName')
+                ->get();
+        
+        $branches = DB::table('branches')
+                ->whereNull('branches.close_date')
+                ->select('branches.br_id','branches.branchName')
+                ->get();
+
+        $count =  count($branches);
+        $unCheked = array();
+        $i = 0;
+        $j = 0;
+        foreach($branches as $branche){
+            $j = 0;
+            foreach($cheked  as $check){
+                if($branche->br_id == $check->br_id){
+                    $j = 1;
+                    //return $check;
+                }
+            }
+
+            if($j == 0){
+                $unCheked[$i][0] = $branche->br_id;
+                $unCheked[$i][1] = $branche->branchName;
+               $i++;
+            }
+        }
+        //return $unCheked;
+        // $unCheked = DB::table('branches')
+        //             ->join('concludes','concludes.br_id','!=','branches.br_id' )
+        //             ->whereMonth('concludes.date', '!=', today()->month)
+        //             ->whereNull('branches.close_date')
+        //             ->select('branches.br_id','branches.branchName')
+        //             ->distinct()
+        //             ->get();
         return response()->json($unCheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
         

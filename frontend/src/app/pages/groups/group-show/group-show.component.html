@@ -32,9 +32,12 @@
          <ion-col size="2">
           <ion-list>
             <ion-item>
-              <ion-input type="number" placeholder="เพิ่ม" [name]="'score_' + i" [ngModel]></ion-input>
+              <!-- <ion-input type="number" placeholder="เพิ่ม" [name]="'score_' + i" [ngModel]></ion-input> -->
               <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input>
               <ion-input type="number" placeholder="เพิ่ม" name="id_{{sub.sh_id}}" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
+              <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input> -->
+              {{sub.sh_id}}<input [(ngModel)]="sub.sh_id" [ngModelOptions]="{standalone: true}">
+              <!-- <ion-input type="number" placeholder="เพิ่ม" name="" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
             </ion-item>
           </ion-list>
          </ion-col>

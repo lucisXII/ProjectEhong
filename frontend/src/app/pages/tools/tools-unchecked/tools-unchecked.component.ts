@@ -58,7 +58,9 @@ export class ToolsUncheckedComponent implements OnInit {
   }
 
   addTools(form: NgForm) {
-    console.log(form.value);
+  //  console.log(form.value);
+    console.log(this.tools);
+    
   }
   
 

@@ -173,4 +173,87 @@ class CheckingToolController extends Controller
        return response()->json($chekedTools , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
        ,JSON_UNESCAPED_UNICODE);
     }
+
+    //ดูข้อมูลย้อนหลัง
+    public function alldataChekedToolsOld($branchID,$month,$year)
+    {
+        $alldata = DB::table('checking_tools')
+                    ->join('tools','tools.tool_id','=', 'checking_tools.tool_id')
+                    ->where('checking_tools.br_id', '=', $branchID)
+                    ->whereMonth('checking_tools.date', '=', $month)
+                    ->whereYear('checking_tools.date', '=', $year)
+                    ->select('checking_tools.*','tools.code','tools.name')
+                    ->get();
+
+        return response()->json($alldata, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showAmountToolremainOld($branchID,$month,$year)
+    {
+        $chekedTools = DB::table('checking_tools')
+                        ->join('tools','tools.tool_id','=', 'checking_tools.tool_id')
+                        ->where('checking_tools.br_id', '=', $branchID)
+                        ->whereMonth('checking_tools.date', '=', $month)
+                        ->whereYear('checking_tools.date', '=', $year)
+                        ->select('checking_tools.remain','tools.costprice')
+                        ->get();
+
+        $amount = 0.00;
+
+        foreach ($chekedTools as  $chekedTool) {
+            $sum = 0.00;
+            $sum =  $chekedTool->remain *  $chekedTool->costprice;
+            $amount = $amount + $sum;
+        }
+
+       return response()->json($amount, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showAmountChekedToolsOld($branchID,$month,$year)
+    {
+        $chekedTools = DB::table('checking_tools')
+                        ->join('tools','tools.tool_id','=', 'checking_tools.tool_id')
+                        ->where('checking_tools.br_id', '=', $branchID)
+                        ->whereMonth('checking_tools.date', '=', $month)
+                        ->whereYear('checking_tools.date', '=', $year)
+                        ->select('checking_tools.check','tools.costprice')
+                        ->get();
+
+        $amount = 0.00;
+
+        foreach ($chekedTools as  $chekedTool) {
+            $sum = 0.00;
+            $sum =  $chekedTool->check *  $chekedTool->costprice;
+            $amount = $amount + $sum;
+        }
+
+       return response()->json($amount, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showNumberToolremainOld($branchID,$month,$year)
+    {
+        $chekedTools = DB::table('checking_tools')
+                        ->where('checking_tools.br_id', '=', $branchID)
+                        ->whereMonth('checking_tools.date', '=', $month)
+                        ->whereYear('checking_tools.date', '=', $year)
+                        ->sum('checking_tools.remain');
+
+       return response()->json($chekedTools, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showNumberChekedToolsOld($branchID,$month,$year)
+    {
+        $chekedTools = DB::table('checking_tools')
+                        ->where('checking_tools.br_id', '=', $branchID)
+                        ->whereMonth('checking_tools.date', '=', $month)
+                        ->whereYear('checking_tools.date', '=', $year)
+                        ->sum('checking_tools.check');
+
+       return response()->json($chekedTools , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       ,JSON_UNESCAPED_UNICODE);
+    }
 }

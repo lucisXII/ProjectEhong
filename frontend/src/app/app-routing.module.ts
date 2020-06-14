@@ -24,6 +24,7 @@ import { CostShowComponent } from './pages/cost/cost-show/cost-show.component';
 import { MotorcyclesShowComponent } from './pages/motorcycles/motorcycles-show/motorcycles-show.component';
 import { SparesShowComponent } from './pages/spares/spares-show/spares-show.component';
 import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.component';
+import { SearchComponent } from './pages/former/search/search.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'branch/:id/cost/unchecked' , component: CostUncheckedComponent},
   { path: 'branch/:id/cost/checked' , component: CostCheckedComponent},
   { path: 'branch/:id/cost' , component: CostShowComponent},
+  { path: 'search' , component: SearchComponent},
 ];
 
 @NgModule({

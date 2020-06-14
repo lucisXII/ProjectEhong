@@ -12,7 +12,7 @@
 <ion-content [fullscreen]="true">
 <ion-list>
   <ion-item *ngFor="let unCheck of unChecked">
-    <ion-label (click)="viewBranch(unCheck.br_id)">{{unCheck.branchName}}</ion-label>
+    <ion-label (click)="viewBranch(unCheck[0])">{{unCheck[1]}}</ion-label>
   </ion-item>
 </ion-list>
 </ion-content>

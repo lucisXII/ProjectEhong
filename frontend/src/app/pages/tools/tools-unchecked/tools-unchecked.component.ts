@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-tools-unchecked',
@@ -54,7 +55,11 @@ export class ToolsUncheckedComponent implements OnInit {
         });
       }
     });
-
   }
+
+  addTools(form: NgForm) {
+    console.log(form.value);
+  }
+  
 
 }

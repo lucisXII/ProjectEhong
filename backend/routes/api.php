@@ -93,7 +93,10 @@ Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
 Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
 
 //ดูข้อมูลย้อนหลัง
-Route::get('branchs/Search/result/{year}/{month}','API\BranchController@search');
+// Route::get('branchs/Search/result/{year}/{month}','API\BranchController@search');
+Route::post('branchs/search','API\BranchController@search');
+Route::get('branchs/search/result','API\BranchController@result');
+// Route::get('branchs/search/result','API\BranchController@search');
 //แสดงข้อมูลสาขาย้อนหลัง -> มอเตอร์ไซต์
 Route::get('watchAlldataChekedMotorcycle/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchAlldataChekedMotorcycle');
 Route::get('watchShowvolume/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchShowvolume');

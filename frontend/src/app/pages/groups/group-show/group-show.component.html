@@ -24,7 +24,7 @@
           <ion-col size="2"><ion-title>คะแนนได้</ion-title></ion-col>
         </ion-row>
         
-        <ion-row class="ion-text-center ion-margin-bottom ion-margin-start" *ngFor="let sub of heading.sub_heading">
+        <ion-row class="ion-text-center ion-margin-bottom ion-margin-start" *ngFor="let sub of heading.sub_heading;let i = index">
          <ion-col class="ion-text-left ion-padding-start" size="8">
            <ion-text>{{sub.subheadingName}}</ion-text>
           </ion-col>
@@ -32,8 +32,9 @@
          <ion-col size="2">
           <ion-list>
             <ion-item>
-              <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input>
-              <ion-input type="number" placeholder="เพิ่ม" name="id_{{sub.sh_id}}" ngModel value="{{sub.sh_id}}" hidden></ion-input>
+              <ion-input type="number" placeholder="เพิ่ม" [name]="'score_' + i" [ngModel]></ion-input>
+              <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input>
+              <ion-input type="number" placeholder="เพิ่ม" name="id_{{sub.sh_id}}" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
             </ion-item>
           </ion-list>
          </ion-col>

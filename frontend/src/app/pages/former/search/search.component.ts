@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { YearmonthService } from 'src/app/services/yearmonth.service';
 import { NgForm } from '@angular/forms';
 import { SearchService } from 'src/app/services/search.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,8 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private yearmonthService: YearmonthService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private loading: LoadingService
   ) { }
 
   // getMonth() {
@@ -37,11 +39,9 @@ export class SearchComponent implements OnInit {
   }
 
   searchForm(form: NgForm) {
-    if(form.invalid) {
-      return;
-    }
+    this.loading.present();
     //console.log(form.value);
-    this.searchService.getResult(form.value.year, form.value.month);
+    this.searchService.search(form.value.year, form.value.month);
   }
 
 }

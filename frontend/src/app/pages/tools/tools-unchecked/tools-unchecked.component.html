@@ -73,7 +73,8 @@
         <ion-col size="1">
           <ion-list class="checked-input">
             <ion-item>
-              <ion-input type="number" placeholder="เพิ่ม" [name]="'total_' + i" [ngModel] required></ion-input>
+              <!-- <ion-input type="number" placeholder="เพิ่ม" [name]="'total_' + i" [ngModel] required></ion-input> -->
+              <input [(ngModel)]="tool.remain" [ngModelOptions]="{standalone: true}">
             </ion-item>
           </ion-list>
         </ion-col>

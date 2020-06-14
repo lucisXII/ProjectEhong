@@ -1,3 +1,25 @@
-<p>
-  result works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/index"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/search']">
+        <ion-icon color="danger" slot="icon-only" ios="search-outline" md="search-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      ผลลัพธ์การค้นหา
+    </ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <div *ngFor="let result of results"><p>{{result.branchName}}</p></div>
+    
+    <!-- <ion-list>
+      <ion-item *ngFor="let result of results">
+        <ion-label></ion-label>
+      </ion-item>
+    </ion-list> -->
+    </ion-content>

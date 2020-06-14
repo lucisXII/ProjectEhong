@@ -27,7 +27,7 @@
             <ion-label>ปี</ion-label>
             <ion-select ok-text="เลือก" cancel-text="ยกเลิก" name="year" ngModel required>
               <div *ngFor="let year of years">
-              <ion-select-option value="{{year.name}}">{{year.name}}</ion-select-option>
+              <ion-select-option value="{{year.id}}">{{year.name}}</ion-select-option>
               </div>
             </ion-select>
           </ion-item>
@@ -41,7 +41,7 @@
            <ion-label>เดือน</ion-label>
            <ion-select ok-text="เลือก" cancel-text="ยกเลิก" name="month" ngModel required>
              <div  *ngFor="let month of months">
-             <ion-select-option value="{{month.name}}">{{month.name}}</ion-select-option>
+             <ion-select-option value="{{month.id}}">{{month.name}}</ion-select-option>
             </div>
            </ion-select>
          </ion-item>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { YearmonthService } from 'src/app/services/yearmonth.service';
 import { NgForm } from '@angular/forms';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,8 @@ export class SearchComponent implements OnInit {
   years: any;
 
   constructor(
-    private yearmonthService: YearmonthService
+    private yearmonthService: YearmonthService,
+    private searchService: SearchService
   ) { }
 
   // getMonth() {
@@ -38,7 +40,8 @@ export class SearchComponent implements OnInit {
     if(form.invalid) {
       return;
     }
-    console.log(form.value);
+    //console.log(form.value);
+    this.searchService.getResult(form.value.year, form.value.month);
   }
 
 }

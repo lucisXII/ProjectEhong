@@ -34,6 +34,7 @@ import { MotorcyclesShowComponent } from './pages/motorcycles/motorcycles-show/m
 import { SparesShowComponent } from './pages/spares/spares-show/spares-show.component';
 import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.component';
 import { SearchComponent } from './pages/former/search/search.component';
+import { ResultComponent } from './pages/former/result/result.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { SearchComponent } from './pages/former/search/search.component';
     CostCheckedComponent,
     CostUncheckedComponent,
     CostShowComponent,
-    SearchComponent
+    SearchComponent,
+    ResultComponent
   ],
   entryComponents: [],
   imports: [

@@ -24,13 +24,7 @@ export class SearchService {
       month: month
     };
     // console.log(data);
-    this.http.post<{data: any}>(BACKEND_URL + '/branchs/search' ,data)
-    .subscribe(response => {
-      console.log(response);
-      this.router.navigate(['/result/' + year + '/' + month, response]);
-      this.loading.dismiss();
-    });
-    return this.result;
+    return this.http.post<{data: any}>(BACKEND_URL + '/branchs/search' ,data);
   }
 
   getResult() {

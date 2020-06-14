@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckingTool extends Model
 {
+    protected $primaryKey = 'ct_id';
     protected $fillable = [
-        't_id',
+        'tool_id',
         'br_id',
         'user_id',
         'remain',
@@ -15,4 +16,5 @@ class CheckingTool extends Model
         'comment',
         'date'
     ];
+    public $timestamps = false;
 }

@@ -106,5 +106,11 @@ class BranchController extends Controller
         ,JSON_UNESCAPED_UNICODE);
     }
 
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        // return $this->showMessage('Successfully logged out' , 200);
+    }
+
 }
 

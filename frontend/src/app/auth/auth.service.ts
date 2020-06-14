@@ -88,7 +88,8 @@ export class AuthService {
         }
       } , error => {
         this.loading.dismiss();
-        console.log(error);
+        console.log('ผิดพลาด');
+        // console.log(error.error.error);
         // this.alertService.danger('Username or Passsword is incorrect');
         // this.showAlerts(error.error.error, 'error');
       });

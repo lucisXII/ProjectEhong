@@ -49,6 +49,8 @@ Route::get('showTools/{branchID}','API\ToolController@showTool');
 Route::get('showAmountTool/{branchID}','API\ToolController@showAmountTool');
 Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
+Route::post('addTools','API\ToolController@store')->middleware('auth:api');
+
 Route::post('addCost/{id}','API\CostController@store')->middleware('auth:api');
 Route::patch('updateCost/{id}','API\CostController@update');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
@@ -137,3 +139,5 @@ Route::get('ShowMonthExcelOld/{year}','API\ReportController@ShowMonthExcelOld');
 //แสดงรายงาน Excel 100% ย้อนหลัง
 Route::get('ShowBranchExcel100Old/{year}','API\ReportController@ShowBranchExcel100Old');
 Route::get('ShowMonthExcel100Old/{year}','API\ReportController@ShowMonthExcel100Old');
+
+Route::get('logout', 'API\BranchController@logout')->middleware('auth:api');

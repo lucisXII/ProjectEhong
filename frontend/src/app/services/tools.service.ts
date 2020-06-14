@@ -37,4 +37,14 @@ export class ToolsService {
   checkedTools(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/chekedTools/' + id);
   }
+
+  addTools(tools: any) {
+    const data = {
+      tools: tools 
+    };
+    this.http.post<{data: any}>(BACKEND_URL + '/addTools'  ,data)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
 }

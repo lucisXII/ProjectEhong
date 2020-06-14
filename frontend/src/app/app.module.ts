@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, FormControlDirective, ReactiveFormsModule } from '@angular/forms';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { LoginComponent } from './auth/login/login.component';
 import { BlankComponent } from './pages/blank/blank.component';
@@ -69,13 +70,13 @@ import { ResultComponent } from './pages/former/result/result.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     {provide: HTTP_INTERCEPTORS , useClass: AuthInterceptor , multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

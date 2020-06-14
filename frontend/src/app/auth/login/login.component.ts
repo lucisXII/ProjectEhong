@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,23 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private screenOrientation: ScreenOrientation
+    ) {
+     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.screenOrientation.type);
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    // this.screenOrientation.unlock();
+    this.screenOrientation.onChange().subscribe(
+      () => {
+          console.log("Orientation Changed");
+      }
+   );
+  }
+
 
   onLogin(form: NgForm) {
     if(form.invalid) {

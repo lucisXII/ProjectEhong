@@ -147,5 +147,28 @@ class CostController extends Controller
         return response()->json($show, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+
+    //ดูข้อมูลย้อนหลัง
+    public function alldataChekedCostOld($branchID,$month,$year)
+    {
+        $cost = Cost::where('br_id', $branchID)->whereMonth('date',$month)
+                                                ->whereYear('date',$year)->firstOrFail();
+
+        return response()->json($cost, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function showAgreementOld($branchID,$month,$year)
+    {
+        $show = DB::table('costs')
+                        ->where('costs.br_id', '=', $branchID)
+                        ->whereMonth('costs.date', '=', $month)
+                        ->whereYear('costs.date', '=', $year)
+                        ->select('costs.agreement')
+                        ->get();
+
+        return response()->json($show, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
     
 }

@@ -19,6 +19,7 @@ class CreateCheckingMotorcyclesTable extends Migration
             $table->unsignedBigInteger('br_id');
             $table->unsignedBigInteger('user_id');
             $table->enum('status', ['0','1'])->default('1');
+            $table->enum('unready', ['0','1','2'])->default('0');
             $table->string('comment')->nullable();
             $table->date('date');
             $table->foreign('m_id')->references('m_id')->on('motorcycles')->onDelete('cascade');

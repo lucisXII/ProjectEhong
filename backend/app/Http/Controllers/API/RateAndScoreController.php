@@ -154,4 +154,45 @@ class RateAndScoreController extends Controller
         ,JSON_UNESCAPED_UNICODE);       
     }
 
+    //ดูข้อมูลย้อนหลัง
+    public function showalldataRatesOld($branchID,$groupID,$month,$year)
+    {
+        $list = DB::table('groups')
+                ->join('headings','headings.group_id','=', 'groups.group_id')
+                ->join('subheadings','subheadings.hd_id','=', 'headings.hd_id')
+                ->join('rate_and_scores','rate_and_scores.sh_id','=','subheadings.sh_id' )
+                ->where('groups.group_id', '=', $groupID)
+                ->where('rate_and_scores.br_id', '=', $branchID)
+                ->whereMonth('rate_and_scores.date', '=', $month)
+                ->whereYear('rate_and_scores.date', '=', $year)
+                ->select('rate_and_scores.*')
+                ->get();
+
+        return response()->json($list, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
+    public function showRatesFullScoreOld($branchID,$groupID,$month,$year)
+    {
+        $lists = DB::table('groups')
+                ->join('headings','headings.group_id','=', 'groups.group_id')
+                ->join('subheadings','subheadings.hd_id','=', 'headings.hd_id')
+                ->join('rate_and_scores','rate_and_scores.sh_id','=','subheadings.sh_id' )
+                ->where('groups.group_id', '=', $groupID)
+                ->where('rate_and_scores.br_id', '=', $branchID)
+                ->whereMonth('rate_and_scores.date', '=', $month)
+                ->whereYear('rate_and_scores.date', '=', $year)
+                ->select('rate_and_scores.*')
+                ->get();
+
+        $sum = 0.00;
+
+        foreach ($lists as  $list) {
+            $sum = $sum + $list->score;
+        }
+                
+        return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);       
+    }
+
 }

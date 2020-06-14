@@ -11,6 +11,7 @@ class CheckingMotorcycles extends Model
         'br_id',
         'user_id',
         'status',
+        'unready',
         'comment',
         'date'
     ];

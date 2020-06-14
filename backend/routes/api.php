@@ -51,7 +51,6 @@ Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
 Route::post('addCost/{id}','API\CostController@store')->middleware('auth:api');
 Route::patch('updateCost/{id}','API\CostController@update');
-// Route::post('addcost/{tcostID}/costs','API\CostController@store');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 Route::get('alldataChekedCost/{branchID}','API\CostController@alldataChekedCost');
 //API เพิ่ม 13/06
@@ -72,14 +71,13 @@ Route::get('showNumberSparesremain/{branchID}','API\CheckingSparesController@sho
 Route::get('showNumberChekedSpares/{branchID}','API\CheckingSparesController@showNumberChekedSpares');
 
 Route::get('chekedTools/{branchID}','API\CheckingToolController@ChekedTool');
-
-Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('alldataChekedTools/{branchID}','API\CheckingToolController@alldataChekedTools');
 Route::get('showAmountToolremain/{branchID}','API\CheckingToolController@showAmountToolremain');
 Route::get('showAmountChekedTools/{branchID}','API\CheckingToolController@showAmountChekedTools');
 Route::get('showNumberToolremain/{branchID}','API\CheckingToolController@showNumberToolremain');
 Route::get('showNumberChekedTools/{branchID}','API\CheckingToolController@showNumberChekedTools');
 
+Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
 
@@ -88,9 +86,13 @@ Route::get('ShowHeadReportPDFdate/{branchID}','API\ReportController@ShowHeadRepo
 Route::get('ShowUserPDF/{branchID}','API\ReportController@ShowNameUserPDF');
 Route::get('ShowScoreGroupPDF/{branchID}','API\ReportController@ShowScoreGroupPDF');
 Route::get('ShowScoreSumPDF/{branchID}','API\ReportController@ShowScoreSumPDF');
+
 Route::get('ShowBranchExcel','API\ReportController@ShowBranchExcel');
 Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
 Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
+
+Route::get('ShowBranchExcel100','API\ReportController@ShowBranchExcel100');
+Route::get('ShowMonthExcel100','API\ReportController@ShowMonthExcel100');
 
 //ดูข้อมูลย้อนหลัง
 Route::get('branchs/Search/result/{year}/{month}','API\BranchController@search');
@@ -101,3 +103,34 @@ Route::get('watchShowvolumeChekedMotorcycle/{branchID}/{month}/{year}','API\Chec
 Route::get('watchOutstanding/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchOutstanding');
 Route::get('watchUnready/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchUnready');
 //แสดงข้อมูลสาขาย้อนหลัง -> อะไหล่
+Route::get('alldataChekedSparesOld/{branchID}/{month}/{year}','API\CheckingSparesController@alldataChekedSparesOld');
+Route::get('showAmountSparesremainOld/{branchID}/{month}/{year}','API\CheckingSparesController@showAmountSparesremainOld');
+Route::get('showAmountChekedSparesOld/{branchID}/{month}/{year}','API\CheckingSparesController@showAmountChekedSparesOld');
+Route::get('showNumberSparesremainOld/{branchID}/{month}/{year}','API\CheckingSparesController@showNumberSparesremainOld');
+Route::get('showNumberChekedSparesOld/{branchID}/{month}/{year}','API\CheckingSparesController@showNumberChekedSparesOld');
+//แสดงข้อมูลสาขาย้อนหลัง -> เครื่องมือ
+Route::get('alldataChekedToolsOld/{branchID}/{month}/{year}','API\CheckingToolController@alldataChekedToolsOld');
+Route::get('showAmountToolremainOld/{branchID}/{month}/{year}','API\CheckingToolController@showAmountToolremainOld');
+Route::get('showAmountChekedToolsOld/{branchID}/{month}/{year}','API\CheckingToolController@showAmountChekedToolsOld');
+Route::get('showNumberToolremainOld/{branchID}/{month}/{year}','API\CheckingToolController@showNumberToolremainOld');
+Route::get('showNumberChekedToolsOld/{branchID}/{month}/{year}','API\CheckingToolController@showNumberChekedToolsOld');
+//แสดงข้อมูลรายการคะแนนที่ตรวจ
+Route::get('showAlldataRatesOld/{branchID}/{groupID}/{month}/{year}','API\RateAndScoreController@showalldataRatesOld');
+Route::get('showRatesFullScoreOld/{branchID}/{groupID}/{month}/{year}','API\RateAndScoreController@showRatesFullScoreOld');
+//แสดงรายการชำระค่างวดย้อนหลัง
+Route::get('alldataChekedCost/{branchID}/{month}/{year}','API\CostController@alldataChekedCostOld');
+Route::get('showAgreement/{branchID}/{month}/{year}','API\CostController@showAgreementOld');
+//แสดงรายงาน PDF ย้อนหลัง
+Route::get('ShowHeadReportPDFOld/{branchID}/{month}/{year}','API\ReportController@ShowHeadReportPDFOld');
+Route::get('ShowHeadReportPDFdateOld/{branchID}/{month}/{year}','API\ReportController@ShowHeadReportPDFdateOld');
+Route::get('ShowUserPDFOld/{branchID}/{month}/{year}','API\ReportController@ShowNameUserPDFOld');
+Route::get('ShowScoreGroupPDFOld/{branchID}/{month}/{year}','API\ReportController@ShowScoreGroupPDFOld');
+Route::get('ShowScoreSumPDFOld/{branchID}/{month}/{year}','API\ReportController@ShowScoreSumPDFOld');
+Route::get('showAgreementOld/{branchID}/{month}/{year}','API\CostController@showAgreementOld');
+//แสดงรายงาน Excel ย้อนหลัง
+Route::get('ShowBranchExcelOld/{year}','API\ReportController@ShowBranchExcelOld');
+Route::get('ShowScoreExcelOld/{year}','API\ReportController@ShowScoreExcelOld');
+Route::get('ShowMonthExcelOld/{year}','API\ReportController@ShowMonthExcelOld');
+//แสดงรายงาน Excel 100% ย้อนหลัง
+Route::get('ShowBranchExcel100Old/{year}','API\ReportController@ShowBranchExcel100Old');
+Route::get('ShowMonthExcel100Old/{year}','API\ReportController@ShowMonthExcel100Old');

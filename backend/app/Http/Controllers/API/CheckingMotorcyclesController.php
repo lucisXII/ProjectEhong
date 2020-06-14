@@ -142,8 +142,7 @@ class CheckingMotorcyclesController extends Controller
 
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
-                            ->where('checking_motorcycles.comment', '=', 'ยึดค้างส่ง')
-                            ->orWhere('checking_motorcycles.comment', '=', 'รถยึดค้างส่ง')
+                            ->where('checking_motorcycles.unready', '=', '1')
                             ->whereMonth('checking_motorcycles.date', '=', today()->month)
                             ->count();
 
@@ -156,8 +155,7 @@ class CheckingMotorcyclesController extends Controller
 
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
-                            ->where('checking_motorcycles.comment', '=', 'ไม่พร้อมขาย')
-                            ->orWhere('checking_motorcycles.comment', '=', 'รถไม่พร้อมขาย')
+                            ->where('checking_motorcycles.unready', '=', '2')
                             ->whereMonth('checking_motorcycles.date', '=', today()->month)
                             ->count();
 
@@ -215,8 +213,7 @@ class CheckingMotorcyclesController extends Controller
 
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
-                            ->where('checking_motorcycles.comment', '=', 'ยึดค้างส่ง')
-                            ->orWhere('checking_motorcycles.comment', '=', 'รถยึดค้างส่ง')
+                            ->where('checking_motorcycles.unready', '=', '1')
                             ->whereMonth('checking_motorcycles.date', '=', $month)
                             ->whereYear('checking_motorcycles.date', '=', $year)
                             ->count();
@@ -230,8 +227,7 @@ class CheckingMotorcyclesController extends Controller
 
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
-                            ->where('checking_motorcycles.comment', '=', 'ไม่พร้อมขาย')
-                            ->orWhere('checking_motorcycles.comment', '=', 'รถไม่พร้อมขาย')
+                            ->where('checking_motorcycles.unready', '=', '2')
                             ->whereMonth('checking_motorcycles.date', '=', $month)
                             ->whereYear('checking_motorcycles.date', '=', $year)
                             ->count();

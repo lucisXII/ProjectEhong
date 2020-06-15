@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SparesService } from 'src/app/services/spares.service';
 import { NgForm } from '@angular/forms';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-spares-unchecked',
@@ -18,7 +19,9 @@ export class SparesUncheckedComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private sparesService: SparesService
+    private sparesService: SparesService,
+    private loading: LoadingService
+    
   ) { }
 
   ngOnInit() {
@@ -38,20 +41,11 @@ export class SparesUncheckedComponent implements OnInit {
           this.amountRemain = response;
           console.log(this.amountRemain);
         });
-        this.sparesService.getAmountChecked(this.id)
-        .subscribe(response => {
-          this.amountChecked = response;
-          console.log(this.amountChecked);
-        });
+
         this.sparesService.getNumberRemain(this.id)
         .subscribe(response => {
           this.numberRemain = response;
           console.log(this.numberRemain);
-        });
-        this.sparesService.getNumberChecked(this.id)
-        .subscribe(response => {
-          this.numberChecked = response;
-          console.log(this.numberChecked);
         });
 
       }
@@ -59,6 +53,9 @@ export class SparesUncheckedComponent implements OnInit {
   }
   
   addSpares() {
+    //console.log(this.spares);
+    // this.sparesService.addSpares(this.id, this.spares);
+    this.loading.present();
     this.sparesService.addSpares(this.id, this.spares);
   }
 }

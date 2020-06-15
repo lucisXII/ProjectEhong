@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckingSpares extends Model
 {
+    protected $primaryKey = 'cs_id';
     protected $fillable = [
         's_id',
         'br_id',
@@ -15,4 +16,5 @@ class CheckingSpares extends Model
         'comment',
         'date'
     ];
+    public $timestamps = false;
 }

@@ -75,7 +75,7 @@ Route::get('showNumberSparesremain/{branchID}','API\CheckingSparesController@sho
 Route::get('showNumberChekedSpares/{branchID}','API\CheckingSparesController@showNumberChekedSpares');
 //เพิ่ม insert,update Spares
 Route::post('addCheckingSpares','API\CheckingSparesController@store')->middleware('auth:api');
-Route::patch('updateCheckingSpares/{id}','API\CheckingSparesController@update')->middleware('auth:api');
+Route::patch('updateCheckingSpares','API\CheckingSparesController@update')->middleware('auth:api');
 
 Route::get('chekedTools/{branchID}','API\CheckingToolController@ChekedTool');
 Route::get('alldataChekedTools/{branchID}','API\CheckingToolController@alldataChekedTools');
@@ -90,7 +90,7 @@ Route::patch('updateCheckingTool','API\CheckingToolController@update')->middlewa
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
-//เพิ่ม insert,update Motorcycles
+//เพิ่ม insert,update RateAndScore
 Route::post('addRateAndScore','API\RateAndScoreController@store')->middleware('auth:api');
 Route::patch('updateRateAndScore/{id}','API\RateAndScoreController@update')->middleware('auth:api');
 

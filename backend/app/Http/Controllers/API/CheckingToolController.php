@@ -46,7 +46,6 @@ class CheckingToolController extends Controller
                 'user_id' => $user_id,
                 'remain'=> $tool['remain'],
                 'check'=> $tool['score'],
-                'comment'=> $tool['comment'],
                 'date'=> date('Y-m-d')
             ]);
             $addTools->save();

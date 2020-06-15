@@ -73,7 +73,8 @@
         <ion-col size="1">
           <ion-list class="checked-input">
             <ion-item>
-              <ion-input type="number" value="{{tool.check}}" placeholder="เพิ่ม"></ion-input>
+              <ion-input placeholder="เพิ่ม" [(ngModel)]="tool.check" [ngModelOptions]="{standalone: true}"></ion-input>
+              <!-- <ion-input type="number" value="{{tool.check}}" placeholder="เพิ่ม"></ion-input> -->
             </ion-item>
           </ion-list>
         </ion-col>

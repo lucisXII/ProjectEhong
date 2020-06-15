@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { NgForm } from '@angular/forms';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-tools-unchecked',
@@ -11,14 +12,13 @@ import { NgForm } from '@angular/forms';
 export class ToolsUncheckedComponent implements OnInit {
   private id: string;
   tools: any;
-  amountRemain: any;
-  amountChecked: any;
-  numberRemain: any;
-  numberChecked: any;
+  amount: any;
+  number: any;
 
   constructor(
     private route: ActivatedRoute,
-    private toolsService: ToolsService
+    private toolsService: ToolsService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -33,34 +33,25 @@ export class ToolsUncheckedComponent implements OnInit {
           console.log(this.tools);
         });
 
-        this.toolsService.getAmountRemain(this.id)
+        this.toolsService.getAmount(this.id)
         .subscribe(response => {
-          this.amountRemain = response;
-          console.log(this.amountRemain);
+          this.amount = response;
+          console.log(this.amount);
         });
-        this.toolsService.getAmountChecked(this.id)
+        this.toolsService.getNumber(this.id)
         .subscribe(response => {
-          this.amountChecked = response;
-          console.log(this.amountChecked);
-        });
-        this.toolsService.getNumberRemain(this.id)
-        .subscribe(response => {
-          this.numberRemain = response;
-          console.log(this.numberRemain);
-        });
-        this.toolsService.getNumberChecked(this.id)
-        .subscribe(response => {
-          this.numberChecked = response;
-          console.log(this.numberChecked);
+          this.number = response;
+          console.log(this.number);
         });
       }
     });
   }
 
-  addTools(form: NgForm) {
-  //  console.log(form.value);
+  addTools() {
+    //  console.log(form.value);
     // console.log(this.tools);
-    this.toolsService.addTools(this.tools);
+    this.loading.present();
+    this.toolsService.addTools(this.id, this.tools);
   }
   
 

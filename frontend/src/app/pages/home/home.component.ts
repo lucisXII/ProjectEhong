@@ -15,14 +15,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.screenOrientation.type);
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-    this.screenOrientation.unlock();
-    this.screenOrientation.onChange().subscribe(
-      () => {
-          console.log("Orientation Changed");
-      }
-   );
+  //   console.log(this.screenOrientation.type);
+  //   this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+  //   this.screenOrientation.unlock();
+  //   this.screenOrientation.onChange().subscribe(
+  //     () => {
+  //         console.log("Orientation Changed");
+  //     }
+  //  );
   }
 
   onLogout() {

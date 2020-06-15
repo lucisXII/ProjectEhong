@@ -48,7 +48,19 @@ class CheckingSparesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->spares as $spare){
+            $addSpares = CheckingSpares::create([
+                's_id' => $spare['s_id'] ,
+                'br_id' => $spare['br_id'],
+                'user_id' => $user_id,
+                'remain'=> $spare['remain'],
+                'check'=> $spare['score'],
+                'comment'=> $spare['comment'],
+                'date'=> date('Y-m-d')
+            ]);
+            $addSpares->save();
+        }
     }
 
     /**
@@ -82,7 +94,16 @@ class CheckingSparesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->spares as $spare){
+            $checkingSpare = CheckingTool::findOrFail($id);
+            $checkingSpare->user_id = $user_id;
+            $checkingSpare->check = $spare->score;
+            $checkingSpare->date = date('Y-m-d');
+            $checkingSpare->save();
+        }
+
+        return $checkingSpare;
     }
 
     /**

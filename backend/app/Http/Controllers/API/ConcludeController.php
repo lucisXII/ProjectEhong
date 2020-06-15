@@ -35,9 +35,21 @@ class ConcludeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+        //เพิ่มคะแนนเต็ม
+        $scoresCheck = DB::table('rate_and_scores')
+                        ->where('rate_and_scores.br_id', '=', $id)
+                        ->whereMonth('rate_and_scores.date', '=', today()->month)
+                        ->sum('rate_and_scores.scroe');
+        //เพิ่มข้อมูล
+        $conclude = new Conclude([
+            'br_id' => $id,
+            'scroe' => $scoresCheck,
+            'date' => date('Y-m-d'),
+        ]);
+        $conclude->save();
+        return $conclude;    
     }
 
     /**

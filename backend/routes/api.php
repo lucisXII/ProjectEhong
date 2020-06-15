@@ -29,6 +29,7 @@ Route::get('branchs/cheked','API\BranchController@Cheked');
 Route::get('branchs/showBranch/{branchID}','API\BranchController@showBranch');
 
 Route::get('conclude/{branchID}','API\ConcludeController@confirm');
+Route::post('addconclude/{id}','API\ConcludeControllerr@store');
 
 Route::get('group','API\GroupController@index');
 Route::get('heading','API\HeadingController@index');
@@ -49,10 +50,8 @@ Route::get('showTools/{branchID}','API\ToolController@showTool');
 Route::get('showAmountTool/{branchID}','API\ToolController@showAmountTool');
 Route::get('showNumberTool/{branchID}','API\ToolController@showNumberTool');
 
-Route::post('addTools','API\ToolController@store')->middleware('auth:api');
-
 Route::post('addCost/{id}','API\CostController@store')->middleware('auth:api');
-Route::patch('updateCost/{id}','API\CostController@update');
+Route::patch('updateCost/{id}','API\CostController@update')->middleware('auth:api');
 Route::get('checkedCost/{branchID}','API\CostController@ChekedCost');
 Route::get('alldataChekedCost/{branchID}','API\CostController@alldataChekedCost');
 //API เพิ่ม 13/06
@@ -71,6 +70,9 @@ Route::get('showAmountSparesremain/{branchID}','API\CheckingSparesController@sho
 Route::get('showAmountChekedSpares/{branchID}','API\CheckingSparesController@showAmountChekedSpares');
 Route::get('showNumberSparesremain/{branchID}','API\CheckingSparesController@showNumberSparesremain');
 Route::get('showNumberChekedSpares/{branchID}','API\CheckingSparesController@showNumberChekedSpares');
+//เพิ่ม insert,update Spares
+Route::post('addCheckingSpares','API\CheckingSparesController@store')->middleware('auth:api');
+Route::patch('updateCheckingSpares/{id}','API\CheckingSparesControllerr@update')->middleware('auth:api');
 
 Route::get('chekedTools/{branchID}','API\CheckingToolController@ChekedTool');
 Route::get('alldataChekedTools/{branchID}','API\CheckingToolController@alldataChekedTools');
@@ -78,6 +80,9 @@ Route::get('showAmountToolremain/{branchID}','API\CheckingToolController@showAmo
 Route::get('showAmountChekedTools/{branchID}','API\CheckingToolController@showAmountChekedTools');
 Route::get('showNumberToolremain/{branchID}','API\CheckingToolController@showNumberToolremain');
 Route::get('showNumberChekedTools/{branchID}','API\CheckingToolController@showNumberChekedTools');
+//เพิ่ม insert,update Tool
+Route::post('addCheckingTool','API\CheckingToolController@store')->middleware('auth:api');
+Route::patch('updateCheckingTool/{id}','API\CheckingToolController@update')->middleware('auth:api');
 
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');

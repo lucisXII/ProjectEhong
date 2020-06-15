@@ -38,7 +38,19 @@ class CheckingToolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->tools as $tool){
+            $addTools = CheckingTool::create([
+                'tool_id' => $tool['tool_id'] ,
+                'br_id' => $tool['br_id'],
+                'user_id' => $user_id,
+                'remain'=> $tool['remain'],
+                'check'=> $tool['score'],
+                'comment'=> $tool['comment'],
+                'date'=> date('Y-m-d')
+            ]);
+            $addTools->save();
+        }
     }
 
     /**
@@ -72,7 +84,17 @@ class CheckingToolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->tools as $tool){
+            $checkingTool = CheckingTool::findOrFail($id);
+            $checkingTool->user_id = $user_id;
+            $checkingTool->check = $tool->score;
+            $checkingTool->comment = $tool->comment;
+            $checkingTool->date = date('Y-m-d');
+            $checkingTool->save();
+        }
+
+        return $checkingTool;
     }
 
     /**

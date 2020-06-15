@@ -89,8 +89,9 @@ class CostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $totalcost = Totalcost::findOrFail($id);
+        $user_id = \Auth::id();
         $cost = Cost::findOrFail($id);
+        $cost->user_id =  $user_id;
         $cost->checkmoney = $request->money;
         $cost->comment = $request->comment;
         $cost->receipt = $request->bill;

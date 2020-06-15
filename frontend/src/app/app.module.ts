@@ -36,6 +36,7 @@ import { SparesShowComponent } from './pages/spares/spares-show/spares-show.comp
 import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.component';
 import { SearchComponent } from './pages/former/search/search.component';
 import { ResultComponent } from './pages/former/result/result.component';
+import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ResultComponent } from './pages/former/result/result.component';
     SparesShowComponent,
     GroupsListComponent,
     GroupShowComponent,
+    GroupsAddComponent,
     MotorcyclesCheckedComponent,
     MotorcyclesUncheckedComponent,
     MotorcyclesShowComponent,

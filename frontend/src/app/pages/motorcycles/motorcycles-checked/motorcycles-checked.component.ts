@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MotocyclesService } from 'src/app/services/motocycles.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-motorcycles-checked',
@@ -17,7 +18,8 @@ export class MotorcyclesCheckedComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private motocyclesService: MotocyclesService
+    private motocyclesService: MotocyclesService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,11 @@ export class MotorcyclesCheckedComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateMotorcycles() {
+    this.loading.present();
+    this.motocyclesService.updateMotorcycles(this.id, this.motocycles);
   }
 
 }

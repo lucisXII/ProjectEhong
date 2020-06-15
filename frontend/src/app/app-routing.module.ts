@@ -26,6 +26,7 @@ import { SparesShowComponent } from './pages/spares/spares-show/spares-show.comp
 import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.component';
 import { SearchComponent } from './pages/former/search/search.component';
 import { ResultComponent } from './pages/former/result/result.component';
+import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
   { path: 'branch/checked' , component: CheckedComponent},
   { path: 'branch/checked/:id' , component: CheckedListComponent},
   { path: 'branch/:id/groups' , component: GroupsListComponent},
-  { path: 'branch/:id/groups/:groupId' , component: GroupShowComponent},
+  { path: 'branch/:id/groups/:groupId/add' , component: GroupsAddComponent},
   { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent},
   { path: 'branch/:id/spares/checked' , component: SparesCheckedComponent},
   { path: 'branch/:id/spares' , component: SparesShowComponent},

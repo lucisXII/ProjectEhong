@@ -20,18 +20,10 @@
     }
 }
 
-.checked-input {
-    margin-bottom: 0 !important;
-    ion-item {
-        --border-color: transparent !important;
-        --highlight-height: 0;
-        border: none;
-        --background: #f5f5f5;
-        border-radius: 4px;
-        --padding-start: 8px;
-        text-align: center;
-        // ion-input {
-        //     --padding-start: 8px;
-        // }
-    }
+.select-input {
+    --border-color: transparent !important;
+    --highlight-height: 0;
+    border: none;
+    --background: #f5f5f5;
+    border-radius: 4px;
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckingMotorcycles extends Model
 {
+    protected $primaryKey = 'cm_id';
     protected $fillable = [
         'm_id',
         'br_id',
@@ -15,4 +16,5 @@ class CheckingMotorcycles extends Model
         'comment',
         'date'
     ];
+    public $timestamps = false;
 }

@@ -84,15 +84,15 @@ class CheckingToolController extends Controller
      */
     public function update(Request $request)
     {
-        $user_id = \Auth::id();
-        foreach($request->tools as $tool){
-            $checkingTool = CheckingTool::findOrFail($tool['ct_id']);
-            $checkingTool->user_id = $user_id;
-            $checkingTool->check = $tool['check'];
-            // $checkingTool->comment = $tool->comment;
-            $checkingTool->date = date('Y-m-d');
-            $checkingTool->save();
-        }
+        return $user_id = \Auth::id();
+        // foreach($request->tools as $tool){
+        //     $checkingTool = CheckingTool::findOrFail($tool['ct_id']);
+        //     $checkingTool->user_id = $user_id;
+        //     $checkingTool->check = $tool['check'];
+        //     // $checkingTool->comment = $tool->comment;
+        //     $checkingTool->date = date('Y-m-d');
+        //     $checkingTool->save();
+        // }
     }
 
     /**
@@ -112,7 +112,7 @@ class CheckingToolController extends Controller
                     ->where('checking_tools.br_id', '=', $branchID)
                     ->whereMonth('checking_tools.date', '=', today()->month)
                     ->count();
-                    
+
         if ($cheked > 0 ) {
             $cheked = 1;
         }

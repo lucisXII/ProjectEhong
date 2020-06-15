@@ -40,16 +40,28 @@ class CheckingMotorcyclesController extends Controller
     {
         $user_id = \Auth::id();
         foreach($request->motorcycles as $motorcycle){
-            $addmotorcycle = CheckingMotorcycles::create([
-                'm_id' => $motorcycle['m_id'] ,
-                'br_id' => $motorcycle['br_id'],
-                'user_id' => $user_id,
-                'status'=> $motorcycle['status'],
-                'unready'=> $motorcycle['unready'],
-                //'comment'=> $motorcycle['comment'],
-                'date'=> date('Y-m-d')
-            ]);
-            $addmotorcycle->save(); 
+            if ($motorcycle['active'] != 0) {
+                $addmotorcycle = CheckingMotorcycles::create([
+                    'm_id' => $motorcycle['m_id'] ,
+                    'br_id' => $motorcycle['br_id'],
+                    'user_id' => $user_id,
+                    'status'=> $motorcycle['active'],
+                    'unready'=> $motorcycle['unready'],
+                    'date'=> date('Y-m-d')
+                ]);
+                $addmotorcycle->save();
+            }
+            else {
+                $addmotorcycle = CheckingMotorcycles::create([
+                    'm_id' => $motorcycle['m_id'] ,
+                    'br_id' => $motorcycle['br_id'],
+                    'user_id' => $user_id,
+                    'status'=> 'false',
+                    'unready'=> $motorcycle['unready'],
+                    'date'=> date('Y-m-d')
+                ]);
+                $addmotorcycle->save();
+            }
         }
     }
 
@@ -82,20 +94,27 @@ class CheckingMotorcyclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $user_id = \Auth::id();
         foreach($request->motorcycles as $motorcycle){
-            $checkingmotorcycle = CheckingMotorcycles::findOrFail($id);
-            $checkingmotorcycle->user_id = $user_id;
-            $checkingmotorcycle->status = $motorcycle->status;
-            $checkingmotorcycle->unready = $motorcycle->unready;
-           //$checkingmotorcycle->comment = $motorcycle->comment;
-            $checkingmotorcycle->date = date('Y-m-d');
-            $checkingmotorcycle->save();
-        }
+            if ($motorcycle['status'] != 0) {
+                $updatemotorcycle = CheckingMotorcycles::findOrFail($motorcycle['cm_id']);
+                $updatemotorcycle->user_id = $user_id;
+                $updatemotorcycle->status = $motorcycle['status'];
+                $updatemotorcycle->unready = $motorcycle['unready'];
+                $updatemotorcycle->date = date('Y-m-d');
+                $updatemotorcycle->save();
+            } else {
+                $updatemotorcycle = CheckingMotorcycles::findOrFail($motorcycle['cm_id']);
+                $updatemotorcycle->user_id = $user_id;
+                $updatemotorcycle->status = 'false';
+                $updatemotorcycle->unready = $motorcycle['unready'];
+                $updatemotorcycle->date = date('Y-m-d');
+                $updatemotorcycle->save();
+            }
 
-        return $checkingTool;
+        }
     }
 
     /**
@@ -118,7 +137,7 @@ class CheckingMotorcyclesController extends Controller
         if($cheked > 0){
                 $cheked = 1;
         }
-            
+
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
@@ -190,7 +209,7 @@ class CheckingMotorcyclesController extends Controller
     }
 
     //ดูข้อมูลย้อนหลัง
-    
+
     public function watchAlldataChekedMotorcycle($branchID,$month,$year)
     {
         $alldata = DB::table('checking_motorcycles')

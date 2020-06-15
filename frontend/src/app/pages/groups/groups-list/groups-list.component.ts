@@ -35,7 +35,7 @@ export class GroupsListComponent implements OnInit {
 
   viewGroup(GroupId) {
     console.log(GroupId);
-    this.router.navigate(['branch/' + this.id + '/groups/' + GroupId]);
+    this.router.navigate(['branch/' + this.id + '/groups/' + GroupId + '/add']);
   }
 
 }

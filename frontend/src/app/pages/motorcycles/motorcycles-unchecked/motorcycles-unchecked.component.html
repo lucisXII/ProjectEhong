@@ -47,8 +47,7 @@
       </ion-row>
     </ion-grid>
      <ion-grid>
-       <form>
-         <div>
+       <form (submit)="addMotocycles()">
       <ion-card color="dark">
         <ion-row class="ion-text-center ion-margin-vertical">
           <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
@@ -56,7 +55,7 @@
           <ion-col class="ion-text-left" size="3"><ion-title>รายละเอียด</ion-title></ion-col>
           <ion-col size="2"><ion-title>สภาพ</ion-title></ion-col>
           <ion-col size="1"><ion-title>ตรวจ</ion-title></ion-col>
-          <ion-col size="3"><ion-title>คอมเม้นต์</ion-title></ion-col>
+          <ion-col size="3"><ion-title>สถานะ</ion-title></ion-col>
         </ion-row>
       </ion-card>
        <ion-card>
@@ -73,15 +72,23 @@
           <ion-text><h5>{{motocycle.condition}}</h5></ion-text>
         </ion-col>
         <ion-col class="ion-margin-top" size="1">
-          <ion-text><ion-checkbox color="danger"></ion-checkbox></ion-text>
+          <ion-checkbox color="danger" [(ngModel)]="motocycle.active" [ngModelOptions]="{standalone: true}"></ion-checkbox>
           <!-- <ion-text *ngIf="motocycle.status == 0"><ion-checkbox color="danger"></ion-checkbox></ion-text> -->
         </ion-col>
         <ion-col size="3">
-          <ion-list class="ion-padding-horizontal checked-input">
+          <ion-item class="ion-padding-horizontal select-input">
+            <ion-label>สถานะ</ion-label>
+            <ion-select ok-text="เลือก" cancel-text="ยกเลิก" [(ngModel)]="motocycle.unready" [ngModelOptions]="{standalone: true}">
+              <ion-select-option value="0">พร้อม</ion-select-option>
+              <ion-select-option value="1">ยึดค้างส่ง</ion-select-option>
+              <ion-select-option value="2">ไม่พร้อมขาย</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <!-- <ion-list class="ion-padding-horizontal checked-input">
             <ion-item>
               <ion-input type="text" placeholder="เพิ่มข้อมูล"></ion-input>
             </ion-item>
-          </ion-list>
+          </ion-list> -->
         </ion-col>
       </ion-row>
       </ion-card>
@@ -90,7 +97,6 @@
           <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="add-outline"></ion-icon> บันทึกข้อมูล</ion-button>
          </ion-col>
       </ion-row>
-        </div>
       </form>
      </ion-grid>
   </ion-content>

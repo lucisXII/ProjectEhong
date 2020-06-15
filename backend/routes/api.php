@@ -65,7 +65,7 @@ Route::get('outstanding/{branchID}','API\CheckingMotorcyclesController@outstandi
 Route::get('unready/{branchID}','API\CheckingMotorcyclesController@unready');
 //เพิ่ม insert,update Motorcycles
 Route::post('addCheckingMotorcycles','API\CheckingMotorcyclesController@store')->middleware('auth:api');
-Route::patch('updateCheckingMotorcycles/{id}','API\CheckingMotorcyclesController@update')->middleware('auth:api');
+Route::patch('updateCheckingMotorcycles','API\CheckingMotorcyclesController@update')->middleware('auth:api');
 
 Route::get('ChekedSpares/{branchID}','API\CheckingSparesController@ChekedSpares');
 Route::get('alldataChekedSpares/{branchID}','API\CheckingSparesController@alldataChekedSpares');

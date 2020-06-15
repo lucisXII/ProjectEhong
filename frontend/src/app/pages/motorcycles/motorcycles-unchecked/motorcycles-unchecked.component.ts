@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MotocyclesService } from 'src/app/services/motocycles.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-motorcycles-unchecked',
@@ -17,7 +18,8 @@ export class MotorcyclesUncheckedComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private motocyclesService: MotocyclesService
+    private motocyclesService: MotocyclesService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,11 @@ export class MotorcyclesUncheckedComponent implements OnInit {
         });
       }
     });
+  }
+
+  addMotocycles() {
+    this.loading.present();
+    this.motocyclesService.addMotorcycles(this.id, this.motocycles);
   }
 
 }

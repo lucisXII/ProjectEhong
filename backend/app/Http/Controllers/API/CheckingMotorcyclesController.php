@@ -115,7 +115,10 @@ class CheckingMotorcyclesController extends Controller
                     ->where('checking_motorcycles.br_id', '=', $branchID)
                     ->whereMonth('checking_motorcycles.date', '=', today()->month)
                     ->count();
-
+        if($cheked > 0){
+                $cheked = 1;
+        }
+            
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }

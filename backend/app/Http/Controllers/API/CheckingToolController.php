@@ -114,7 +114,7 @@ class CheckingToolController extends Controller
                     ->where('checking_tools.br_id', '=', $branchID)
                     ->whereMonth('checking_tools.date', '=', today()->month)
                     ->count();
-
+                    
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }

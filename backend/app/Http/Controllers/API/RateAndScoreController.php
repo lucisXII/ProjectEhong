@@ -129,7 +129,7 @@ class RateAndScoreController extends Controller
             return response()->json($Cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             ,JSON_UNESCAPED_UNICODE);
 
-      }else{
+        }else{
            return response()->json(count($groups), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             ,JSON_UNESCAPED_UNICODE); 
         }

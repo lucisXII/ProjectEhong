@@ -46,7 +46,7 @@ class CheckingToolController extends Controller
                 'user_id' => $user_id,
                 'remain'=> $tool['remain'],
                 'check'=> $tool['score'],
-                'comment'=> $tool['comment'],
+                //'comment'=> $tool['comment'],
                 'date'=> date('Y-m-d')
             ]);
             $addTools->save();
@@ -89,7 +89,7 @@ class CheckingToolController extends Controller
             $checkingTool = CheckingTool::findOrFail($id);
             $checkingTool->user_id = $user_id;
             $checkingTool->check = $tool->score;
-            $checkingTool->comment = $tool->comment;
+            //$checkingTool->comment = $tool->comment;
             $checkingTool->date = date('Y-m-d');
             $checkingTool->save();
         }

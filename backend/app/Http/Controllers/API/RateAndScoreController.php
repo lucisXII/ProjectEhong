@@ -40,7 +40,17 @@ class RateAndScoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->RateAndScore as $RateAndScores){
+            $addRateAndScores = RateAndScores::create([
+                'sh_id' => $RateAndScores['sh_id'] ,
+                'br_id' => $RateAndScores['br_id'],
+                'user_id' => $user_id,
+                'score'=> $RateAndScores['score'],
+                'date'=> date('Y-m-d')
+            ]);
+            $addRateAndScores->save(); 
+        }
     }
 
     /**
@@ -74,7 +84,16 @@ class RateAndScoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->RateAndScore as $RateAndScores){
+            $updateRateAndScores = RateAndScores::findOrFail($id);
+            $updateRateAndScores->user_id = $user_id;
+            $updateRateAndScores->score = $RateAndScores->score;
+            $checkingmotorcycle->date = date('Y-m-d');
+            $checkingmotorcycle->save();
+        }
+
+        return $checkingTool;
     }
 
     /**

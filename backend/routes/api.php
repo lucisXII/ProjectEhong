@@ -63,6 +63,9 @@ Route::get('showvolume/{branchID}','API\CheckingMotorcyclesController@showvolume
 Route::get('showvolumeChekedMotorcycle/{branchID}','API\CheckingMotorcyclesController@showvolumeChekedMotorcycle');
 Route::get('outstanding/{branchID}','API\CheckingMotorcyclesController@outstanding');
 Route::get('unready/{branchID}','API\CheckingMotorcyclesController@unready');
+//เพิ่ม insert,update Motorcycles
+Route::post('addCheckingMotorcycles','API\CheckingMotorcyclesController@store')->middleware('auth:api');
+Route::patch('updateCheckingMotorcycles/{id}','API\CheckingMotorcyclesController@update')->middleware('auth:api');
 
 Route::get('ChekedSpares/{branchID}','API\CheckingSparesController@ChekedSpares');
 Route::get('alldataChekedSpares/{branchID}','API\CheckingSparesController@alldataChekedSpares');
@@ -72,7 +75,7 @@ Route::get('showNumberSparesremain/{branchID}','API\CheckingSparesController@sho
 Route::get('showNumberChekedSpares/{branchID}','API\CheckingSparesController@showNumberChekedSpares');
 //เพิ่ม insert,update Spares
 Route::post('addCheckingSpares','API\CheckingSparesController@store')->middleware('auth:api');
-Route::patch('updateCheckingSpares/{id}','API\CheckingSparesControllerr@update')->middleware('auth:api');
+Route::patch('updateCheckingSpares/{id}','API\CheckingSparesController@update')->middleware('auth:api');
 
 Route::get('chekedTools/{branchID}','API\CheckingToolController@ChekedTool');
 Route::get('alldataChekedTools/{branchID}','API\CheckingToolController@alldataChekedTools');
@@ -87,6 +90,9 @@ Route::patch('updateCheckingTool/{id}','API\CheckingToolController@update')->mid
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
+//เพิ่ม insert,update Motorcycles
+Route::post('addRateAndScore','API\RateAndScoreController@store')->middleware('auth:api');
+Route::patch('updateRateAndScore/{id}','API\RateAndScoreController@update')->middleware('auth:api');
 
 Route::get('ShowHeadReportPDF/{branchID}','API\ReportController@ShowHeadReportPDF');
 Route::get('ShowHeadReportPDFdate/{branchID}','API\ReportController@ShowHeadReportPDFdate');

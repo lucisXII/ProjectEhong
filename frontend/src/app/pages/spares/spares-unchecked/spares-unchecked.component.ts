@@ -21,6 +21,10 @@ export class SparesUncheckedComponent implements OnInit {
     private route: ActivatedRoute,
     private sparesService: SparesService,
     private loading: LoadingService
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 5b194378e215d897a79194fc75655052edd74937
   ) { }
 
   ngOnInit() {
@@ -40,20 +44,11 @@ export class SparesUncheckedComponent implements OnInit {
           this.amountRemain = response;
           console.log(this.amountRemain);
         });
-        this.sparesService.getAmountChecked(this.id)
-        .subscribe(response => {
-          this.amountChecked = response;
-          console.log(this.amountChecked);
-        });
+
         this.sparesService.getNumberRemain(this.id)
         .subscribe(response => {
           this.numberRemain = response;
           console.log(this.numberRemain);
-        });
-        this.sparesService.getNumberChecked(this.id)
-        .subscribe(response => {
-          this.numberChecked = response;
-          console.log(this.numberChecked);
         });
 
       }
@@ -74,6 +69,5 @@ export class SparesUncheckedComponent implements OnInit {
       this.loading.present();
       this.sparesService.addSpares(this.id, this.spares);
     }
-    // this.sparesService.addSpares(this.id, this.spares);
   }
 }

@@ -174,7 +174,7 @@ class CheckingMotorcyclesController extends Controller
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
-                            ->where('checking_motorcycles.status', '=', '1')
+                            ->where('checking_motorcycles.status', '=', 'true')
                             ->whereMonth('checking_motorcycles.date', '=', today()->month)
                             ->count();
 
@@ -244,7 +244,7 @@ class CheckingMotorcyclesController extends Controller
          $ChekedMotorcycle = DB::table('checking_motorcycles')
                             ->join('motorcycles','motorcycles.m_id','=', 'checking_motorcycles.m_id')
                             ->where('checking_motorcycles.br_id', '=', $branchID)
-                            ->where('checking_motorcycles.status', '=', '1')
+                            ->where('checking_motorcycles.status', '=', 'true')
                             ->whereMonth('checking_motorcycles.date', '=', $month)
                             ->whereYear('checking_motorcycles.date', '=', $year)
                             ->count();

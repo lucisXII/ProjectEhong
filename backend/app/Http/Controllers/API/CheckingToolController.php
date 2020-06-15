@@ -82,19 +82,17 @@ class CheckingToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $user_id = \Auth::id();
         foreach($request->tools as $tool){
-            $checkingTool = CheckingTool::findOrFail($id);
+            $checkingTool = CheckingTool::findOrFail($tool['ct_id']);
             $checkingTool->user_id = $user_id;
-            $checkingTool->check = $tool->score;
-            //$checkingTool->comment = $tool->comment;
+            $checkingTool->check = $tool['check'];
+            // $checkingTool->comment = $tool->comment;
             $checkingTool->date = date('Y-m-d');
             $checkingTool->save();
         }
-
-        return $checkingTool;
     }
 
     /**
@@ -114,7 +112,9 @@ class CheckingToolController extends Controller
                     ->where('checking_tools.br_id', '=', $branchID)
                     ->whereMonth('checking_tools.date', '=', today()->month)
                     ->count();
-
+        if ($cheked > 0 ) {
+            $cheked = 1;
+        }
         return response()->json($cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }

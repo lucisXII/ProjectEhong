@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ToolsService } from 'src/app/services/tools.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ToolsCheckedComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private toolsService: ToolsService
+    private toolsService: ToolsService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -56,6 +58,11 @@ export class ToolsCheckedComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateTools() {
+    this.loading.present();
+    this.toolsService.updateTools(this.id, this.tools);
   }
 
 }

@@ -63,4 +63,17 @@ export class ToolsService {
       this.loading.dismiss();
     });
   }
+
+  updateTools(id: string, tools: any) {
+    const data = {
+      tools: tools 
+    };
+    console.log(data);
+    this.http.patch<{data: any}>(BACKEND_URL + '/updateCheckingTool'  ,data)
+    .subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/branch/unchecked/' + id]);
+      this.loading.dismiss();
+    });
+  }
 }

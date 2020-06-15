@@ -47,22 +47,22 @@
       </ion-row>
     </ion-grid>
      <ion-grid>
-       <form>
+       <form (submit)="updateTools()">
         <ion-card color="dark">
         <ion-row class="ion-text-center ion-margin-vertical">
           <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
           <ion-col size="2"><ion-title>รหัส</ion-title></ion-col>
-          <ion-col class="ion-text-left" size="3"><ion-title>ชื่อเครื่องมือ</ion-title></ion-col>
+          <ion-col class="ion-text-left" size="5"><ion-title>ชื่อเครื่องมือ</ion-title></ion-col>
           <ion-col size="2"><ion-title>คงเหลือ</ion-title></ion-col>
-          <ion-col size="1"><ion-title>ตรวจ</ion-title></ion-col>
-          <ion-col size="3"><ion-title>หมายเหตุ</ion-title></ion-col>
+          <ion-col size="2"><ion-title>ตรวจ</ion-title></ion-col>
+          <!-- <ion-col size="3"><ion-title>หมายเหตุ</ion-title></ion-col> -->
         </ion-row>
         </ion-card>
        <ion-card>
        <ion-row class="ion-text-center ion-margin-vertical" *ngFor="let tool of tools;let i = index">
         <ion-col size="1"><ion-text><h5>{{i + 1}}</h5></ion-text></ion-col>
         <ion-col size="2"><ion-text><h5>{{tool.code}}</h5></ion-text></ion-col>
-        <ion-col class="ion-text-left ion-padding-start" size="3">
+        <ion-col class="ion-text-left ion-padding-start" size="5">
           <ion-text>
             <h5>{{tool.name}}</h5>
           </ion-text>
@@ -70,21 +70,20 @@
         <ion-col size="2">
           <ion-text><h5>{{tool.remain}}</h5></ion-text>
         </ion-col>
-        <ion-col size="1">
-          <ion-list class="checked-input">
+        <ion-col size="2">
+          <ion-list class="checked-input ion-padding-horizontal">
             <ion-item>
               <ion-input placeholder="เพิ่ม" [(ngModel)]="tool.check" [ngModelOptions]="{standalone: true}"></ion-input>
-              <!-- <ion-input type="number" value="{{tool.check}}" placeholder="เพิ่ม"></ion-input> -->
             </ion-item>
           </ion-list>
         </ion-col>
-        <ion-col size="3">
+        <!-- <ion-col size="3">
           <ion-list class="ion-padding-horizontal checked-input">
             <ion-item>
               <ion-input type="text" placeholder="เพิ่มข้อมูล" value="{{tool.comment}}"></ion-input>
             </ion-item>
           </ion-list>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
       </ion-card>
       <ion-row>

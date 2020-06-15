@@ -78,32 +78,40 @@ export class UncheckedListComponent implements OnInit {
   viewMotocycles(id) {
     if(id == 0){
       this.router.navigate(['branch/' + this.id + '/motocycles/unchecked']);
-    } else {
+    } else if (id == 1) {
       this.router.navigate(['branch/' + this.id + '/motocycles/checked']);
+    } else {
+      return;
     }
   }
 
   viewSpares(id) {
     if(id == 0){
       this.router.navigate(['branch/' + this.id + '/spares/unchecked']);
-    } else {
+    } else if (id == 1) {
       this.router.navigate(['branch/' + this.id + '/spares/checked']);
+    } else {
+      return;
     }
   }
 
   viewTools(id) {
     if(id == 0){
       this.router.navigate(['branch/' + this.id + '/tools/unchecked']);
-    } else {
+    } else if (id == 1) {
       this.router.navigate(['branch/' + this.id + '/tools/checked']);
+    } else {
+      return;
     }
   }
 
   viewCost(id) {
     if(id == 0){
       this.router.navigate(['branch/' + this.id + '/cost/unchecked']);
-    } else {
+    } else if (id == 1) {
       this.router.navigate(['branch/' + this.id + '/cost/checked']);
+    } else {
+      return;
     }
   }
 

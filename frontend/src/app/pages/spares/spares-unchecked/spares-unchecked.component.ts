@@ -57,5 +57,8 @@ export class SparesUncheckedComponent implements OnInit {
       }
     });
   }
-
+  
+  addSpares() {
+    this.sparesService.addSpares(this.id, this.spares);
+  }
 }

@@ -43,8 +43,8 @@ export class GroupShowComponent implements OnInit {
     });
   }
 
-  addScore(form: NgForm) {
-    console.log(form.value);
+  addScore() {
+    console.log(this.headings);
   }
 
 }

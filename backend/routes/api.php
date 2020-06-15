@@ -85,7 +85,7 @@ Route::get('showNumberToolremain/{branchID}','API\CheckingToolController@showNum
 Route::get('showNumberChekedTools/{branchID}','API\CheckingToolController@showNumberChekedTools');
 //เพิ่ม insert,update Tool
 Route::post('addCheckingTool','API\CheckingToolController@store')->middleware('auth:api');
-Route::patch('updateCheckingTool/{id}','API\CheckingToolController@update')->middleware('auth:api');
+Route::patch('updateCheckingTool','API\CheckingToolController@update')->middleware('auth:api');
 
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');

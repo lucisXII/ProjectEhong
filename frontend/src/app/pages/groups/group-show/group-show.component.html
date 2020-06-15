@@ -10,7 +10,7 @@
   </ion-header>
   
   <ion-content fullscreen="true">
-    <form (submit)="addScore(formScore)" #formScore="ngForm">
+    <form (submit)="addScore()">
     <ion-grid class="ion-margin-top" *ngFor="let heading of headings">
       <ion-row>
         <ion-col>
@@ -26,17 +26,17 @@
         
         <ion-row class="ion-text-center ion-margin-bottom ion-margin-start" *ngFor="let sub of heading.sub_heading;let i = index">
          <ion-col class="ion-text-left ion-padding-start" size="8">
-           <ion-text>{{sub.subheadingName}}</ion-text>
+           <ion-text><h5>{{sub.subheadingName}}</h5></ion-text>
           </ion-col>
-         <ion-col size="2">{{sub.score}}</ion-col>
+         <ion-col size="2"><h5>{{sub.score}}</h5></ion-col>
          <ion-col size="2">
-          <ion-list>
+          <ion-list class="checked-input ion-padding-horizontal">
             <ion-item>
               <!-- <ion-input type="number" placeholder="เพิ่ม" [name]="'score_' + i" [ngModel]></ion-input> -->
               <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input>
               <ion-input type="number" placeholder="เพิ่ม" name="id_{{sub.sh_id}}" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
               <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input> -->
-              {{sub.sh_id}}<input [(ngModel)]="sub.sh_id" [ngModelOptions]="{standalone: true}">
+              <ion-input [(ngModel)]="sub.check" [ngModelOptions]="{standalone: true}"></ion-input>
               <!-- <ion-input type="number" placeholder="เพิ่ม" name="" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
             </ion-item>
           </ion-list>
@@ -47,7 +47,7 @@
     <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="download-outline"></ion-icon> แก้ไขข้อมูล</ion-button>
+        <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="add-outline"></ion-icon> บันทึกข้อมูล</ion-button>
        </ion-col>
     </ion-row>
     </ion-grid>

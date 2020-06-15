@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
+import { Router } from '@angular/router';
+import { LoadingService } from './loading.service';
 
 const BACKEND_URL = environment.apiUrl;
 @Injectable({
@@ -8,10 +10,22 @@ const BACKEND_URL = environment.apiUrl;
 })
 export class ToolsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private loading: LoadingService
+    ) { }
 
   getTools(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/showTools/' + id);
+  }
+
+  getAmount(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountTool/' + id);
+  }
+
+  getNumber(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberTool/' + id);
   }
 
   getToolsChecked(id: string){
@@ -38,13 +52,28 @@ export class ToolsService {
     return this.http.get<{data: any}>(BACKEND_URL + '/chekedTools/' + id);
   }
 
-  addTools(tools: any) {
+  addTools(id: string, tools: any) {
     const data = {
       tools: tools 
     };
-    this.http.post<{data: any}>(BACKEND_URL + '/addTools'  ,data)
+    this.http.post<{data: any}>(BACKEND_URL + '/addCheckingTool'  ,data)
     .subscribe(response => {
       console.log(response);
+      this.router.navigate(['/branch/unchecked/' + id]);
+      this.loading.dismiss();
+    });
+  }
+
+  updateTools(id: string, tools: any) {
+    const data = {
+      tools: tools 
+    };
+    console.log(data);
+    this.http.patch<{data: any}>(BACKEND_URL + '/updateCheckingTool'  ,data)
+    .subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/branch/unchecked/' + id]);
+      this.loading.dismiss();
     });
   }
 }

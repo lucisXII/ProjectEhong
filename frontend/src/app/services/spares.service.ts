@@ -39,4 +39,11 @@ export class SparesService {
     return this.http.get<{data: any}>(BACKEND_URL + '/ChekedSpares/' + id);
   }
 
+  addSpares(id: string, spares: string) {
+    const data = {
+      spares: spares 
+    };
+    console.log(data);
+  }
+
 }

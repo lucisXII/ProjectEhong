@@ -24,6 +24,18 @@ export class LoadingService {
     });
   }
 
+  async presentToastWarning() {
+    return await this.toastController.create({
+      color: 'dark',
+      message: 'ไม่สามารถเพิ่มข้อมูลได้ กรุณากรอกข้อมูลให้ครบถ้วน',
+      duration: 4000
+    }).then(t => {
+      t.present().then(() => {
+        console.log('toast warning');
+      });
+    });
+  }
+
   async present() {
     this.isLoading = true;
     return await this.loadingController.create({

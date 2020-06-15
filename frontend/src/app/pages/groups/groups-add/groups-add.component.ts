@@ -43,8 +43,7 @@ export class GroupsAddComponent implements OnInit {
   }
 
   addScore() {
-    console.log(this.headings);
+    this.groupService.addScore(this.id, this.headings);
   }
-
 
 }

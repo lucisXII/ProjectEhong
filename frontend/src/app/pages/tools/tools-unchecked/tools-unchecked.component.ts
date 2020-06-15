@@ -14,12 +14,12 @@ export class ToolsUncheckedComponent implements OnInit {
   tools: any;
   amount: any;
   number: any;
-
+  
   constructor(
     private route: ActivatedRoute,
     private toolsService: ToolsService,
     private loading: LoadingService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
@@ -48,11 +48,18 @@ export class ToolsUncheckedComponent implements OnInit {
   }
 
   addTools() {
-    //  console.log(form.value);
-    // console.log(this.tools);
-    this.loading.present();
-    this.toolsService.addTools(this.id, this.tools);
+    let count = 0;
+    this.tools.forEach(tool => {
+      if(tool.score == null) {
+        count++;
+      }
+    });
+    if(count > 0) {
+      this.loading.presentToastWarning();
+    }
+    else {
+      this.loading.present();
+      this.toolsService.addTools(this.id, this.tools);
+    }
   }
-  
-
 }

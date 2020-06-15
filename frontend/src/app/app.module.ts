@@ -72,6 +72,7 @@ import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.compone
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule
   ],

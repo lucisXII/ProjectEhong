@@ -91,7 +91,7 @@ Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
 //เพิ่ม insert,update Motorcycles
-Route::post('addRateAndScore','API\RateAndScoreController@store')->middleware('auth:api');
+Route::post('addRateAndScore/{id}','API\RateAndScoreController@store');
 Route::patch('updateRateAndScore/{id}','API\RateAndScoreController@update')->middleware('auth:api');
 
 Route::get('ShowHeadReportPDF/{branchID}','API\ReportController@ShowHeadReportPDF');

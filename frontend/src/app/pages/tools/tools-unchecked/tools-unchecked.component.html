@@ -31,7 +31,7 @@
       </ion-row>
     </ion-grid>
      <ion-grid>
-       <form (submit)="addTools(formTools)" #formTools="ngForm">
+       <form (submit)="addTools()">
         <ion-card color="dark">
         <ion-row class="ion-text-center ion-margin-vertical">
           <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
@@ -56,17 +56,13 @@
         </ion-col>
         <ion-col size="2">
           <ion-list class="checked-input ion-padding-horizontal">
-            <ion-item>
+            <ion-item >
               <!-- <ion-input type="number" placeholder="เพิ่ม" [name]="'total_' + i" [ngModel] required></ion-input> -->
               <ion-input 
               type="number" 
               placeholder="เพิ่ม" 
               [(ngModel)]="tool.score" 
               [ngModelOptions]="{standalone: true}"
-              name="score"
-              value="{{tool.score}}"
-              required
-              #scoreInput="ngModel"
               ></ion-input>
               <!-- <ion-input type="number" placeholder="เพิ่ม"  [(ngModel)]="tool.score" [ngModelOptions]="{standalone: true}"></ion-input> -->
               <!-- <ion-input type="number" placeholder="เพิ่ม" [name]="'total_' + i" [ngModel] required></ion-input> -->
@@ -85,7 +81,7 @@
       </ion-card>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="danger" expand="block" size="large" [disabled]="!formTools.valid"><ion-icon slot="start" name="add-outline"></ion-icon> บันทึกข้อมูล</ion-button>
+          <ion-button type="submit" color="danger" expand="block" size="large"><ion-icon slot="start" name="add-outline"></ion-icon> บันทึกข้อมูล</ion-button>
          </ion-col>
       </ion-row>
       </form>

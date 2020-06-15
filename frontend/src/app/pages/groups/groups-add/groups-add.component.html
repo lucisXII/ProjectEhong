@@ -35,11 +35,7 @@
          <ion-col size="2">
           <ion-list class="checked-input ion-padding-horizontal">
             <ion-item>
-              <!-- <ion-input type="number" placeholder="เพิ่ม" [name]="'score_' + i" [ngModel]></ion-input> -->
-              <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input>
-              <ion-input type="number" placeholder="เพิ่ม" name="id_{{sub.sh_id}}" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
-              <!-- <ion-input type="number" placeholder="เพิ่ม" name="score" ngModel></ion-input> -->
-              <ion-input [(ngModel)]="sub.check" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-input type="number" placeholder="เพิ่ม" [(ngModel)]="sub.get" [ngModelOptions]="{standalone: true}"></ion-input>
               <!-- <ion-input type="number" placeholder="เพิ่ม" name="" ngModel value="{{sub.sh_id}}" hidden></ion-input> -->
             </ion-item>
           </ion-list>

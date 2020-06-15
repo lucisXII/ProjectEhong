@@ -38,18 +38,20 @@ class RateAndScoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $user_id = \Auth::id();
-        foreach($request->RateAndScore as $RateAndScores){
-            $addRateAndScores = RateAndScores::create([
-                'sh_id' => $RateAndScores['sh_id'] ,
-                'br_id' => $RateAndScores['br_id'],
-                'user_id' => $user_id,
-                'score'=> $RateAndScores['score'],
-                'date'=> date('Y-m-d')
-            ]);
-            $addRateAndScores->save(); 
+        // $user_id = \Auth::id();
+        foreach($request->headings as $RateAndScores){
+            foreach ($RateAndScores['sub_heading'] as $score) {
+                $addScore = RateAndScore::create([
+                    'sh_id' => $score['sh_id'] ,
+                    'br_id' => $id,
+                    'user_id' => '2',
+                    'score'=> $score['get'],
+                    'date'=> date('Y-m-d')
+                ]);
+                $addScore->save();
+            }
         }
     }
 
@@ -117,21 +119,21 @@ class RateAndScoreController extends Controller
                     ->select('headings.group_id')
                     ->distinct()
                     ->get();
-        
+
         $Cheked = 0;
         if(count($groups) != 0){
 
             foreach ($groups as  $group) {
                 if($group->group_id == $groupID){
                     $Cheked = 1;
-                }    
+                }
            }
             return response()->json($Cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             ,JSON_UNESCAPED_UNICODE);
 
         }else{
            return response()->json(count($groups), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-            ,JSON_UNESCAPED_UNICODE); 
+            ,JSON_UNESCAPED_UNICODE);
         }
     }
 
@@ -148,7 +150,7 @@ class RateAndScoreController extends Controller
                 ->get();
 
         return response()->json($list, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     public function showRatesFullScore($branchID,$groupID)
@@ -168,9 +170,9 @@ class RateAndScoreController extends Controller
         foreach ($lists as  $list) {
             $sum = $sum + $list->score;
         }
-                
+
         return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     //ดูข้อมูลย้อนหลัง
@@ -188,7 +190,7 @@ class RateAndScoreController extends Controller
                 ->get();
 
         return response()->json($list, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     public function showRatesFullScoreOld($branchID,$groupID,$month,$year)
@@ -209,9 +211,9 @@ class RateAndScoreController extends Controller
         foreach ($lists as  $list) {
             $sum = $sum + $list->score;
         }
-                
+
         return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 
 }

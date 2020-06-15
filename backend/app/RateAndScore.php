@@ -13,4 +13,5 @@ class RateAndScore extends Model
         'score',
         'date'
     ];
+    public $timestamps = false;
 }

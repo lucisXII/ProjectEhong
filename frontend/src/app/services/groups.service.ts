@@ -21,4 +21,16 @@ export class GroupsService {
   getSubHeadings(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/subheading/' + id);
   }
+
+  addScore(id: string, headings: string) {
+    const data = {
+      headings : headings
+    };
+    this.http.post<{data: any}>(BACKEND_URL + '/addRateAndScore/' + id  ,data)
+    .subscribe(response => {
+      console.log(response);
+      // this.router.navigate(['/branch/unchecked/' + id]);
+      // this.loading.dismiss();
+    });
+  }
 }

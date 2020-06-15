@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,22 @@ import { LoadingController } from '@ionic/angular';
 export class LoadingService {
   isLoading = false;
 
-  constructor(public loadingController: LoadingController) { }
+  constructor(
+    public loadingController: LoadingController,
+    public toastController: ToastController
+    ) { }
+
+  async presentToast() {
+    return await this.toastController.create({
+      color: 'dark',
+      message: 'บันทึกข้อมูลเรียบร้อยแล้ว',
+      duration: 4000
+    }).then(t => {
+      t.present().then(() => {
+        console.log('toast presented');
+      });
+    });
+  }
 
   async present() {
     this.isLoading = true;

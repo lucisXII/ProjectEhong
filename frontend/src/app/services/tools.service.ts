@@ -74,6 +74,7 @@ export class ToolsService {
       console.log(response);
       this.router.navigate(['/branch/unchecked/' + id]);
       this.loading.dismiss();
+      this.loading.presentToast();
     });
   }
 }

@@ -56,7 +56,7 @@ class CheckingSparesController extends Controller
                 'user_id' => $user_id,
                 'remain'=> $spare['remain'],
                 'check'=> $spare['score'],
-                'comment'=> $spare['comment'],
+                //'comment'=> $spare['comment'],
                 'date'=> date('Y-m-d')
             ]);
             $addSpares->save();

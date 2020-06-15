@@ -38,7 +38,19 @@ class CheckingMotorcyclesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->motorcycles as $motorcycle){
+            $addmotorcycle = CheckingMotorcycles::create([
+                'm_id' => $motorcycle['m_id'] ,
+                'br_id' => $motorcycle['br_id'],
+                'user_id' => $user_id,
+                'status'=> $motorcycle['status'],
+                'unready'=> $motorcycle['unready'],
+                //'comment'=> $motorcycle['comment'],
+                'date'=> date('Y-m-d')
+            ]);
+            $addmotorcycle->save(); 
+        }
     }
 
     /**
@@ -72,7 +84,18 @@ class CheckingMotorcyclesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_id = \Auth::id();
+        foreach($request->motorcycles as $motorcycle){
+            $checkingmotorcycle = CheckingMotorcycles::findOrFail($id);
+            $checkingmotorcycle->user_id = $user_id;
+            $checkingmotorcycle->status = $motorcycle->status;
+            $checkingmotorcycle->unready = $motorcycle->unready;
+           //$checkingmotorcycle->comment = $motorcycle->comment;
+            $checkingmotorcycle->date = date('Y-m-d');
+            $checkingmotorcycle->save();
+        }
+
+        return $checkingTool;
     }
 
     /**

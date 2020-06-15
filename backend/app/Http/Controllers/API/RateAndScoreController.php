@@ -40,13 +40,13 @@ class RateAndScoreController extends Controller
      */
     public function store(Request $request, $id)
     {
-        // $user_id = \Auth::id();
+        $user_id = \Auth::id();
         foreach($request->headings as $RateAndScores){
             foreach ($RateAndScores['sub_heading'] as $score) {
                 $addScore = RateAndScore::create([
                     'sh_id' => $score['sh_id'] ,
                     'br_id' => $id,
-                    'user_id' => '2',
+                    'user_id' => $user_id,
                     'score'=> $score['get'],
                     'date'=> date('Y-m-d')
                 ]);

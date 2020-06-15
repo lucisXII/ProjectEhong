@@ -70,9 +70,8 @@ export class UncheckedListComponent implements OnInit {
     });
   }
 
-  viewGroups(id) {
-    console.log(id);
-    this.router.navigate(['branch/' + id + '/groups']);
+  viewGroups() {
+    this.router.navigate(['branch/' + this.id + '/groups']);
   }
 
   viewMotocycles(id) {

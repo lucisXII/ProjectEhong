@@ -36,6 +36,18 @@ export class LoadingService {
     });
   }
 
+  async presentToastMore() {
+    return await this.toastController.create({
+      color: 'dark',
+      message: 'คะแนนประเมินของคุณไม่ถูกต้อง กรุณากรอกข้อมูลให้ถูกต้อง',
+      duration: 4000
+    }).then(t => {
+      t.present().then(() => {
+        console.log('toast more');
+      });
+    });
+  }
+
   async present() {
     this.isLoading = true;
     return await this.loadingController.create({

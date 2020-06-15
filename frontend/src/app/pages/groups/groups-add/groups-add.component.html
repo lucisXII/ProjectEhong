@@ -14,7 +14,7 @@
   
   <ion-content fullscreen="true">
     <form (submit)="addScore()">
-    <ion-grid class="ion-margin-top" *ngFor="let heading of headings">
+    <ion-grid *ngFor="let heading of headings">
       <ion-row>
         <ion-col>
           <ion-title size="large">{{heading.headingName}}</ion-title>

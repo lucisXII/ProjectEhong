@@ -37,6 +37,8 @@ Route::get('subheading/{groupID}','API\SubheadingController@showlist');
 Route::get('FullscoreGroup/{groupID}','API\SubheadingController@showFullscoreGroup');
 Route::get('showheading/{groupID}','API\HeadingController@showHeading');
 
+Route::get('alldataCheckedHeading/{groupID}','API\HeadingController@rateAndScore');
+
 Route::get('totalcost/{branchID}','API\TotalcostController@showTotalcost');
 
 Route::get('showMotorcycle/{branchID}','API\MotorcycleController@showMotorcycle');
@@ -91,7 +93,7 @@ Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
 //เพิ่ม insert,update Motorcycles
-Route::post('addRateAndScore/{id}','API\RateAndScoreController@store');
+Route::post('addRateAndScore/{id}','API\RateAndScoreController@store')->middleware('auth:api');
 //เพิ่ม insert,update RateAndScore
 Route::post('addRateAndScore','API\RateAndScoreController@store')->middleware('auth:api');
 Route::patch('updateRateAndScore/{id}','API\RateAndScoreController@update')->middleware('auth:api');

@@ -27,10 +27,11 @@ export class GroupsListComponent implements OnInit {
     });
 
     this.groupsService.getGroups()
-      .subscribe(groups => {
-        this.groups = groups;
-        console.log(groups);
+      .subscribe(response => {
+        this.groups = response;
+        console.log(this.groups);
     });
+    
   }
 
   viewGroup(GroupId) {

@@ -146,7 +146,7 @@ class RateAndScoreController extends Controller
                 ->where('groups.group_id', '=', $groupID)
                 ->where('rate_and_scores.br_id', '=', $branchID)
                 ->whereMonth('rate_and_scores.date', '=', today()->month)
-                ->select('rate_and_scores.*')
+                ->select('rate_and_scores.*','subheadings.*','headings.*')
                 ->get();
 
         return response()->json($list, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']

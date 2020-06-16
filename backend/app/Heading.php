@@ -18,6 +18,9 @@ class Heading extends Model
     }
 
     
+    public function rateAndScore(){
+        return $this->hasMany('App\Subheading', 'App\RateAndScore', 'sh_id' ,'sh_id');
+    }
 
     // public function groups(){
     //     return $this->hasOne('โมเดล', 'ไอดีจากโมเดล', 'ไอดีโมเดลนี้');

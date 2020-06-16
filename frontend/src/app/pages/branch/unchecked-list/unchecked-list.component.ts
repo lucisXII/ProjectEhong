@@ -6,6 +6,7 @@ import { SparesService } from 'src/app/services/spares.service';
 import { CostService } from 'src/app/services/cost.service';
 import { MotocyclesService } from 'src/app/services/motocycles.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-unchecked-list',
@@ -27,7 +28,8 @@ export class UncheckedListComponent implements OnInit {
     private costService: CostService,
     private toolsService: ToolsService,
     private route: ActivatedRoute, 
-    private router: Router
+    private router: Router,
+    private loading : LoadingService
     ) { }
 
   ngOnInit() {
@@ -70,9 +72,8 @@ export class UncheckedListComponent implements OnInit {
     });
   }
 
-  viewGroups(id) {
-    console.log(id);
-    this.router.navigate(['branch/' + id + '/groups']);
+  viewGroups() {
+    this.router.navigate(['branch/' + this.id + '/groups']);
   }
 
   viewMotocycles(id) {
@@ -113,6 +114,12 @@ export class UncheckedListComponent implements OnInit {
     } else {
       return;
     }
+  }
+
+  addConcludes(id) {
+    this.loading.present();
+    //console.log(form.value);
+    this.branchService.addConcludes(id);
   }
 
 }

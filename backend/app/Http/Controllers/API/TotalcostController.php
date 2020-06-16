@@ -15,7 +15,8 @@ class TotalcostController extends Controller
         //         ->where('br_id', '=', $branchID)
         //         ->select('totalcosts.*')
         //         ->get();
-        $totalcosts = Totalcost::where('br_id', $branchID)->whereMonth('dateUpdate', today()->month)->firstOrFail();
+        $totalcosts = Totalcost::where('br_id', $branchID)->firstOrFail();
+       // whereMonth('dateUpdate', today()->month)
 
         return response()->json($totalcosts, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);

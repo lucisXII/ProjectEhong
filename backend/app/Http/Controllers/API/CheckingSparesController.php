@@ -55,7 +55,7 @@ class CheckingSparesController extends Controller
                 'br_id' => $spare['br_id'],
                 'user_id' => $user_id ,
                 'remain'=> $spare['remain'],
-                'check'=> $spare['check'],
+                'check'=> $spare['score'],
                 //'comment'=> $spare['comment'],
                 'date'=> date('Y-m-d')
             ]);

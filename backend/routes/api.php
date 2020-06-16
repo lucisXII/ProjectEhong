@@ -24,6 +24,7 @@ Route::get('zone','API\ZoneController@index');
 Route::get('zone/{id}','API\ZoneController@show');
 Route::post('zone/add','API\ZoneController@store');
 
+Route::get('branchs/branchlist','API\BranchController@index');
 Route::get('branchs/unCheked','API\BranchController@unCheked');
 Route::get('branchs/cheked','API\BranchController@Cheked');
 Route::get('branchs/showBranch/{branchID}','API\BranchController@showBranch');
@@ -36,6 +37,8 @@ Route::get('heading','API\HeadingController@index');
 Route::get('subheading/{groupID}','API\SubheadingController@showlist');
 Route::get('FullscoreGroup/{groupID}','API\SubheadingController@showFullscoreGroup');
 Route::get('showheading/{groupID}','API\HeadingController@showHeading');
+
+Route::get('alldataCheckedHeading/{groupID}','API\HeadingController@rateAndScore');
 
 Route::get('totalcost/{branchID}','API\TotalcostController@showTotalcost');
 
@@ -88,12 +91,13 @@ Route::post('addCheckingTool','API\CheckingToolController@store')->middleware('a
 Route::patch('updateCheckingTool','API\CheckingToolController@update')->middleware('auth:api');
 
 Route::get('ChekedRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@ChekedRateAndScore');
+Route::get('ChekedRateAndScoreLast/{branchID}','API\RateAndScoreController@ChekedRateAndScoreLast');
 Route::get('showAlldataRates/{branchID}/{groupID}','API\RateAndScoreController@showalldataRates');
 Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController@showRatesFullScore');
-//เพิ่ม insert,update Motorcycles
-Route::post('addRateAndScore/{id}','API\RateAndScoreController@store');
 //เพิ่ม insert,update RateAndScore
-Route::post('addRateAndScore','API\RateAndScoreController@store')->middleware('auth:api');
+Route::post('addRateAndScore/{id}','API\RateAndScoreController@store')->middleware('auth:api');
+//เพิ่ม insert,update RateAndScore
+//Route::post('addRateAndScore','API\RateAndScoreController@store')->middleware('auth:api');
 Route::patch('updateRateAndScore/{id}','API\RateAndScoreController@update')->middleware('auth:api');
 
 Route::get('ShowHeadReportPDF/{branchID}','API\ReportController@ShowHeadReportPDF');

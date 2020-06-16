@@ -14,12 +14,13 @@
   </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <div *ngFor="let result of results"><p>{{result.branchName}}</p></div>
+  <!-- <ion-content [fullscreen]="true">
+    <div *ngFor="let result of results"><p>{{result.branchName}}</p></div> -->
     
-    <!-- <ion-list>
+    <ion-content [fullscreen]="true">
+    <ion-list>
       <ion-item *ngFor="let result of results">
-        <ion-label></ion-label>
+        <ion-label >{{result.branchName}}</ion-label>
       </ion-item>
-    </ion-list> -->
+    </ion-list>
     </ion-content>

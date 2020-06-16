@@ -19,4 +19,5 @@ class Cost extends Model
         'date'
     ];
     // const CREATED_AT = 'date';
+    public $timestamps = false;
 }

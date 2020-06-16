@@ -40,13 +40,13 @@ class RateAndScoreController extends Controller
      */
     public function store(Request $request, $id)
     {
-        // $user_id = \Auth::id();
+        $user_id = \Auth::id();
         foreach($request->headings as $RateAndScores){
             foreach ($RateAndScores['sub_heading'] as $score) {
                 $addScore = RateAndScore::create([
                     'sh_id' => $score['sh_id'] ,
                     'br_id' => $id,
-                    'user_id' => '2',
+                    'user_id' => $user_id,
                     'score'=> $score['get'],
                     'date'=> date('Y-m-d')
                 ]);
@@ -173,6 +173,30 @@ class RateAndScoreController extends Controller
 
         return response()->json($sum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function ChekedRateAndScoreLast($branchID)
+    {
+        $groups = DB::table('rate_and_scores')
+                    ->join('subheadings','rate_and_scores.sh_id','=','subheadings.sh_id' )
+                    ->join('headings','subheadings.hd_id','=','headings.hd_id' )
+                    ->where('rate_and_scores.br_id', '=', $branchID)
+                    ->whereMonth('rate_and_scores.date', '=', today()->month)
+                    ->select('headings.group_id')
+                    ->distinct()
+                    ->get();
+
+        $Cheked = 0;
+        if(count($groups) == 6){
+            
+            $Cheked = 1;
+            return response()->json($Cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+            ,JSON_UNESCAPED_UNICODE);
+
+        }else{
+           return response()->json($Cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+            ,JSON_UNESCAPED_UNICODE);
+        }
     }
 
     //ดูข้อมูลย้อนหลัง

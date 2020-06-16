@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupsService } from 'src/app/services/groups.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-groups-add',
@@ -16,7 +17,8 @@ export class GroupsAddComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private groupService: GroupsService
+    private groupService: GroupsService,
+    private loading: LoadingService
   ) { }
 
   ngOnInit() {
@@ -32,18 +34,38 @@ export class GroupsAddComponent implements OnInit {
         this.headings = response;
         console.log(this.headings);
         });
-
-        this.groupService.getSubHeadings(this.groupId)
-        .subscribe(subs => {
-        this.subs = subs;
-        });
-
       }
     });
   }
 
   addScore() {
-    this.groupService.addScore(this.id, this.headings);
+    let count = 0;
+    let check = 0;
+    this.headings.forEach(score => {
+      score.sub_heading.forEach(rate => {
+        if(rate.get == null) {
+        count++;
+        }
+        if (rate.get > rate.score) {
+          check++;
+        }
+      });
+    });
+    console.log(count);
+    console.log(check);
+    if(count > 0) {
+      this.loading.presentToastWarning();
+    }
+    else {
+      if (check > 0) {
+        this.loading.presentToastMore();
+      }
+      else {
+      this.loading.present();
+      this.groupService.addScore(this.id, this.headings);
+      }
+    }
+
   }
 
 }

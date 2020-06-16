@@ -36,6 +36,10 @@ export class CheckedListComponent implements OnInit {
     });
   }
 
+  viewGroups() {
+    this.router.navigate(['branch/' + this.id + '/groups']);
+  }
+
   viewSpares() {
       this.router.navigate(['branch/' + this.id + '/spares']);
   }

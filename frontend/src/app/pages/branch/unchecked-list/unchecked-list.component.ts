@@ -15,6 +15,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class UncheckedListComponent implements OnInit {
   branch: any;
+  checkRateAndScore: any;
   checkMotocycles: any;
   checkSpares: any;
   checkCost: any;
@@ -42,6 +43,12 @@ export class UncheckedListComponent implements OnInit {
           .subscribe(response => {
           this.branch = response;
           console.log(this.branch);
+        });
+
+        this.branchService.getCheckedRateAndScore(this.id)
+          .subscribe(response => {
+          this.checkRateAndScore = response;
+          console.log(this.checkRateAndScore);
         });
 
         this.motocycleService.checkedMotocycles(this.id)
@@ -116,10 +123,10 @@ export class UncheckedListComponent implements OnInit {
     }
   }
 
-  addConcludes(id) {
-    this.loading.present();
+  addConcludes() {
+    // this.loading.present();
     //console.log(form.value);
-    this.branchService.addConcludes(id);
+    this.branchService.addConcludes(this.id);
   }
 
 }

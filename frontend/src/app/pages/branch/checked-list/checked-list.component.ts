@@ -56,4 +56,8 @@ export class CheckedListComponent implements OnInit {
       this.router.navigate(['branch/' + this.id + '/cost']);
   }
 
+  viewReport() {
+      this.router.navigate(['branch/' + this.id + '/report']);
+  }
+
 }

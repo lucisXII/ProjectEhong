@@ -9,8 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, FormControlDirective, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 import { LoginComponent } from './auth/login/login.component';
 import { BlankComponent } from './pages/blank/blank.component';
@@ -37,6 +40,7 @@ import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.componen
 import { SearchComponent } from './pages/former/search/search.component';
 import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
+import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 
 
 @NgModule({
@@ -65,7 +69,8 @@ import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.compone
     CostUncheckedComponent,
     CostShowComponent,
     SearchComponent,
-    ResultComponent
+    ResultComponent,
+    ReportCheckedComponent
   ],
   entryComponents: [],
   imports: [
@@ -80,8 +85,10 @@ import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.compone
     StatusBar,
     SplashScreen,
     ScreenOrientation,
+    File,
+    FileOpener,
     {provide: HTTP_INTERCEPTORS , useClass: AuthInterceptor , multi: true},
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

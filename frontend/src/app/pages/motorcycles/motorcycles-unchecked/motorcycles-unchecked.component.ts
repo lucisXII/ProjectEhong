@@ -33,32 +33,10 @@ export class MotorcyclesUncheckedComponent implements OnInit {
           this.motocycles = response;
           console.log(this.motocycles);
         });
-        this.motocyclesService.getTotal(this.id)
+        this.motocyclesService.getTotalMotorcycle(this.id)
         .subscribe(response => {
           this.total = response;
           console.log(this.total);
-        });
-
-        // this.motocyclesService.getTotal1(this.id)
-        // .subscribe(response => {
-        //   this.total = response;
-        //   console.log(this.total);
-        // });
-
-        this.motocyclesService.getRemain(this.id)
-        .subscribe(response => {
-          this.remain = response;
-          console.log(this.remain);
-        });
-        this.motocyclesService.getOutstanding(this.id)
-        .subscribe(response => {
-          this.outstanding = response;
-          console.log(this.outstanding);
-        });
-        this.motocyclesService.getUnready(this.id)
-        .subscribe(response => {
-          this.unready = response;
-          console.log(this.unready);
         });
       }
     });

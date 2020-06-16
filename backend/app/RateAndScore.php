@@ -15,8 +15,4 @@ class RateAndScore extends Model
         'date'
     ];
     public $timestamps = false;
-
-    public function rateAndScore(){
-        return $this->hasOne('App\Subheading', 'sh_id', 'sh_id');
-    }
 }

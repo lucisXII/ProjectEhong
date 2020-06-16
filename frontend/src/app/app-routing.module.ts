@@ -27,6 +27,7 @@ import { ToolsShowComponent } from './pages/tools/tools-show/tools-show.componen
 import { SearchComponent } from './pages/former/search/search.component';
 import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
+import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'login' , component: LoginComponent },
-  { path: 'blank' , component: BlankComponent, canActivate: [AuthGuard] },
+  { path: 'blank' , component: BlankComponent },
   { path: 'branch/unchecked' , component: UncheckedComponent},
   { path: 'branch/unchecked/:id' , component: UncheckedListComponent},
   { path: 'branch/checked' , component: CheckedComponent},
@@ -58,7 +59,8 @@ const routes: Routes = [
   { path: 'branch/:id/tools' , component: ToolsShowComponent},
   { path: 'branch/:id/cost/unchecked' , component: CostUncheckedComponent},
   { path: 'branch/:id/cost/checked' , component: CostCheckedComponent},
-  { path: 'branch/:id/cost' , component: CostShowComponent},
+  { path: 'branch/:id/cost' , component: CostShowComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/report' , component: ReportCheckedComponent },
   { path: 'search' , component: SearchComponent},
   { path: 'result/:year/:month' , component: ResultComponent},
 ];

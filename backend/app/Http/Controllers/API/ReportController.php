@@ -32,7 +32,7 @@ class ReportController extends Controller
                     ->select('checking_motorcycles.user_id')
                     ->distinct()
                     ->get();
-        
+
         $userSpares = DB::table('checking_spares')
                     ->join('spares','spares.s_id','=', 'checking_spares.s_id')
                     ->where('checking_spares.br_id', '=', $branchID)
@@ -62,7 +62,7 @@ class ReportController extends Controller
                     ->select('rate_and_scores.user_id')
                     ->distinct()
                     ->get();
-        
+
         //เพิ่ม user ทั้งหมดลงใน array ตัวเดียวกัน
         $userID=array();
         foreach ($userMotorcycles as  $userMotorcycle){
@@ -97,7 +97,7 @@ class ReportController extends Controller
                 array_push($user,$userID[$j]);
              }
         }
-        
+
         //เพิ่มชื่อของ user ลงใน array
         $userName=array();
         $names1 = DB::table('users')
@@ -114,7 +114,7 @@ class ReportController extends Controller
                 ->where('users.user_id', '=', $user[$i])
                 ->select('users.name')
                 ->get();
-            
+
             foreach ($names2 as  $name){
                 $check = 0;
                 for($j=0; $j < count($userName) ;$j++){
@@ -141,7 +141,7 @@ class ReportController extends Controller
     {
         $groupSum = array();
         for($i=1; $i< 7 ;$i++){
-            
+
             $sum = DB::table('groups')
                     ->join('headings','headings.group_id','=', 'groups.group_id')
                     ->join('subheadings','subheadings.hd_id','=', 'headings.hd_id')
@@ -155,7 +155,7 @@ class ReportController extends Controller
 
         }//return $groupSum;
         return response()->json($groupSum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     public function ShowScoreSumPDF($branchID)
@@ -168,17 +168,17 @@ class ReportController extends Controller
 
         $divide = DB::table('subheadings')
                 ->sum('subheadings.score');
-        
+
         $percent = ($sum*100)/$divide;
         $percent = number_format((float)$percent, 2, '.', '');
 
         array_push($sums,$sum);
         array_push($sums,$percent);
-        
+
         return response()->json($sums, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
-    
+
     public function ShowHeadReportPDFdate($branchID)
     {
         $ReportDate = DB::table('concludes')
@@ -190,7 +190,7 @@ class ReportController extends Controller
                     ->select('concludes.date','branches.branchName','leaders.leaderName')
                     ->get();
         $date = array();
-        
+
         foreach ($ReportDate as  $ReportDate2 ) {
             //$strDate =  $mount->date;
             $strDay= date("j",strtotime($ReportDate2->date));
@@ -200,7 +200,7 @@ class ReportController extends Controller
             $strMinute= date("i",strtotime($ReportDate2->date));
             $strSeconds= date("s",strtotime($ReportDate2->date));
             $strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤษจิกายน","ธันวาคม");
-            
+
             for($i=1; $i<= 12 ;$i++) {
                 if(strpos($strMonth, ''.$i) !== false){
                     $strMonthThai = $strMonthCut[$i];
@@ -210,16 +210,21 @@ class ReportController extends Controller
             // return response()->json($date , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             // ,JSON_UNESCAPED_UNICODE);  
         }     
+            $date = "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
+            return response()->json($date , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+            ,JSON_UNESCAPED_UNICODE);
+            // return "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
+        }
     }
 
-    // [ Report Excel ] 
+    // [ Report Excel ]
     public function ShowBranchExcel()
     {
         $branch= DB::table('branches')
                     ->whereNull('branches.close_date')
                     ->select('branches.br_id','branches.branchName')
                     ->get();
-        
+
         return response()->json($branch, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
 
@@ -240,7 +245,7 @@ class ReportController extends Controller
             $strDate =  $mount->date;
             $strMonth= date("่m",strtotime($strDate));
             array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -252,12 +257,12 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                      $check = 0;
-                } 
+                }
             }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
 
         $zero = count($numMount);
         $start = 1;
@@ -283,24 +288,24 @@ class ReportController extends Controller
                     ->select('concludes.score','concludes.br_id')
                     ->orderby('concludes.br_id', 'ASC')
                     ->get();
-            
+
             $branchs= DB::table('branches')
                     ->whereNull('branches.close_date')
                     ->select('branches.br_id')
                     ->get();
-            
+
 
             if(count($scores) == 1){
                 $x = 1;
                 foreach ($scores as  $score) {
                     foreach ($branchs as  $branch){
                         if($branch->br_id != $score->br_id){
-                               $array[$check][$x]=0;    
+                               $array[$check][$x]=0;
                         }else{
                             $array[$check][$x]=$score->score;
                         }
                         $x++;
-                    }  
+                    }
                 }
                 $check++;
             }else if(count($scores) > 1){
@@ -310,7 +315,7 @@ class ReportController extends Controller
                         $x = 1;
                         foreach ($branchs as  $branch){
                             if($branch->br_id != $score->br_id){
-                                $array[$check][$x]=0;    
+                                $array[$check][$x]=0;
                             }else{
                                 $array[$check][$x]=$score->score;
                             }
@@ -322,10 +327,10 @@ class ReportController extends Controller
                             $a = 1;
                             foreach ($branchs as  $branch){
                                 if($branch->br_id == $score->br_id){
-                                    $array[$check][$a]=$score->score;    
+                                    $array[$check][$a]=$score->score;
                                 }
                                 $a++;
-                            }  
+                            }
                         }
                     }
                     $x1 = 1;
@@ -333,8 +338,8 @@ class ReportController extends Controller
                 $check++;
             }
             $num++;
-        } 
-        //return $array;   
+        }
+        //return $array;
         return response()->json($array, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
@@ -353,7 +358,7 @@ class ReportController extends Controller
         $strDate =  $mount->date;
         $strMonth= date("่m",strtotime($strDate));
         array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -365,18 +370,18 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                     $check = 0;
-                } 
+                }
             }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
        $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
         $nameMonth = array();
         $start = 0;
         $end = 12;
         $numend = count($numMount);
-        
+
         for($i=1; $i<= 12 ;$i++) {
             if(strpos($numMount[0], ''.$i) !== false){
                 $start = $i;
@@ -387,10 +392,10 @@ class ReportController extends Controller
         }
         for($i=$start; $i<= $end ;$i++) {
             array_push($nameMonth,$strMonthCut[$i]);
-        } 
+        }
         return $nameMonth ;
     }
-    
+
     // [Report Excel สาขา 100 คะแนน]
     public function ShowBranchExcel100()
     {
@@ -406,7 +411,7 @@ class ReportController extends Controller
             $strDate =  $mount->date;
             $strMonth= date("่m",strtotime($strDate));
             array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -418,12 +423,12 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                     $check = 0;
-                } 
+                }
              }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
 
         $zero = count($numMount);
         $start = 1;
@@ -451,7 +456,7 @@ class ReportController extends Controller
                     ->orderby('branches.br_id', 'ASC')
                     ->distinct()
                     ->get();
-         
+
         $array = array();
         $x = 0;
         foreach($branchs as $branch){
@@ -462,7 +467,7 @@ class ReportController extends Controller
         for($i=0; $i< count($array) ;$i++){
             $array[$i][1] = 0;
         }
-        
+
         //return $array;
         $branchsScore = DB::table('concludes')
                     ->join('branches','branches.br_id','=','concludes.br_id' )
@@ -472,7 +477,7 @@ class ReportController extends Controller
                     ->orderby('branches.br_id', 'ASC')
                     //->distinct()
                     ->get();
-        
+
 
         foreach( $branchsScore as  $branchScore) {
             for($i=0; $i< count($array) ;$i++){
@@ -480,7 +485,7 @@ class ReportController extends Controller
                     $array[$i][1] = $array[$i][1] + $branchScore->score;
                 }
             }
-        } 
+        }
         //return $array;
         $branchID = array();
         $j = 0;
@@ -490,7 +495,7 @@ class ReportController extends Controller
                 $j++;
             }
         }
-        
+
 
         for($i=0; $i< count($branchID) ;$i++){
             $branchs2 = DB::table('branches')
@@ -521,7 +526,7 @@ class ReportController extends Controller
         $strDate =  $mount->date;
         $strMonth= date("่m",strtotime($strDate));
         array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -533,12 +538,12 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                     $check = 0;
-                } 
+                }
             }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
         $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
         $nameMonth = array();
         $start = 0;
@@ -555,7 +560,7 @@ class ReportController extends Controller
         }
         for($i=$start; $i<= $end ;$i++) {
             array_push($nameMonth,$strMonthCut[$i]);
-        } 
+        }
         return $nameMonth ;
     }
 
@@ -588,7 +593,7 @@ class ReportController extends Controller
                     ->select('checking_motorcycles.user_id')
                     ->distinct()
                     ->get();
-        
+
         $userSpares = DB::table('checking_spares')
                     ->join('spares','spares.s_id','=', 'checking_spares.s_id')
                     ->where('checking_spares.br_id', '=', $branchID)
@@ -622,7 +627,7 @@ class ReportController extends Controller
                     ->select('rate_and_scores.user_id')
                     ->distinct()
                     ->get();
-        
+
         //เพิ่ม user ทั้งหมดลงใน array ตัวเดียวกัน
         $userID=array();
         foreach ($userMotorcycles as  $userMotorcycle){
@@ -657,7 +662,7 @@ class ReportController extends Controller
                 array_push($user,$userID[$j]);
              }
         }
-        
+
         //เพิ่มชื่อของ user ลงใน array
         $userName=array();
         $names1 = DB::table('users')
@@ -674,7 +679,7 @@ class ReportController extends Controller
                 ->where('users.user_id', '=', $user[$i])
                 ->select('users.name')
                 ->get();
-            
+
             foreach ($names2 as  $name){
                 $check = 0;
                 for($j=0; $j < count($userName) ;$j++){
@@ -701,7 +706,7 @@ class ReportController extends Controller
     {
         $groupSum = array();
         for($i=1; $i< 7 ;$i++){
-            
+
             $sum = DB::table('groups')
                     ->join('headings','headings.group_id','=', 'groups.group_id')
                     ->join('subheadings','subheadings.hd_id','=', 'headings.hd_id')
@@ -716,7 +721,7 @@ class ReportController extends Controller
 
         }//return $groupSum;
         return response()->json($groupSum, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     public function ShowScoreSumPDFOld($branchID,$month,$year)
@@ -730,17 +735,17 @@ class ReportController extends Controller
 
         $divide = DB::table('subheadings')
                 ->sum('subheadings.score');
-        
+
         $percent = ($sum*100)/$divide;
         $percent = number_format((float)$percent, 2, '.', '');
 
         array_push($sums,$sum);
         array_push($sums,$percent);
-        
+
         return response()->json($sums, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);       
+        ,JSON_UNESCAPED_UNICODE);
     }
-    
+
     public function ShowHeadReportPDFdateOld($branchID,$month,$year)
     {
         $ReportDate = DB::table('concludes')
@@ -753,7 +758,7 @@ class ReportController extends Controller
                     ->select('concludes.date','branches.branchName','leaders.leaderName')
                     ->get();
         $date = array();
-        
+
         foreach ($ReportDate as  $ReportDate2 ) {
             //$strDate =  $mount->date;
             $strDay= date("j",strtotime($ReportDate2->date));
@@ -763,17 +768,18 @@ class ReportController extends Controller
             $strMinute= date("i",strtotime($ReportDate2->date));
             $strSeconds= date("s",strtotime($ReportDate2->date));
             $strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤษจิกายน","ธันวาคม");
-            
+
             for($i=1; $i<= 12 ;$i++) {
                 if(strpos($strMonth, ''.$i) !== false){
                     $strMonthThai = $strMonthCut[$i];
                 }
             }
-            return "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";    
-        }     
+
+            // return "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
+        }
     }
 
-    //Report Excel 
+    //Report Excel
     public function ShowBranchExcelOld($year)
     {
         $mounts = DB::table('concludes')
@@ -789,7 +795,7 @@ class ReportController extends Controller
             $strDate =  $mount->date;
             $strMonth= date("่m",strtotime($strDate));
             array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -801,12 +807,12 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                      $check = 0;
-                } 
+                }
             }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
 
         $zero = count($numMount);
         $start = 1;
@@ -822,10 +828,10 @@ class ReportController extends Controller
                     ->whereMonth('concludes.date', '=', $start)
                     ->select('branches.br_id','branches.branchName')
                     ->get();
-            
+
         return response()->json($branch, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
-    
+
     }
 
     public function ShowScoreExcelOld($year)
@@ -843,7 +849,7 @@ class ReportController extends Controller
             $strDate =  $mount->date;
             $strMonth= date("่m",strtotime($strDate));
             array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -855,12 +861,12 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                      $check = 0;
-                } 
+                }
             }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
 
         $zero = count($numMount);
         $start = 1;
@@ -886,24 +892,24 @@ class ReportController extends Controller
                     ->select('concludes.score','concludes.br_id')
                     ->orderby('concludes.br_id', 'ASC')
                     ->get();
-            
+
             $branchs= DB::table('branches')
                     ->whereNull('branches.close_date')
                     ->select('branches.br_id')
                     ->get();
-            
+
 
             if(count($scores) == 1){
                 $x = 1;
                 foreach ($scores as  $score) {
                     foreach ($branchs as  $branch){
                         if($branch->br_id != $score->br_id){
-                               $array[$check][$x]=0;    
+                               $array[$check][$x]=0;
                         }else{
                             $array[$check][$x]=$score->score;
                         }
                         $x++;
-                    }  
+                    }
                 }
                 $check++;
             }else if(count($scores) > 1){
@@ -913,7 +919,7 @@ class ReportController extends Controller
                         $x = 1;
                         foreach ($branchs as  $branch){
                             if($branch->br_id != $score->br_id){
-                                $array[$check][$x]=0;    
+                                $array[$check][$x]=0;
                             }else{
                                 $array[$check][$x]=$score->score;
                             }
@@ -925,10 +931,10 @@ class ReportController extends Controller
                             $a = 1;
                             foreach ($branchs as  $branch){
                                 if($branch->br_id == $score->br_id){
-                                    $array[$check][$a]=$score->score;    
+                                    $array[$check][$a]=$score->score;
                                 }
                                 $a++;
-                            }  
+                            }
                         }
                     }
                     $x1 = 1;
@@ -936,8 +942,8 @@ class ReportController extends Controller
                 $check++;
             }
             $num++;
-        } 
-        //return $array;   
+        }
+        //return $array;
         return response()->json($array, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
@@ -956,7 +962,7 @@ class ReportController extends Controller
         $strDate =  $mount->date;
         $strMonth= date("่m",strtotime($strDate));
         array_push($m,$strMonth);
-        }     
+        }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
@@ -968,18 +974,18 @@ class ReportController extends Controller
                     $check = 1;
                 }else{
                     $check = 0;
-                } 
+                }
             }
             if($check == 1){
                 array_push($numMount,$m[$j]);
-            }  
-        }  
+            }
+        }
         $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
         $nameMonth = array();
         $start = 0;
         $end = 12;
         $numend = count($numMount);
-        
+
         for($i=1; $i<= 12 ;$i++) {
             if(strpos($numMount[0], ''.$i) !== false){
                 $start = $i;
@@ -990,7 +996,7 @@ class ReportController extends Controller
         }
         for($i=$start; $i<= $end ;$i++) {
             array_push($nameMonth,$strMonthCut[$i]);
-        } 
+        }
         return $nameMonth ;
     }
 
@@ -1003,31 +1009,31 @@ class ReportController extends Controller
                         ->select('concludes.date')
                         ->orderbyDESC('concludes.date')
                         ->get();
-    
+
             $m = array();
             foreach ($mounts as  $mount) {
                 $strDate =  $mount->date;
                 $strMonth= date("่m",strtotime($strDate));
                 array_push($m,$strMonth);
-            }     
-    
+            }
+
             $zero1 = count($m);
             $numMount = array($m[$zero1-1]);
             for($j=$zero1-1; $j > -1 ;$j--) {
                 $check = 0;
                 for($i=0; $i< count($numMount) ;$i++){
-    
+
                     if($numMount[$i] != $m[$j]){
                         $check = 1;
                     }else{
                         $check = 0;
-                    } 
+                    }
                  }
                 if($check == 1){
                     array_push($numMount,$m[$j]);
-                }  
-            }  
-    
+                }
+            }
+
             $zero = count($numMount);
             $start = 1;
             for($i=1; $i<= 12 ;$i++) {
@@ -1035,17 +1041,17 @@ class ReportController extends Controller
                     $start = $i;
                 }
             }
-    
+
             $end = 1;
             for($i=1; $i<= 12 ;$i++) {
                 if(strpos($numMount[$zero-1], ''.$i) !== false){
                     $end = $i;
                 }
             }
-    
+
             $ScoreFull = DB::table('subheadings')->sum('subheadings.score');
             $ScoreFull2 = $ScoreFull * $zero ;
-    
+
             $branchs = DB::table('concludes')
                         ->join('branches','branches.br_id','=','concludes.br_id' )
                         ->whereYear('concludes.date', '=', $year)
@@ -1054,18 +1060,18 @@ class ReportController extends Controller
                         ->orderby('branches.br_id', 'ASC')
                         ->distinct()
                         ->get();
-             
+
             $array = array();
             $x = 0;
             foreach($branchs as $branch){
                 $array[$x][0] = $branch->br_id;
                 $x++;
             }
-    
+
             for($i=0; $i< count($array) ;$i++){
                 $array[$i][1] = 0;
             }
-            
+
             //return $array;
             $branchsScore = DB::table('concludes')
                         ->join('branches','branches.br_id','=','concludes.br_id' )
@@ -1075,15 +1081,15 @@ class ReportController extends Controller
                         ->orderby('branches.br_id', 'ASC')
                         //->distinct()
                         ->get();
-            
-    
+
+
             foreach( $branchsScore as  $branchScore) {
                 for($i=0; $i< count($array) ;$i++){
                     if($array[$i][0] == $branchScore->br_id){
                         $array[$i][1] = $array[$i][1] + $branchScore->score;
                     }
                 }
-            } 
+            }
             //return $array;
             $branchID = array();
             $j = 0;
@@ -1093,23 +1099,23 @@ class ReportController extends Controller
                     $j++;
                 }
             }
-            
-    
+
+
             for($i=0; $i< count($branchID) ;$i++){
                 $branchs2 = DB::table('branches')
                             ->where('branches.br_id','=', $branchID[$i][0])
                             ->select('branches.branchName')
                             ->get();
-    
+
                 foreach($branchs2 as $branch2){
                     $branchID[$i][1] = $branch2->branchName;
                 }
             }
            return response()->json($branchID, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             ,JSON_UNESCAPED_UNICODE);
-    
+
     }
-    
+
     public function ShowMonthExcel100Old($year)
     {
             $mounts = DB::table('concludes')
@@ -1118,36 +1124,36 @@ class ReportController extends Controller
                     ->select('concludes.date')
                     ->orderbyDESC('concludes.date')
                     ->get();
-    
+
             $m = array();
             foreach ($mounts as  $mount) {
             $strDate =  $mount->date;
             $strMonth= date("่m",strtotime($strDate));
             array_push($m,$strMonth);
-            }     
-    
+            }
+
             $zero1 = count($m);
             $numMount = array($m[$zero1-1]);
             for($j=$zero1-1; $j > -1 ;$j--) {
                 $check = 0;
                 for($i=0; $i< count($numMount) ;$i++){
-    
+
                     if($numMount[$i] != $m[$j]){
                         $check = 1;
                     }else{
                         $check = 0;
-                    } 
+                    }
                 }
                 if($check == 1){
                     array_push($numMount,$m[$j]);
-                }  
-            }  
+                }
+            }
             $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
             $nameMonth = array();
             $start = 0;
             $end = 12;
             $numend = count($numMount);
-    
+
             for($i=1; $i<= 12 ;$i++) {
                 if(strpos($numMount[0], ''.$i) !== false){
                     $start = $i;
@@ -1158,10 +1164,10 @@ class ReportController extends Controller
             }
             for($i=$start; $i<= $end ;$i++) {
                 array_push($nameMonth,$strMonthCut[$i]);
-            } 
+            }
             return $nameMonth ;
     }
-    
+
 }
 
 

@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="danger" defaultHref="index"></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        PDF EXPORT
+      </ion-title>
+    </ion-toolbar>
+    </ion-header>
+
+    <ion-content [fullscreen]="true">
+        <ion-item>
+            <ion-label stacked>Form</ion-label>
+            <ion-input [(ngModel)]="letterObj.form"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>To</ion-label>
+            <ion-input [(ngModel)]="letterObj.to"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Text</ion-label>
+            <ion-textarea [(ngModel)]="letterObj.text" row="10"></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="block" (click)="createPdf()">Create PDF</ion-button>
+        <ion-button expand="block" color="primary" (click)="downloadPdf()" [disabled]="!pdfObj">Download PDF</ion-button>
+    </ion-content>

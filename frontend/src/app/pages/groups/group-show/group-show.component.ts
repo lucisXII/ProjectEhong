@@ -33,12 +33,6 @@ export class GroupShowComponent implements OnInit {
         this.headings = headings;
         console.log(headings);
         });
-
-        this.groupService.getSubHeadings(this.groupId)
-        .subscribe(subs => {
-        this.subs = subs;
-        });
-
       }
     });
   }

@@ -1,0 +1,154 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="branch/checked/{{id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      รายงานการตรวจสอบสาขา
+    </ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-grid class="ion-margin-top">
+      <ion-row class="ion-text-center ion-margin-bottom">
+        <ion-col>
+          <div *ngFor="let header of headers">
+          <ion-title class="ion-no-padding">สาขา : {{header.branchName}}</ion-title>
+          <!-- <ion-text><h5></h5></ion-text> -->
+          <ion-text>ผู้รับผิดชอบ : {{header.leaderName}}</ion-text>
+        </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text>{{date}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-text>รถจักรยานยนต์ (คัน)</ion-text>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{remain}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text>รถยึดค้างส่ง (คัน)</ion-text>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{outstanding}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text>รถยึดค้างส่ง (คัน)</ion-text>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{unready}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text>อะไหล่ (บาท)</ion-text>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{amount}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="8">
+          <ion-text>เงินสดหน้าร้าน (บาท)</ion-text>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{total?.checkmoney}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="4">
+          <ion-text>สัญญาค้างส่งเกิน 15 วัน</ion-text>
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{total?.agreement}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col>
+          <ion-title class="ion-no-padding">ผลประเมินคะแนน</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-text>ฝ่ายขาย</ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>ฝ่ายบริการ</ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>ฝ่ายอะไหล้</ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>ฝ่ายการเงิน</ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>ฝ่ายบุคคล</ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text>ฝ่าย IT</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2" class="ion-text-center" *ngFor="let score of scoreGroup">
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{score}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-title class="ion-no-padding">คะแนนรวม</ion-title>
+        </ion-col>
+        <ion-col size="6">
+          <ion-title class="ion-no-padding">ค่าเฉลี่ย (%)</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" *ngFor="let sum of sumGroup">
+          <ion-list class="line-input">
+            <ion-item>
+              <ion-input value="{{sum}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+          <ion-text><h5>ผู้ตรวจสอบ</h5></ion-text>
+          <div *ngFor="let user of users;let i = index">
+          <ion-text>{{i + 1}}. {{user}}</ion-text>
+          </div>
+        </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-button color="success" expand="block" (click)="createPDF()">Create PDF</ion-button></ion-col>
+        <ion-col><ion-button color="primary" expand="block" (click)="downloadPDF()" [disabled]="!pdfObj">Download</ion-button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

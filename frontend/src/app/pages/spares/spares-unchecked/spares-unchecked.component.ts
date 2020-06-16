@@ -21,6 +21,7 @@ export class SparesUncheckedComponent implements OnInit {
     private route: ActivatedRoute,
     private sparesService: SparesService,
     private loading: LoadingService
+    
   ) { }
 
   ngOnInit() {

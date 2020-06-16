@@ -13,7 +13,7 @@ import { CheckedListComponent } from './pages/branch/checked-list/checked-list.c
 import { SparesUncheckedComponent } from './pages/spares/spares-unchecked/spares-unchecked.component';
 import { SparesCheckedComponent } from './pages/spares/spares-checked/spares-checked.component';
 import { GroupsListComponent } from './pages/groups/groups-list/groups-list.component';
-import { GroupShowComponent } from './pages/groups/group-show/group-show.component';
+//import { GroupShowComponent } from './pages/groups/group-show/group-show.component';
 import { MotorcyclesUncheckedComponent } from './pages/motorcycles/motorcycles-unchecked/motorcycles-unchecked.component';
 import { MotorcyclesCheckedComponent } from './pages/motorcycles/motorcycles-checked/motorcycles-checked.component';
 import { ToolsUncheckedComponent } from './pages/tools/tools-unchecked/tools-unchecked.component';

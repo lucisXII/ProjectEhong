@@ -38,6 +38,13 @@ export class MotorcyclesUncheckedComponent implements OnInit {
           this.total = response;
           console.log(this.total);
         });
+
+        // this.motocyclesService.getTotal1(this.id)
+        // .subscribe(response => {
+        //   this.total = response;
+        //   console.log(this.total);
+        // });
+
         this.motocyclesService.getRemain(this.id)
         .subscribe(response => {
           this.remain = response;

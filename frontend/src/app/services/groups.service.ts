@@ -27,6 +27,9 @@ export class GroupsService {
   getHeadings(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/showheading/' + id);
   }
+  // checkedTools(id: string) {
+  //   return this.http.get<{data: any}>(BACKEND_URL + '/chekedTools/' + id);
+  // }
 
   addScore(id: string, headings: string) {
     const data = {

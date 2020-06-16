@@ -17,6 +17,7 @@ class Heading extends Model
         return $this->hasOne('App\Group', 'group_id', 'group_id');
     }
 
+    
     public function rateAndScore(){
         return $this->hasMany('App\Subheading', 'App\RateAndScore', 'sh_id' ,'sh_id');
     }

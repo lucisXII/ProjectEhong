@@ -45,6 +45,7 @@ export class CostService {
       console.log(response);
       this.loading.dismiss();
       this.router.navigate(['/branch/unchecked/' + id]);
+      this.loading.presentToast();
       // this.total = response.data;
       // console.log('Add Education Success!');
     });

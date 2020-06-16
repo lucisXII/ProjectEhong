@@ -35,21 +35,22 @@ class ConcludeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {
-        //เพิ่มคะแนนเต็ม
+        $id = $request;
+        // เพิ่มคะแนนเต็ม
         $scoresCheck = DB::table('rate_and_scores')
                         ->where('rate_and_scores.br_id', '=', $id)
                         ->whereMonth('rate_and_scores.date', '=', today()->month)
-                        ->sum('rate_and_scores.scroe');
+                        ->sum('rate_and_scores.score');
         //เพิ่มข้อมูล
         $conclude = new Conclude([
             'br_id' => $id,
-            'scroe' => $scoresCheck,
-            'date' => date('Y-m-d'),
+            'score' => $scoresCheck,
+            'date' => date('Y-m-d H:i:s')
         ]);
         $conclude->save();
-        return $conclude;    
+        return $conclude;
     }
 
     /**
@@ -107,8 +108,8 @@ class ConcludeController extends Controller
                     ->count();
         return response()->json($status, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
-        
-        
+
+
         //$status = Concludes::where(['status' => '1', 'slug' => $id])->firstOrFail();
 
     }

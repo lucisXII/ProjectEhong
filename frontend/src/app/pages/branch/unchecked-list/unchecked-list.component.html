@@ -54,7 +54,23 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button color="danger" size="large" expand="block" disabled="true">ยืนยันการตรวจสอบสาขา</ion-button>
+      <ion-button 
+      *ngIf="checkRateAndScore == 1 && checkMotocycles == 1 && checkSpares == 1 && checkTools == 1 && checkCost == 1"
+      color="danger" 
+      size="large" 
+      expand="block" 
+      (click)="addConcludes()">
+      ยืนยันการตรวจสอบสาขา
+    </ion-button>
+      <ion-button
+      *ngIf="checkRateAndScore == 0 || checkMotocycles == 0 || checkSpares == 0 || checkTools == 0 || checkCost == 0" 
+      color="danger" 
+      size="large" 
+      expand="block" 
+      disabled="true">
+      ยืนยันการตรวจสอบสาขา
+    </ion-button>
+
     </ion-col>
   </ion-row>
 </ion-grid>

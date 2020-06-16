@@ -28,8 +28,8 @@ export class MotocyclesService {
     return this.http.get<{data: any}>(BACKEND_URL + '/showvolume/' + id);
   }
   
-  getTotal1(id: string) {
-    return this.http.get<{data: any}>(BACKEND_URL + '/showMotorcycle/' + id);
+  getTotalMotorcycle(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showvolumeMotorcycle/' + id);
   }
 
   getRemain(id: string) {

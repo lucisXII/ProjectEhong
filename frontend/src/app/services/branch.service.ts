@@ -53,12 +53,13 @@ export class BranchService {
     const data = {
       id: id
     };
-    this.http.post<{data: any}>(BACKEND_URL + '/addconclude/' + id ,data)
+     this.http.post<{data: any}>(BACKEND_URL + '/addconclude' , data)
     .subscribe(response => {
       console.log(response);
-      this.loading.dismiss();
-      this.router.navigate(['/branch/checked/' + id]);
-      this.loading.presentToast();});
+      // this.loading.dismiss();
+      // this.router.navigate(['/branch/checked/' + id]);
+      // this.loading.presentToast();
+    });
   
     }
 } 

@@ -11,4 +11,5 @@ class Conclude extends Model
     	'score',
         'date',
     ];
+    public $timestamps = false;
 }

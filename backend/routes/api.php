@@ -30,7 +30,7 @@ Route::get('branchs/cheked','API\BranchController@Cheked');
 Route::get('branchs/showBranch/{branchID}','API\BranchController@showBranch');
 
 Route::get('conclude/{branchID}','API\ConcludeController@confirm');
-Route::post('addconclude/{id}','API\ConcludeControllerr@store');
+Route::post('addconclude','API\ConcludeController@store');
 
 Route::get('group','API\GroupController@index');
 Route::get('heading','API\HeadingController@index');

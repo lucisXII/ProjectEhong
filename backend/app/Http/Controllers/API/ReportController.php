@@ -206,7 +206,9 @@ class ReportController extends Controller
                     $strMonthThai = $strMonthCut[$i];
                 }
             }
-            return "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";    
+            // $date = "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
+            // return response()->json($date , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+            // ,JSON_UNESCAPED_UNICODE);  
         }     
     }
 

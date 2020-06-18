@@ -75,15 +75,41 @@
   <ion-grid>
     <ion-row>
       <ion-col size-md="4" size-sm="6">
-        <ion-card class="ion-text-center">
+        <ion-card class="ion-text-center" [routerLink]="['/conclude/point']">
           <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
-            <ion-icon color="danger" slot="icon-only" name="reader-outline"></ion-icon>
+            <ion-icon color="danger" slot="icon-only" name="podium-outline"></ion-icon>
           </ion-button>
           <ion-card-header class="ion-no-padding">
-            <ion-card-title>รายงาน</ion-card-title>
+            <ion-card-title>คะแนน</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            สรุปรายงานการตรวจสอบสาขา
+            สรุปคะแนนสาขาประจำเดือน
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size-md="4" size-sm="6">
+        <ion-card class="ion-text-center" [routerLink]="['/conclude/ranks']">
+          <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
+            <ion-icon color="danger" slot="icon-only" name="medal-outline"></ion-icon>
+          </ion-button>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title>อันดับ</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            สรุปรายชื่อสาขาที่ได้คะแนน 100% 
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size-md="4" size-sm="6">
+        <ion-card class="ion-text-center">
+          <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
+            <ion-icon color="danger" slot="icon-only" name="sync-outline"></ion-icon>
+          </ion-button>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title>ย้อนหลัง</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            ดูข้อมูลสรุปคะแนนและอันดับสาขาย้อนหลัง
           </ion-card-content>
         </ion-card>
       </ion-col>

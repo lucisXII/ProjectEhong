@@ -133,13 +133,6 @@ export class ReportCheckedComponent implements OnInit {
         { text: 'Branch : ' + title , style: 'header' },
         { text: 'Leader : ' + leader , style: 'subheader' },
         { text: 'Date ' + this.date , style: 'date' },
-        {
-          ul: [
-            'Bacon',
-            'Rips',
-            'BBQ'
-          ]
-        }
       ],
       style: {
         header: {

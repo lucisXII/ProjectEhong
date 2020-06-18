@@ -29,13 +29,15 @@ import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
+import { PointComponent } from './pages/conclude/point/point.component';
+import { RanksComponent } from './pages/conclude/ranks/ranks.component';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  { path: 'index' , component: HomeComponent , canActivate: [AuthGuard] },
+  { path: 'index' , component: HomeComponent},
   {
     path: '',
     redirectTo: 'index',
@@ -65,6 +67,8 @@ const routes: Routes = [
   { path: 'search' , component: SearchComponent },
   { path: 'result/:year/:month' , component: ResultComponent },
   { path: 'result/:year/:month/branch/:id' , component: BranchFormerComponent },
+  { path: 'conclude/point' , component: PointComponent },
+  { path: 'conclude/ranks' , component: RanksComponent },
 ];
 
 @NgModule({

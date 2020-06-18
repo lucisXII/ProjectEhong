@@ -42,6 +42,8 @@ import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
+import { PointComponent } from './pages/conclude/point/point.component';
+import { RanksComponent } from './pages/conclude/ranks/ranks.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import { BranchFormerComponent } from './pages/former/branch-former/branch-forme
     SearchComponent,
     ResultComponent,
     ReportCheckedComponent,
-    BranchFormerComponent
+    BranchFormerComponent,
+    PointComponent,
+    RanksComponent
   ],
   entryComponents: [],
   imports: [

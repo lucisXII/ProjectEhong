@@ -28,41 +28,43 @@ import { SearchComponent } from './pages/former/search/search.component';
 import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
+import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  { path: 'index' , component: HomeComponent},
+  { path: 'index' , component: HomeComponent , canActivate: [AuthGuard] },
   {
     path: '',
     redirectTo: 'index',
     pathMatch: 'full'
   },
   { path: 'login' , component: LoginComponent },
-  { path: 'blank' , component: BlankComponent },
-  { path: 'branch/unchecked' , component: UncheckedComponent},
-  { path: 'branch/unchecked/:id' , component: UncheckedListComponent},
-  { path: 'branch/checked' , component: CheckedComponent},
-  { path: 'branch/checked/:id' , component: CheckedListComponent},
-  { path: 'branch/:id/groups' , component: GroupsListComponent},
-  { path: 'branch/:id/groups/:groupId/add' , component: GroupsAddComponent},
-  { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent},
-  { path: 'branch/:id/spares/checked' , component: SparesCheckedComponent},
-  { path: 'branch/:id/spares' , component: SparesShowComponent},
-  { path: 'branch/:id/motocycles/unchecked' , component: MotorcyclesUncheckedComponent},
-  { path: 'branch/:id/motocycles/checked' , component: MotorcyclesCheckedComponent},
-  { path: 'branch/:id/motocycles' , component: MotorcyclesShowComponent},
-  { path: 'branch/:id/tools/unchecked' , component: ToolsUncheckedComponent},
-  { path: 'branch/:id/tools/checked' , component: ToolsCheckedComponent},
-  { path: 'branch/:id/tools' , component: ToolsShowComponent},
-  { path: 'branch/:id/cost/unchecked' , component: CostUncheckedComponent},
-  { path: 'branch/:id/cost/checked' , component: CostCheckedComponent},
+  { path: 'blank' , component: BlankComponent , canActivate: [AuthGuard] },
+  { path: 'branch/unchecked' , component: UncheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/unchecked/:id' , component: UncheckedListComponent, canActivate: [AuthGuard] },
+  { path: 'branch/checked' , component: CheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/checked/:id' , component: CheckedListComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/groups' , component: GroupsListComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/groups/:groupId/add' , component: GroupsAddComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/spares/checked' , component: SparesCheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/spares' , component: SparesShowComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/motocycles/unchecked' , component: MotorcyclesUncheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/motocycles/checked' , component: MotorcyclesCheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/motocycles' , component: MotorcyclesShowComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/tools/unchecked' , component: ToolsUncheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/tools/checked' , component: ToolsCheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/tools' , component: ToolsShowComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/cost/unchecked' , component: CostUncheckedComponent, canActivate: [AuthGuard] },
+  { path: 'branch/:id/cost/checked' , component: CostCheckedComponent, canActivate: [AuthGuard] },
   { path: 'branch/:id/cost' , component: CostShowComponent, canActivate: [AuthGuard] },
-  { path: 'branch/:id/report' , component: ReportCheckedComponent },
-  { path: 'search' , component: SearchComponent},
-  { path: 'result/:year/:month' , component: ResultComponent},
+  { path: 'branch/:id/report' , component: ReportCheckedComponent , canActivate: [AuthGuard] },
+  { path: 'search' , component: SearchComponent },
+  { path: 'result/:year/:month' , component: ResultComponent },
+  { path: 'result/:year/:month/branch/:id' , component: BranchFormerComponent },
 ];
 
 @NgModule({

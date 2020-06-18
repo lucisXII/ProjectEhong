@@ -109,6 +109,7 @@ Route::get('ShowScoreSumPDF/{branchID}','API\ReportController@ShowScoreSumPDF');
 Route::get('ShowBranchExcel','API\ReportController@ShowBranchExcel');
 Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
 Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
+Route::get('ShowScoreExcelforMonth','API\ReportController@ShowScoreExcelforMonth');
 
 Route::get('ShowBranchExcel100','API\ReportController@ShowBranchExcel100');
 Route::get('ShowMonthExcel100','API\ReportController@ShowMonthExcel100');

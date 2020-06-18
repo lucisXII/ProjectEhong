@@ -41,6 +41,7 @@ import { SearchComponent } from './pages/former/search/search.component';
 import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
+import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ReportCheckedComponent } from './pages/reports/report-checked/report-ch
     CostShowComponent,
     SearchComponent,
     ResultComponent,
-    ReportCheckedComponent
+    ReportCheckedComponent,
+    BranchFormerComponent
   ],
   entryComponents: [],
   imports: [

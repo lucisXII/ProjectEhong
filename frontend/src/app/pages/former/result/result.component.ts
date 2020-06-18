@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -15,6 +15,7 @@ export class ResultComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,6 +49,6 @@ export class ResultComponent implements OnInit {
   }
 
   viewBranch(id) {
-
-  }
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + id]);
+    }
 }

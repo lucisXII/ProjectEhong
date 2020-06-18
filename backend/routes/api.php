@@ -37,6 +37,7 @@ Route::get('heading','API\HeadingController@index');
 Route::get('subheading/{groupID}','API\SubheadingController@showlist');
 Route::get('FullscoreGroup/{groupID}','API\SubheadingController@showFullscoreGroup');
 Route::get('showheading/{groupID}','API\HeadingController@showHeading');
+Route::get('showrate/{groupID}','API\HeadingController@showRateAndScore');
 
 Route::get('alldataCheckedHeading/{groupID}','API\HeadingController@rateAndScore');
 

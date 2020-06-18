@@ -29,6 +29,17 @@ class HeadingController extends Controller
 
     }
 
+    public function showRateAndScore($groupID)
+    {
+        $rateAndScore = RateAndScore::all();
+        $heading = Heading::where('group_id', $groupID)->with('group')
+                ->with('subHeading')
+                ->get();
+
+        return response()->json($rateAndScore , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
+
     public function rateAndScore($id,$groupID)
     {
         $rateAndScore = RateAndScore::where('br_id', $groupID)->whereMonth('date', today()->month)->get();

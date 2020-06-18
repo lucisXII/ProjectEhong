@@ -68,7 +68,6 @@ export class ToolsService {
     const data = {
       tools: tools 
     };
-    console.log(data);
     this.http.patch<{data: any}>(BACKEND_URL + '/updateCheckingTool'  ,data)
     .subscribe(response => {
       console.log(response);

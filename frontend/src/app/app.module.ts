@@ -44,6 +44,10 @@ import { ReportCheckedComponent } from './pages/reports/report-checked/report-ch
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
 import { PointComponent } from './pages/conclude/point/point.component';
 import { RanksComponent } from './pages/conclude/ranks/ranks.component';
+import { GroupsEditComponent } from './pages/groups/groups-edit/groups-edit.component';
+import { SearchPastComponent } from './pages/conclude/search-past/search-past.component';
+import { PointPastComponent } from './pages/conclude/point-past/point-past.component';
+import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
 
 
 @NgModule({
@@ -62,6 +66,7 @@ import { RanksComponent } from './pages/conclude/ranks/ranks.component';
     GroupsListComponent,
     GroupShowComponent,
     GroupsAddComponent,
+    GroupsEditComponent,
     MotorcyclesCheckedComponent,
     MotorcyclesUncheckedComponent,
     MotorcyclesShowComponent,
@@ -76,7 +81,10 @@ import { RanksComponent } from './pages/conclude/ranks/ranks.component';
     ReportCheckedComponent,
     BranchFormerComponent,
     PointComponent,
-    RanksComponent
+    RanksComponent,
+    PointPastComponent,
+    RanksPastComponent,
+    SearchPastComponent
   ],
   entryComponents: [],
   imports: [

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConcludeService } from 'src/app/services/conclude.service';
 
 @Component({
   selector: 'app-point',
@@ -8,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class PointComponent implements OnInit {
   month: string;
   year: string;
+  points: any;
 
-  constructor() { }
+  constructor(
+    private concludeService: ConcludeService
+  ) { }
 
   ngOnInit() {
+    this.concludeService.getPoints()
+        .subscribe(response => {
+        this.points = response;
+        console.log(this.points);
+   });
+
     this.getMonth();
     this.getYear();
   }

@@ -84,15 +84,14 @@ class CheckingToolController extends Controller
      */
     public function update(Request $request)
     {
-        return $user_id = \Auth::id();
-        // foreach($request->tools as $tool){
-        //     $checkingTool = CheckingTool::findOrFail($tool['ct_id']);
-        //     $checkingTool->user_id = $user_id;
-        //     $checkingTool->check = $tool['check'];
-        //     // $checkingTool->comment = $tool->comment;
-        //     $checkingTool->date = date('Y-m-d');
-        //     $checkingTool->save();
-        // }
+        $user_id = \Auth::id();
+        foreach($request->tools as $tool){
+            $checkingTool = CheckingTool::findOrFail($tool['ct_id']);
+            $checkingTool->user_id = $user_id;
+            $checkingTool->check = $tool['check'];
+            $checkingTool->date = date('Y-m-d');
+            $checkingTool->save();
+        }
     }
 
     /**

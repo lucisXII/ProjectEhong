@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { LoadingService } from './loading.service';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 
 
@@ -56,9 +55,9 @@ export class BranchService {
      this.http.post<{data: any}>(BACKEND_URL + '/addconclude' , data)
     .subscribe(response => {
       console.log(response);
-      // this.loading.dismiss();
-      // this.router.navigate(['/branch/checked/' + id]);
-      // this.loading.presentToast();
+      this.loading.dismiss();
+      this.router.navigate(['/index']);
+      this.loading.presentToast();
     });
   
     }

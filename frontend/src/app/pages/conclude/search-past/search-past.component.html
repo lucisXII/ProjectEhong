@@ -1,0 +1,101 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/index"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ดูข้อมูลสรุปคะแนนและอันดับย้อนหลัง
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <form (submit)="searchPoint(formPoint)" #formPoint="ngForm">
+  <ion-grid class="ion-margin-vertical">
+    <ion-row class="ion-justify-content-center ion-margin-bottom">
+      <ion-col size-md="6" size="12"  class="ion-text-center">
+        <ion-title class="ion-margin-bottom">
+          ดูข้อมูลสรุปคะแนนสาขาประจำเดือน
+        </ion-title>
+        <ion-text>กรุณาเลือกปีและเดือนที่คุณต้องการดูข้อมูลย้อนหลัง</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+       <ion-col size-md="6" size="12">
+        <ion-card>
+        <ion-item>
+          <ion-label>ปี</ion-label>
+          <ion-select ok-text="เลือก" cancel-text="ยกเลิก" name="year" ngModel required>
+            <div *ngFor="let year of years">
+            <ion-select-option value="{{year.id}}">{{year.name}}</ion-select-option>
+            </div>
+          </ion-select>
+        </ion-item>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="6" size="12">
+       <ion-card>
+       <ion-item>
+         <ion-label>เดือน</ion-label>
+         <ion-select ok-text="เลือก" cancel-text="ยกเลิก" name="month" ngModel required>
+           <div  *ngFor="let month of months">
+           <ion-select-option value="{{month.id}}">{{month.name}}</ion-select-option>
+          </div>
+         </ion-select>
+       </ion-item>
+     </ion-card>
+     </ion-col>
+   </ion-row>
+   <ion-row class="ion-justify-content-center">
+     <ion-col size-md="6" size="12">
+      <ion-button type="submit" color="danger" expand="block" size="large" [disabled]="!formPoint.valid">ค้นหาข้อมูลคะแนนสาขาประจำเดือน</ion-button>
+   </ion-col>
+  </ion-row>
+  </ion-grid>
+</form>
+
+<ion-grid>
+  <ion-row class="ion-justify-content-center ion-margin-bottom">
+    <ion-col size-md="6" size="12"  class="ion-text-center">
+      <ion-item-divider>
+      </ion-item-divider>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<form (submit)="searchRank(formRank)" #formRank="ngForm">
+  <ion-grid class="ion-margin-top">
+    <ion-row class="ion-justify-content-center ion-margin-bottom">
+      <ion-col size-md="6" size="12"  class="ion-text-center">
+        <ion-title class="ion-margin-bottom">
+          ดูข้อมูลสรุปรายชื่อสาขาที่ได้คะแนน 100%
+        </ion-title>
+        <ion-text>กรุณาเลือกปีที่คุณต้องการดูข้อมูลย้อนหลัง</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+       <ion-col size-md="6" size="12">
+        <ion-card>
+        <ion-item>
+          <ion-label>ปี</ion-label>
+          <ion-select ok-text="เลือก" cancel-text="ยกเลิก" name="year" ngModel required>
+            <div *ngFor="let year of years">
+            <ion-select-option value="{{year.id}}">{{year.name}}</ion-select-option>
+            </div>
+          </ion-select>
+        </ion-item>
+      </ion-card>
+      </ion-col>
+    </ion-row>
+   <ion-row class="ion-justify-content-center">
+     <ion-col size-md="6" size="12">
+      <ion-button type="submit" color="danger" expand="block" size="large" [disabled]="!formRank.valid">ค้นหาข้อมูลรายชื่อสาขา</ion-button>
+   </ion-col>
+  </ion-row>
+  </ion-grid>
+</form>
+
+</ion-content>

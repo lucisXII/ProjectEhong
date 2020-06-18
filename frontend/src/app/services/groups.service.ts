@@ -9,6 +9,7 @@ const BACKEND_URL = environment.apiUrl;
   providedIn: 'root'
 })
 export class GroupsService {
+  checkGroup: string;
 
   constructor(
     private http: HttpClient,
@@ -20,16 +21,24 @@ export class GroupsService {
     return this.http.get<{data: any}>(BACKEND_URL + '/group');
   }
 
-  checkedGroups(branchId: string, groupId: string) {
-    return this.http.get<{data: any}>(BACKEND_URL + '/ChekedRateAndScore/' + branchId + '/' + groupId);
+  checkedGroups(id: string, groupId: string) {
+    let check: any;
+    // return this.http.get<{data: any}>(BACKEND_URL + '/ChekedRateAndScore/' + branchId + '/' + groupId);
+    this.http.get<{data: any}>(BACKEND_URL + '/ChekedRateAndScore/' + id + '/' + groupId)
+    .subscribe(response => {
+      check = response;
+      if(check == '0') {
+        this.router.navigate(['branch/' + id + '/groups/' + groupId + '/add']);
+      }
+      else {
+        this.router.navigate(['branch/' + id + '/groups/' + groupId + '/edit']);
+      }
+    });
   }
 
   getHeadings(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/showheading/' + id);
   }
-  // checkedTools(id: string) {
-  //   return this.http.get<{data: any}>(BACKEND_URL + '/chekedTools/' + id);
-  // }
 
   addScore(id: string, headings: string) {
     const data = {

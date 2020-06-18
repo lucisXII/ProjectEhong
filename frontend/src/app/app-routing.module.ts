@@ -31,6 +31,10 @@ import { ReportCheckedComponent } from './pages/reports/report-checked/report-ch
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
 import { PointComponent } from './pages/conclude/point/point.component';
 import { RanksComponent } from './pages/conclude/ranks/ranks.component';
+import { GroupsEditComponent } from './pages/groups/groups-edit/groups-edit.component';
+import { SearchPastComponent } from './pages/conclude/search-past/search-past.component';
+import { PointPastComponent } from './pages/conclude/point-past/point-past.component';
+import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
 
 const routes: Routes = [
   {
@@ -51,6 +55,7 @@ const routes: Routes = [
   { path: 'branch/checked/:id' , component: CheckedListComponent },
   { path: 'branch/:id/groups' , component: GroupsListComponent },
   { path: 'branch/:id/groups/:groupId/add' , component: GroupsAddComponent},
+  { path: 'branch/:id/groups/:groupId/edit' , component: GroupsEditComponent},
   { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent },
   { path: 'branch/:id/spares/checked' , component: SparesCheckedComponent},
   { path: 'branch/:id/spares' , component: SparesShowComponent},
@@ -69,6 +74,9 @@ const routes: Routes = [
   { path: 'result/:year/:month/branch/:id' , component: BranchFormerComponent },
   { path: 'conclude/point' , component: PointComponent },
   { path: 'conclude/ranks' , component: RanksComponent },
+  { path: 'conclude/search' , component: SearchPastComponent },
+  { path: 'conclude/result/point/:year/:month' , component: PointPastComponent },
+  { path: 'conclude/result/ranks/:year' , component: RanksPastComponent },
 ];
 
 @NgModule({

@@ -37,7 +37,7 @@ class ConcludeController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request;
+        $id = $request->id;
         // เพิ่มคะแนนเต็ม
         $scoresCheck = DB::table('rate_and_scores')
                         ->where('rate_and_scores.br_id', '=', $id)
@@ -46,11 +46,10 @@ class ConcludeController extends Controller
         //เพิ่มข้อมูล
         $conclude = new Conclude([
             'br_id' => $id,
-            'score' => $scoresCheck,
-            'date' => date('Y-m-d H:i:s')
+            'score' => $scoresCheck
         ]);
         $conclude->save();
-        return $conclude;
+        // return $conclude;
     }
 
     /**

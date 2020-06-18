@@ -124,8 +124,7 @@ export class UncheckedListComponent implements OnInit {
   }
 
   addConcludes() {
-    // this.loading.present();
-    //console.log(form.value);
+    this.loading.present();
     this.branchService.addConcludes(this.id);
   }
 

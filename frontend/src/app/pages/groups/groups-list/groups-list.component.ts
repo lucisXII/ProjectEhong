@@ -31,12 +31,12 @@ export class GroupsListComponent implements OnInit {
         this.groups = response;
         console.log(this.groups);
     });
-    
+   
   }
 
   viewGroup(GroupId) {
-    console.log(GroupId);
-    this.router.navigate(['branch/' + this.id + '/groups/' + GroupId + '/add']);
+    this.groupsService.checkedGroups(this.id, GroupId);
+    // this.router.navigate(['branch/' + this.id + '/groups/' + GroupId + '/add']);
   }
 
 }

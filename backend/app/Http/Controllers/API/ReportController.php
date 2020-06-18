@@ -785,7 +785,7 @@ class ReportController extends Controller
                 $num = 0;
                 for($j=0; $j< count($branchName) ;$j++){
                     if(strpos($branchName[$j][0],$branch2->zoneName) !== false){
-                        $branchName[$j][count($branchName[0])] = $branch2->branchName;
+                        $branchName[$j][count($branchName[$j])] = $branch2->branchName;
                     }
                 }
             }

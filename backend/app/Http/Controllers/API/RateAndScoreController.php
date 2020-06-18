@@ -136,6 +136,39 @@ class RateAndScoreController extends Controller
             ,JSON_UNESCAPED_UNICODE);
         }
     }
+    public function showGroupChecked($branchID)
+    {
+        // $groupslist = DB::table('groups')
+        //             ->select('group_id.group_id')
+        //             ->get();
+
+        $groups = DB::table('rate_and_scores')
+                    ->join('subheadings','rate_and_scores.sh_id','=','subheadings.sh_id' )
+                    ->join('headings','subheadings.hd_id','=','headings.hd_id' )
+                    ->where('rate_and_scores.br_id', '=', $branchID)
+                    ->whereMonth('rate_and_scores.date', '=', today()->month)
+                    ->select('headings.group_id')
+                    ->distinct()
+                    ->get();
+
+        $array = array();
+        for($i=0 ; $i < 6; $i++){
+            $array[$i] = 0;
+        }
+        //return $groups;
+        foreach ($groups as  $group){
+            $check = 0;
+            $num = 0;
+            for($i=1 ; $i < 7; $i++){
+                if($group->group_id == $i){
+                    $array[$i-1] = 1;
+                }
+            }
+        }
+        return response()->json($array, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+
+    }
 
     public function showalldataRates($branchID,$groupID)
     {

@@ -42,6 +42,11 @@ import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
+import { MotorcyclesFormerComponent } from './pages/former/motorcycles-former/motorcycles-former.component';
+import { SparesFormerComponent } from './pages/former/spares-former/spares-former.component';
+import { ToolsFormerComponent } from './pages/former/tools-former/tools-former.component';
+import { CostsFormerComponent } from './pages/former/costs-former/costs-former.component';
+import { ReportFormerComponent } from './pages/former/report-former/report-former.component';
 import { PointComponent } from './pages/conclude/point/point.component';
 import { RanksComponent } from './pages/conclude/ranks/ranks.component';
 import { GroupsEditComponent } from './pages/groups/groups-edit/groups-edit.component';
@@ -80,6 +85,11 @@ import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.compo
     ResultComponent,
     ReportCheckedComponent,
     BranchFormerComponent,
+    MotorcyclesFormerComponent,
+    SparesFormerComponent,
+    ToolsFormerComponent,
+    CostsFormerComponent,
+    ReportFormerComponent,
     PointComponent,
     RanksComponent,
     PointPastComponent,

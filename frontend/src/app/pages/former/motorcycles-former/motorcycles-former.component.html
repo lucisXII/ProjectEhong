@@ -1,3 +1,88 @@
-<p>
-  motorcycles-former works!
-</p>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/branch/checked/{{id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ตรวจสอบคลังรถจักรยานยนต์
+    </ion-title>
+  </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col>
+          <ion-title>ทั้งหมด</ion-title>
+          <ion-list class="line-input">
+            <ion-item class="ion-margin">
+              <ion-input value="{{total}} คัน" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-title>คงเหลือ</ion-title>
+          <ion-list class="line-input">
+            <ion-item class="ion-margin">
+              <ion-input value="{{remain}} คัน" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-title>ค้างส่ง</ion-title>
+          <ion-list class="line-input">
+            <ion-item class="ion-margin">
+              <ion-input value="{{outstanding}} คัน" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-title>ไม่พร้อมขาย</ion-title>
+          <ion-list class="line-input">
+            <ion-item class="ion-margin">
+              <ion-input value="{{unready}} คัน" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+     <ion-grid>
+      <ion-card color="dark">
+        <ion-row class="ion-text-center ion-margin-vertical">
+          <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
+          <ion-col size="2"><ion-title>ยี่ห้อ</ion-title></ion-col>
+          <ion-col class="ion-text-left" size="3"><ion-title>รายละเอียด</ion-title></ion-col>
+          <ion-col size="2"><ion-title>สภาพ</ion-title></ion-col>
+          <ion-col size="1"><ion-title>ตรวจ</ion-title></ion-col>
+          <ion-col size="3"><ion-title>สถานะ</ion-title></ion-col>
+        </ion-row>
+      </ion-card>
+       <ion-card>
+       <ion-row class="ion-text-center ion-margin-vertical" *ngFor="let motocycle of motocycles;let i = index">
+        <ion-col size="1"><ion-text><h5>{{i + 1}}</h5></ion-text></ion-col>
+        <ion-col size="2"><ion-text><h5>{{motocycle.brand}}</h5></ion-text></ion-col>
+        <ion-col class="ion-text-left" size="3">
+          <ion-text>
+            <h5 class="ion-no-padding">ชื่อทางเทคนิค : {{motocycle.name}}</h5>
+            <p>สี : {{motocycle.color}}</p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2">
+          <ion-text><h5>{{motocycle.condition}}</h5></ion-text>
+        </ion-col>
+        <ion-col class="ion-margin-top" size="1">
+          <ion-checkbox color="danger" [(ngModel)]="motocycle.status" [ngModelOptions]="{standalone: true}" disabled="true"></ion-checkbox>
+        </ion-col>
+        <ion-col size="3">
+          <ion-list class="ion-padding-horizontal checked-input">
+            <ion-item>
+              <div *ngIf="motocycle.unready == 0"><ion-input type="text" value="พร้อมขาย" disabled></ion-input></div>
+              <div *ngIf="motocycle.unready == 1"><ion-input type="text" value="ยึดค้างส่ง" disabled></ion-input></div>
+              <div *ngIf="motocycle.unready == 2"><ion-input type="text" value="ไม่พร้อมขาย" disabled></ion-input></div>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      </ion-card>
+     </ion-grid>
+  </ion-content>

@@ -29,16 +29,14 @@ import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
-<<<<<<< HEAD
 import { MotorcyclesFormerComponent } from './pages/former/motorcycles-former/motorcycles-former.component';
 import { SparesFormerComponent } from './pages/former/spares-former/spares-former.component';
 import { ToolsFormerComponent } from './pages/former/tools-former/tools-former.component';
 import { CostsFormerComponent } from './pages/former/costs-former/costs-former.component';
 import { ReportFormerComponent } from './pages/former/report-former/report-former.component';
-=======
 import { PointComponent } from './pages/conclude/point/point.component';
 import { RanksComponent } from './pages/conclude/ranks/ranks.component';
->>>>>>> 20c6b0de62532e4888ba3965d0de676249ed560c
+
 
 const routes: Routes = [
   {
@@ -75,16 +73,13 @@ const routes: Routes = [
   { path: 'search' , component: SearchComponent },
   { path: 'result/:year/:month' , component: ResultComponent },
   { path: 'result/:year/:month/branch/:id' , component: BranchFormerComponent },
-<<<<<<< HEAD
   { path: 'result/:year/:month/branch/:id/Motorcycles' , component: MotorcyclesFormerComponent },
   { path: 'result/:year/:month/branch/:id/Spares' , component: SparesFormerComponent },
   { path: 'result/:year/:month/branch/:id/Tools' , component: ToolsFormerComponent },
   { path: 'result/:year/:month/branch/:id/Costs' , component: CostsFormerComponent },
   { path: 'result/:year/:month/branch/:id/Report' , component: ReportFormerComponent },
-=======
   { path: 'conclude/point' , component: PointComponent },
   { path: 'conclude/ranks' , component: RanksComponent },
->>>>>>> 20c6b0de62532e4888ba3965d0de676249ed560c
 ];
 
 @NgModule({

@@ -38,6 +38,18 @@ export class BranchFormerComponent implements OnInit {
   }
   viewMotocycles() {
     this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/Motorcycles']);
-    }
+  }
+  viewSpares() {
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/Spares']);
+  }
+  viewTools() {
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/Tools']);
+  }
+  viewCosts() {
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/Costs']);
+  }
+  viewReport() {
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/Report']);
+  }
 
 }

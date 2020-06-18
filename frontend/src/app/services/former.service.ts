@@ -37,5 +37,26 @@ export class FormerService {
   getUnreadyOld(id: string, month: string, year: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/watchUnready/' + id + '/' + month + '/' + year);
   }
+  
+ //Spares
+ getSparesCheckedOld(id: string, month: string, year: string){
+  return this.http.get<{data: any}>(BACKEND_URL + '/alldataChekedSparesOld/' + id + '/' + month + '/' + year);
+  }
+
+  getAmountRemainOld(id: string, month: string, year: string){
+  return this.http.get<{data: any}>(BACKEND_URL + '/showAmountSparesremainOld/' + id + '/' + month + '/' + year);
+  }
+
+  getAmountCheckedOld(id: string, month: string, year: string){
+  return this.http.get<{data: any}>(BACKEND_URL + '/showAmountChekedSparesOld/' + id + '/' + month + '/' + year);
+  }
+
+  getNumberRemainOld(id: string, month: string, year: string){
+  return this.http.get<{data: any}>(BACKEND_URL + '/showNumberSparesremainOld/' + id + '/' + month + '/' + year);
+  }
+
+  getNumberCheckedOld(id: string, month: string, year: string){
+  return this.http.get<{data: any}>(BACKEND_URL + '/showNumberChekedSparesOld/' + id + '/' + month + '/' + year);
+  }
 
 }

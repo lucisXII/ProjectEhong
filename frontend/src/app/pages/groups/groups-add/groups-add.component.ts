@@ -41,6 +41,8 @@ export class GroupsAddComponent implements OnInit {
   addScore() {
     let count = 0;
     let check = 0;
+    let text: string;
+    let text2: string;
     this.headings.forEach(score => {
       score.sub_heading.forEach(rate => {
         if(rate.get == null) {
@@ -48,6 +50,13 @@ export class GroupsAddComponent implements OnInit {
         }
         if (rate.get > rate.score) {
           check++;
+          console.log('check : '+ rate.subheadingName);
+          text = rate.subheadingName;
+          if(text2 == null){
+            text2 = text.substring(0,4);
+          }else{
+            text2 = text2 + ", " + text.substring(0,4);
+          }
         }
       });
     });
@@ -58,7 +67,8 @@ export class GroupsAddComponent implements OnInit {
     }
     else {
       if (check > 0) {
-        this.loading.presentToastMore();
+        //this.loading.presentToastMore();
+        this.loading.presentToastWarningText(text2);
       }
       else {
       this.loading.present();

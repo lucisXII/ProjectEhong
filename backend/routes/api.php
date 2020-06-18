@@ -106,19 +106,21 @@ Route::get('ShowUserPDF/{branchID}','API\ReportController@ShowNameUserPDF');
 Route::get('ShowScoreGroupPDF/{branchID}','API\ReportController@ShowScoreGroupPDF');
 Route::get('ShowScoreSumPDF/{branchID}','API\ReportController@ShowScoreSumPDF');
 
-Route::get('ShowBranchExcel','API\ReportController@ShowBranchExcel');
-Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
-Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
+// Route::get('ShowBranchExcel','API\ReportController@ShowBranchExcel');
+// Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
+// Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
 Route::get('ShowScoreExcelforMonth','API\ReportController@ShowScoreExcelforMonth');
 
-Route::get('ShowBranchExcel100','API\ReportController@ShowBranchExcel100');
-Route::get('ShowMonthExcel100','API\ReportController@ShowMonthExcel100');
+// Route::get('ShowBranchExcel100','API\ReportController@ShowBranchExcel100');
+// Route::get('ShowMonthExcel100','API\ReportController@ShowMonthExcel100');
+Route::get('ShowMonthExcel100ForYear','API\ReportController@ShowMonthExcel100ForYear');
+Route::get('ShowBranchExcel100ForYear','API\ReportController@ShowBranchExcel100ForYear');
 
-//ดูข้อมูลย้อนหลัง
+//-------------------- [ดูข้อมูลย้อนหลัง] ------------------------
 // Route::get('branchs/Search/result/{year}/{month}','API\BranchController@search');
 Route::post('branchs/search','API\BranchController@search');
 Route::get('branchs/search/result','API\BranchController@result');
-// Route::get('branchs/search/result','API\BranchController@search');
+
 //แสดงข้อมูลสาขาย้อนหลัง -> มอเตอร์ไซต์
 Route::get('watchAlldataChekedMotorcycle/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchAlldataChekedMotorcycle');
 Route::get('watchShowvolume/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchShowvolume');
@@ -151,11 +153,9 @@ Route::get('ShowScoreGroupPDFOld/{branchID}/{month}/{year}','API\ReportControlle
 Route::get('ShowScoreSumPDFOld/{branchID}/{month}/{year}','API\ReportController@ShowScoreSumPDFOld');
 Route::get('showAgreementOld/{branchID}/{month}/{year}','API\CostController@showAgreementOld');
 //แสดงรายงาน Excel ย้อนหลัง
-Route::get('ShowBranchExcelOld/{year}','API\ReportController@ShowBranchExcelOld');
-Route::get('ShowScoreExcelOld/{year}','API\ReportController@ShowScoreExcelOld');
-Route::get('ShowMonthExcelOld/{year}','API\ReportController@ShowMonthExcelOld');
+Route::get('ShowScoreExcelforMonthOld/{month}/{year}','API\ReportController@ShowScoreExcelforMonthOld');
 //แสดงรายงาน Excel 100% ย้อนหลัง
-Route::get('ShowBranchExcel100Old/{year}','API\ReportController@ShowBranchExcel100Old');
-Route::get('ShowMonthExcel100Old/{year}','API\ReportController@ShowMonthExcel100Old');
+Route::get('ShowMonthExcel100ForYearOld/{year}','API\ReportController@ShowMonthExcel100ForYearOld');
+Route::get('ShowBranchExcel100forYearOld/{year}','API\ReportController@ShowBranchExcel100forYearOld');
 
 Route::get('logout', 'API\BranchController@logout')->middleware('auth:api');

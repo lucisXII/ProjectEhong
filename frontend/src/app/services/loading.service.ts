@@ -36,6 +36,18 @@ export class LoadingService {
     });
   }
 
+  async presentToastWarningText(text : string) {
+    return await this.toastController.create({
+      color: 'dark',
+      message: 'รายการ  ' + text + ' คะแนนเกินกว่าเกณฑ์ที่กำหนด',
+      duration: 4000
+    }).then(t => {
+      t.present().then(() => {
+        console.log('toast warning');
+      });
+    });
+  }
+
   async presentToastMore() {
     return await this.toastController.create({
       color: 'dark',

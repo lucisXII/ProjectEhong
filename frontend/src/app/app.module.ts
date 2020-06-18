@@ -42,6 +42,11 @@ import { ResultComponent } from './pages/former/result/result.component';
 import { GroupsAddComponent } from './pages/groups/groups-add/groups-add.component';
 import { ReportCheckedComponent } from './pages/reports/report-checked/report-checked.component';
 import { BranchFormerComponent } from './pages/former/branch-former/branch-former.component';
+import { MotorcyclesFormerComponent } from './pages/former/motorcycles-former/motorcycles-former.component';
+import { SparesFormerComponent } from './pages/former/spares-former/spares-former.component';
+import { ToolsFormerComponent } from './pages/former/tools-former/tools-former.component';
+import { CostsFormerComponent } from './pages/former/costs-former/costs-former.component';
+import { ReportFormerComponent } from './pages/former/report-former/report-former.component';
 
 
 @NgModule({
@@ -72,7 +77,12 @@ import { BranchFormerComponent } from './pages/former/branch-former/branch-forme
     SearchComponent,
     ResultComponent,
     ReportCheckedComponent,
-    BranchFormerComponent
+    BranchFormerComponent,
+    MotorcyclesFormerComponent,
+    SparesFormerComponent,
+    ToolsFormerComponent,
+    CostsFormerComponent,
+    ReportFormerComponent
   ],
   entryComponents: [],
   imports: [

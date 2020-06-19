@@ -54,6 +54,8 @@ import { PointPastComponent } from './pages/conclude/point-past/point-past.compo
 import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
 import { GroupsCheckedComponent } from './pages/groups/groups-checked/groups-checked.component';
 import { GroupsShowComponent } from './pages/groups/groups-show/groups-show.component';
+import { GroupsListFormerComponent } from './pages/former/groups-list-former/groups-list-former.component';
+import { GroupsFormerComponent } from './pages/former/groups-former/groups-former.component';
 
 
 @NgModule({
@@ -92,6 +94,8 @@ import { GroupsShowComponent } from './pages/groups/groups-show/groups-show.comp
     ToolsFormerComponent,
     CostsFormerComponent,
     ReportFormerComponent,
+    GroupsListFormerComponent,
+    GroupsFormerComponent,
     PointComponent,
     RanksComponent,
     PointPastComponent,

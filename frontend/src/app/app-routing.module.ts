@@ -42,6 +42,8 @@ import { PointPastComponent } from './pages/conclude/point-past/point-past.compo
 import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
 import { GroupsCheckedComponent } from './pages/groups/groups-checked/groups-checked.component';
 import { GroupsShowComponent } from './pages/groups/groups-show/groups-show.component';
+import { GroupsListFormerComponent } from './pages/former/groups-list-former/groups-list-former.component';
+import { GroupsFormerComponent } from './pages/former/groups-former/groups-former.component';
 
 
 const routes: Routes = [
@@ -87,6 +89,8 @@ const routes: Routes = [
   { path: 'result/:year/:month/branch/:id/Tools' , component: ToolsFormerComponent },
   { path: 'result/:year/:month/branch/:id/Costs' , component: CostsFormerComponent },
   { path: 'result/:year/:month/branch/:id/Report' , component: ReportFormerComponent },
+  { path: 'result/:year/:month/branch/:id/groups' , component: GroupsListFormerComponent },
+  { path: 'result/:year/:month/branch/:id/groups/:groupId' , component: GroupsFormerComponent },
   { path: 'conclude/point' , component: PointComponent },
   { path: 'conclude/ranks' , component: RanksComponent },
   { path: 'conclude/search' , component: SearchPastComponent },

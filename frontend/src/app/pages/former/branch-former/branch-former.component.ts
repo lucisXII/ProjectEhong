@@ -36,6 +36,9 @@ export class BranchFormerComponent implements OnInit {
       }
     });
   }
+  viewGroups() {
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/groups']);
+  }
   viewMotocycles() {
     this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/Motorcycles']);
   }

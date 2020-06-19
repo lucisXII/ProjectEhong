@@ -44,6 +44,14 @@ export class SparesService {
   checkedSpares(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/ChekedSpares/' + id);
   }
+  
+  getAmountRemainSpares(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountSpares/' + id);
+  }
+
+  getNumberRemainSpares(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberSpares/' + id);
+  }
 
   addSpares(id: string, spares: string) {
     const data = {

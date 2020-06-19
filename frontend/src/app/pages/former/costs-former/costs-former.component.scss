@@ -1,0 +1,28 @@
+.dark-input {
+    margin-bottom: 0 !important;
+    ion-item {
+        --border-color: transparent !important;
+        --highlight-height: 0;
+        border: none;
+        --background: #dedede;
+        border-radius: 4px;
+        --padding-start: 8px;
+        // ion-input {
+        //     --padding-start: 8px;
+        // }
+    }
+}
+.light-input {
+    margin-bottom: 0 !important;
+    ion-item {
+        --border-color: transparent !important;
+        --highlight-height: 0;
+        border: none;
+        --background: #f5f5f5;
+        border-radius: 4px;
+        --padding-start: 8px;
+        // ion-input {
+        //     --padding-start: 8px;
+        // }
+    }
+}

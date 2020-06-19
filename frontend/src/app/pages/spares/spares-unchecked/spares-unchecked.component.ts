@@ -36,13 +36,13 @@ export class SparesUncheckedComponent implements OnInit {
           console.log(this.spares);
         });
 
-        this.sparesService.getAmountRemain(this.id)
+        this.sparesService.getAmountRemainSpares(this.id)
         .subscribe(response => {
           this.amountRemain = response;
           console.log(this.amountRemain);
         });
 
-        this.sparesService.getNumberRemain(this.id)
+        this.sparesService.getNumberRemainSpares(this.id)
         .subscribe(response => {
           this.numberRemain = response;
           console.log(this.numberRemain);
@@ -63,6 +63,7 @@ export class SparesUncheckedComponent implements OnInit {
       this.loading.presentToastWarning();
     }
     else {
+      //console.log(this.spares);
       this.loading.present();
       this.sparesService.addSpares(this.id, this.spares);
     }

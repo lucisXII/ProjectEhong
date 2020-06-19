@@ -61,6 +61,7 @@ export class ToolsCheckedComponent implements OnInit {
   }
 
   updateTools() {
+    //console.log(this.tools);
     this.loading.present();
     this.toolsService.updateTools(this.id, this.tools);
   }

@@ -52,17 +52,17 @@
         <ion-row class="ion-text-center ion-margin-vertical">
           <ion-col size="1"><ion-title>ลำดับ</ion-title></ion-col>
           <ion-col size="2"><ion-title>รหัสสินค้า</ion-title></ion-col>
-          <ion-col size="5" class="ion-text-left"><ion-title>ชื่อสินค้า</ion-title></ion-col>
+          <ion-col size="3" class="ion-text-left"><ion-title>ชื่อสินค้า</ion-title></ion-col>
           <ion-col size="2"><ion-title>คงเหลือ</ion-title></ion-col>
           <ion-col size="2"><ion-title>ตรวจเช็ค</ion-title></ion-col>
-          <!-- <ion-col size="2"><ion-title>คอมเม้นต์</ion-title></ion-col> -->
+          <ion-col size="2"><ion-title>หมายเหตุ</ion-title></ion-col>
         </ion-row>
        </ion-card>
      <ion-card>
       <ion-row class="ion-text-center ion-margin-vertical" *ngFor="let spare of spares;let i = index">
         <ion-col size="1"><ion-text><h5>{{i + 1}}</h5></ion-text></ion-col>
         <ion-col size="2"><ion-text><h5>{{spare.code}}</h5></ion-text></ion-col>
-        <ion-col class="ion-text-left ion-padding-start" size="5">
+        <ion-col class="ion-text-left ion-padding-start" size="3">
           <ion-text>
             <h5>{{spare.name}}</h5>
           </ion-text>
@@ -77,6 +77,13 @@
             </ion-item>
           </ion-list>
         </ion-col>
+        <ion-col size="2">
+          <ion-list class="checked-input ion-padding-horizontal">
+            <ion-item>
+              <ion-input type="text" placeholder="เพิ่มหมายเหตุ" [(ngModel)]="spare.comment" [ngModelOptions]="{standalone: true}"></ion-input>
+            </ion-item>
+          </ion-list>
+         </ion-col>
       </ion-row>
     </ion-card>
     <ion-row>

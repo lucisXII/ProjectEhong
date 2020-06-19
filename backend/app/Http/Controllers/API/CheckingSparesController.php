@@ -56,7 +56,7 @@ class CheckingSparesController extends Controller
                 'user_id' => $user_id ,
                 'remain'=> $spare['remain'],
                 'check'=> $spare['score'],
-                //'comment'=> $spare['comment'],
+                'comment'=> $spare['comment'],
                 'date'=> date('Y-m-d')
             ]);
             $addSpares->save();
@@ -99,6 +99,7 @@ class CheckingSparesController extends Controller
             $checkingSpare = CheckingSpares::findOrFail($spare['cs_id']);
             $checkingSpare->user_id = $user_id;
             $checkingSpare->check = $spare['check'];
+            $checkingSpare->comment = $spare['comment'];
             $checkingSpare->date = date('Y-m-d');
             $checkingSpare->save();
         }

@@ -110,6 +110,7 @@ Route::get('ShowScoreSumPDF/{branchID}','API\ReportController@ShowScoreSumPDF');
 // Route::get('ShowScoreExcel','API\ReportController@ShowScoreExcel');
 // Route::get('ShowMonthExcel','API\ReportController@ShowMonthExcel');
 Route::get('ShowScoreExcelforMonth','API\ReportController@ShowScoreExcelforMonth');
+Route::get('ShowScoreExcelforMonthPercent','API\ReportController@ShowScoreExcelforMonthPercent');
 
 // Route::get('ShowBranchExcel100','API\ReportController@ShowBranchExcel100');
 // Route::get('ShowMonthExcel100','API\ReportController@ShowMonthExcel100');
@@ -143,7 +144,7 @@ Route::get('showNumberChekedToolsOld/{branchID}/{month}/{year}','API\CheckingToo
 Route::get('showAlldataRatesOld/{branchID}/{groupID}/{month}/{year}','API\RateAndScoreController@showalldataRatesOld');
 Route::get('showRatesFullScoreOld/{branchID}/{groupID}/{month}/{year}','API\RateAndScoreController@showRatesFullScoreOld');
 //แสดงรายการชำระค่างวดย้อนหลัง
-Route::get('alldataChekedCost/{branchID}/{month}/{year}','API\CostController@alldataChekedCostOld');
+Route::get('alldataChekedCostOld/{branchID}/{month}/{year}','API\CostController@alldataChekedCostOld');
 Route::get('showAgreement/{branchID}/{month}/{year}','API\CostController@showAgreementOld');
 //แสดงรายงาน PDF ย้อนหลัง
 Route::get('ShowHeadReportPDFOld/{branchID}/{month}/{year}','API\ReportController@ShowHeadReportPDFOld');
@@ -154,6 +155,7 @@ Route::get('ShowScoreSumPDFOld/{branchID}/{month}/{year}','API\ReportController@
 Route::get('showAgreementOld/{branchID}/{month}/{year}','API\CostController@showAgreementOld');
 //แสดงรายงาน Excel ย้อนหลัง
 Route::get('ShowScoreExcelforMonthOld/{month}/{year}','API\ReportController@ShowScoreExcelforMonthOld');
+Route::get('ShowScoreExcelforMonthPercentOld/{month}/{year}','API\ReportController@ShowScoreExcelforMonthPercentOld');
 //แสดงรายงาน Excel 100% ย้อนหลัง
 Route::get('ShowMonthExcel100ForYearOld/{year}','API\ReportController@ShowMonthExcel100ForYearOld');
 Route::get('ShowBranchExcel100forYearOld/{year}','API\ReportController@ShowBranchExcel100forYearOld');

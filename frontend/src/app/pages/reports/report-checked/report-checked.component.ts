@@ -10,6 +10,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { SparesService } from 'src/app/services/spares.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -36,6 +37,7 @@ export class ReportCheckedComponent implements OnInit {
     private reportService: ReportService,
     private motorcycleService: MotocyclesService,
     private toolsService: ToolsService,
+    private SparesService: SparesService,
     private costService: CostService,
     private navCtrl: NavController,
     private plt: Platform,
@@ -96,7 +98,7 @@ export class ReportCheckedComponent implements OnInit {
           console.log(this.unready);
         });
 
-        this.toolsService.getAmountChecked(this.id)
+        this.SparesService.getAmountChecked(this.id)
         .subscribe(response => {
           this.amount = response;
           console.log(this.amount);

@@ -408,6 +408,27 @@ class ReportController extends Controller
         return response()->json($scores, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
+    public function ShowScoreExcelforMonthPercent()
+    {
+        $scores = DB::table('concludes')
+                    ->join('branches','branches.br_id','=','concludes.br_id' )
+                    ->whereMonth('concludes.date', '=', today()->month)
+                    ->whereYear('concludes.date', '=', today()->year)
+                    //->whereMonth('concludes.date', '=', '6')
+                    ->select('concludes.score')
+                    ->orderby('concludes.br_id', 'ASC')
+                    ->get();
+
+        $percent = array();
+
+        foreach($scores as $score){
+            $num = ($score->score * 100 )/175;
+            array_push($percent,number_format((float)$num, 2, '.', ''));
+        }
+        
+        return response()->json($percent, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
 
     // ------------------------ [Report Excel สาขา 100 คะแนน] --------------------- ไม่ใช้
     // public function ShowBranchExcel100()
@@ -743,36 +764,37 @@ class ReportController extends Controller
         }
 
         $branchName = array();
-        $first = 0;
-        for($i=0; $i< count($branchID) ;$i++){
-            $branchs3 = DB::table('branches')
-                        ->join('zones','zones.zone_id','=','branches.zone_id' )
-                        ->where('branches.br_id','=', $branchID[$i][0])
-                        ->select('zones.zoneName')
-                        ->get();
-            //return $branchs3;
-            foreach($branchs3 as $branch3){
-                $check = 0;
-                if($first == 0){
-                    $branchName[0][0] = $branch3->zoneName;
-                }
-                else{
-                    for($j=0; $j< count($branchName) ;$j++){
+        // $first = 0;
+        // for($i=0; $i< count($branchID) ;$i++){
+        //     $branchs3 = DB::table('branches')
+        //                 ->join('zones','zones.zone_id','=','branches.zone_id' )
+        //                 ->where('branches.br_id','=', $branchID[$i][0])
+        //                 ->select('zones.zoneName')
+        //                 ->get();
+        //     //return $branchs3;
+        //     foreach($branchs3 as $branch3){
+        //         $check = 0;
+        //         if($first == 0){
+        //             $branchName[0][0] = $branch3->zoneName;
+        //         }
+        //         else{
+        //             for($j=0; $j< count($branchName) ;$j++){
 
-                        if(strpos($branchName[$j][0],$branch3->zoneName) !== false){
-                            $check = 1;
-                        }
-                    }
+        //                 if(strpos($branchName[$j][0],$branch3->zoneName) !== false){
+        //                     $check = 1;
+        //                 }
+        //             }
 
-                    if($check == 0){
-                        $branchName[count($branchName)][0] = $branch3->zoneName;
-                    }
-                }
-            }
+        //             if($check == 0){
+        //                 $branchName[count($branchName)][0] = $branch3->zoneName;
+        //             }
+        //         }
+        //     }
             
-            $first = 1;
-        }
+        //     $first = 1;
+        // }
         //return  $branchName;
+        $j = 0;
         for($i=0; $i< count($branchID) ;$i++){
             $branchs2 = DB::table('branches')
                         ->join('zones','zones.zone_id','=','branches.zone_id' )
@@ -780,17 +802,23 @@ class ReportController extends Controller
                         ->select('branches.branchName','zones.zoneName')
                         ->get();
 
+            // foreach($branchs2 as $branch2){
+            //     $check = 0;
+            //     $num = 0;
+            //     for($j=0; $j< count($branchName) ;$j++){
+            //         if(strpos($branchName[$j][0],$branch2->zoneName) !== false){
+            //             $branchName[$j][count($branchName[$j])] = $branch2->branchName;
+            //         }
+            //     }
+            // }
+
             foreach($branchs2 as $branch2){
-                $check = 0;
-                $num = 0;
-                for($j=0; $j< count($branchName) ;$j++){
-                    if(strpos($branchName[$j][0],$branch2->zoneName) !== false){
-                        $branchName[$j][count($branchName[$j])] = $branch2->branchName;
-                    }
-                }
+                $branchName[$j][0] = $branch2->branchName;
+                $branchName[$j][1] = $branch2->zoneName;
+                $j++;
             }
         }
-       return response()->json($branchName, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+       return response()->json( $branchName , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
     }
 
@@ -1024,6 +1052,29 @@ class ReportController extends Controller
          ,JSON_UNESCAPED_UNICODE);
      }
 
+     public function ShowScoreExcelforMonthPercentOld($month,$year)
+     {
+         $scores = DB::table('concludes')
+                     ->join('branches','branches.br_id','=','concludes.br_id' )
+                     ->whereMonth('concludes.date', '=', $month)
+                     ->whereYear('concludes.date', '=', $year)
+                     //->whereMonth('concludes.date', '=', '6')
+                     ->select('concludes.score')
+                     ->orderby('concludes.br_id', 'ASC')
+                     ->get();
+ 
+         $percent = array();
+ 
+         foreach($scores as $score){
+             $num = ($score->score * 100 )/175;
+             array_push($percent,number_format((float)$num, 2, '.', ''));
+         }
+         
+         return response()->json($percent, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+         ,JSON_UNESCAPED_UNICODE);
+     }
+ 
+
     //------------ [Report Excel สาขา 100 คะแนน] API เพิ่มใหม่ ---------------
     public function ShowMonthExcel100ForYearOld($year)
     {
@@ -1092,153 +1143,118 @@ class ReportController extends Controller
     public function ShowBranchExcel100forYearOld($year)
     {
         $mounts = DB::table('concludes')
-                    ->join('branches','branches.br_id','=','concludes.br_id' )
-                    ->whereYear('concludes.date', '=', $year)
-                    ->select('concludes.date')
-                    ->orderbyDESC('concludes.date')
-                    ->get();
+        ->join('branches','branches.br_id','=','concludes.br_id' )
+        ->whereYear('concludes.date', '=', $year)
+        ->select('concludes.date')
+        ->orderbyDESC('concludes.date')
+        ->get();
 
         $m = array();
         foreach ($mounts as  $mount) {
-            $strDate =  $mount->date;
-            $strMonth= date("่m",strtotime($strDate));
-            array_push($m,$strMonth);
+        $strDate =  $mount->date;
+        $strMonth= date("่m",strtotime($strDate));
+        array_push($m,$strMonth);
         }
 
         $zero1 = count($m);
         $numMount = array($m[$zero1-1]);
         for($j=$zero1-1; $j > -1 ;$j--) {
-            $check = 0;
-            for($i=0; $i< count($numMount) ;$i++){
+        $check = 0;
+        for($i=0; $i< count($numMount) ;$i++){
 
-                if($numMount[$i] != $m[$j]){
-                    $check = 1;
-                }else{
-                    $check = 0;
-                }
-             }
-            if($check == 1){
-                array_push($numMount,$m[$j]);
+            if($numMount[$i] != $m[$j]){
+                $check = 1;
+            }else{
+                $check = 0;
             }
+        }
+        if($check == 1){
+            array_push($numMount,$m[$j]);
+        }
         }
 
         $zero = count($numMount);
         $start = 1;
         for($i=1; $i<= 12 ;$i++) {
-            if(strpos($numMount[0], ''.$i) !== false){
-                $start = $i;
-            }
+        if(strpos($numMount[0], ''.$i) !== false){
+            $start = $i;
+        }
         }
 
         $end = 1;
         for($i=1; $i<= 12 ;$i++) {
-            if(strpos($numMount[$zero-1], ''.$i) !== false){
-                $end = $i;
-            }
+        if(strpos($numMount[$zero-1], ''.$i) !== false){
+            $end = $i;
+        }
         }
 
         $ScoreFull = DB::table('subheadings')->sum('subheadings.score');
         $ScoreFull2 = $ScoreFull * $zero ;
 
         $branchs = DB::table('concludes')
-                    ->join('branches','branches.br_id','=','concludes.br_id' )
-                    ->whereYear('concludes.date', '=', $year)
-                    ->Where('concludes.score', '=', $ScoreFull)
-                    ->select('branches.br_id')
-                    ->orderby('branches.br_id', 'ASC')
-                    ->distinct()
-                    ->get();
+                ->join('branches','branches.br_id','=','concludes.br_id' )
+                ->whereYear('concludes.date', '=', $year)
+                ->Where('concludes.score', '=', $ScoreFull)
+                ->select('branches.br_id')
+                ->orderby('branches.br_id', 'ASC')
+                ->distinct()
+                ->get();
 
         $array = array();
         $x = 0;
         foreach($branchs as $branch){
-            $array[$x][0] = $branch->br_id;
-            $x++;
+        $array[$x][0] = $branch->br_id;
+        $x++;
         }
 
         for($i=0; $i< count($array) ;$i++){
-            $array[$i][1] = 0;
+        $array[$i][1] = 0;
         }
 
-        //return $array;
         $branchsScore = DB::table('concludes')
-                    ->join('branches','branches.br_id','=','concludes.br_id' )
-                    ->whereYear('concludes.date', '=', $year)
-                    ->Where('concludes.score', '=', $ScoreFull)
-                    ->select('branches.br_id','concludes.score')
-                    ->orderby('branches.br_id', 'ASC')
-                    //->distinct()
-                    ->get();
+                ->join('branches','branches.br_id','=','concludes.br_id' )
+                ->whereYear('concludes.date', '=', $year)
+                ->Where('concludes.score', '=', $ScoreFull)
+                ->select('branches.br_id','concludes.score')
+                ->orderby('branches.br_id', 'ASC')
+                //->distinct()
+                ->get();
 
 
         foreach( $branchsScore as  $branchScore) {
-            for($i=0; $i< count($array) ;$i++){
-                if($array[$i][0] == $branchScore->br_id){
-                    $array[$i][1] = $array[$i][1] + $branchScore->score;
-                }
+        for($i=0; $i< count($array) ;$i++){
+            if($array[$i][0] == $branchScore->br_id){
+                $array[$i][1] = $array[$i][1] + $branchScore->score;
             }
         }
-        //return $array;
+        }
+
         $branchID = array();
         $j = 0;
         for($i=0; $i< count($array) ;$i++){
-            if($array[$i][1] == $ScoreFull2){
-                $branchID[$j][0] = $array[$i][0];
-                $j++;
-            }
+        if($array[$i][1] == $ScoreFull2){
+            $branchID[$j][0] = $array[$i][0];
+            $j++;
+        }
         }
 
         $branchName = array();
-        $first = 0;
+        $j = 0;
         for($i=0; $i< count($branchID) ;$i++){
-            $branchs3 = DB::table('branches')
-                        ->join('zones','zones.zone_id','=','branches.zone_id' )
-                        ->where('branches.br_id','=', $branchID[$i][0])
-                        ->select('zones.zoneName')
-                        ->get();
-            //return $branchs3;
-            foreach($branchs3 as $branch3){
-                $check = 0;
-                if($first == 0){
-                    $branchName[0][0] = $branch3->zoneName;
-                }
-                else{
-                    for($j=0; $j< count($branchName) ;$j++){
+        $branchs2 = DB::table('branches')
+                    ->join('zones','zones.zone_id','=','branches.zone_id' )
+                    ->where('branches.br_id','=', $branchID[$i][0])
+                    ->select('branches.branchName','zones.zoneName')
+                    ->get();
 
-                        if(strpos($branchName[$j][0],$branch3->zoneName) !== false){
-                            $check = 1;
-                        }
-                    }
-
-                    if($check == 0){
-                        $branchName[count($branchName)][0] = $branch3->zoneName;
-                    }
-                }
-            }
-            
-            $first = 1;
+        foreach($branchs2 as $branch2){
+            $branchName[$j][0] = $branch2->branchName;
+            $branchName[$j][1] = $branch2->zoneName;
+            $j++;
         }
-        //return  $branchName;
-        for($i=0; $i< count($branchID) ;$i++){
-            $branchs2 = DB::table('branches')
-                        ->join('zones','zones.zone_id','=','branches.zone_id' )
-                        ->where('branches.br_id','=', $branchID[$i][0])
-                        ->select('branches.branchName','zones.zoneName')
-                        ->get();
-
-            foreach($branchs2 as $branch2){
-                $check = 0;
-                $num = 0;
-                for($j=0; $j< count($branchName) ;$j++){
-                    if(strpos($branchName[$j][0],$branch2->zoneName) !== false){
-                        $branchName[$j][count($branchName[0])] = $branch2->branchName;
-                    }
-                }
-            }
         }
-       return response()->json($branchName, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        return response()->json( $branchName , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
-
     }
 
 }

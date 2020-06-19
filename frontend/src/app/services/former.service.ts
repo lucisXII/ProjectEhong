@@ -59,4 +59,48 @@ export class FormerService {
   return this.http.get<{data: any}>(BACKEND_URL + '/showNumberChekedSparesOld/' + id + '/' + month + '/' + year);
   }
 
+  //Tools
+  getToolsCheckedOld(id: string, month: string, year: string){
+    return this.http.get<{data: any}>(BACKEND_URL + '/alldataChekedToolsOld/' + id + '/' + month + '/' + year);
+  }
+
+  getAmountRemainOldTool(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountToolremainOld/' + id + '/' + month + '/' + year);
+  }
+  
+  getAmountCheckedOldTool(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showAmountChekedToolsOld/' + id + '/' + month + '/' + year);
+  }
+
+  getNumberRemainOldTool(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberToolremainOld/' + id + '/' + month + '/' + year);
+  }
+
+  getNumberCheckedOldTool(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showNumberChekedToolsOld/' + id + '/' + month + '/' + year);
+  }
+
+  //Costs
+  getCostOld(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/alldataChekedCostOld/' + id + '/' + month + '/' + year);
+  }
+
+  //Report
+  getHeadingReportOld(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowHeadReportPDFOld/' + id + '/' + month + '/' + year);
+  }
+
+  getDateReportOld(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowHeadReportPDFdateOld/' + id + '/' + month + '/' + year);
+  }
+
+  getUserReportOld(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowUserPDFOld/' + id + '/' + month + '/' + year);
+  }
+  getGroupReportOld(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowScoreGroupPDFOld/' + id + '/' + month + '/' + year);
+  }
+  getSumReportOld(id: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowScoreSumPDFOld/' + id + '/' + month + '/' + year);
+  }
 }

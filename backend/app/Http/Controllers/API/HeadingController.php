@@ -29,15 +29,33 @@ class HeadingController extends Controller
 
     }
 
-    public function showRateAndScore($groupID)
+    public function showRateAndScore($branchID ,$groupID)
     {
-        $rateAndScore = RateAndScore::all();
-        $heading = Heading::where('group_id', $groupID)->with('group')
-                ->with('subHeading')
+        // return $branchID;
+        // $rateAndScore = Subheading::with('rateAndScore')->get();
+
+        return $heading = Heading::where('group_id', $groupID)->with('group')
+                ->with(['subHeading.rateAndScore' => function ($query) use ($branchID) {
+                    $query->whereMonth('date', today()->month)->where('br_id', $branchID);
+                }])
                 ->get();
 
-        return response()->json($rateAndScore , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        ,JSON_UNESCAPED_UNICODE);
+                // $deliveries = Delivery::with('order.product')
+                // ->whereHas('order', function($query) use ($customerID) {
+                //     $query->whereUserId($customerID);
+                // })
+                // ->orderBy('date')
+                // ->get();
+        // $users = App\User::with(['posts' => function ($query) {
+        //     $query->where('title', 'like', '%first%');
+        // }])->get();
+        // $rateAndScore = RateAndScore::all();
+        // $heading = Heading::where('group_id', $groupID)->with('group')
+        //         ->with('subHeading')
+        //         ->get();
+
+        // return response()->json($rateAndScore , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        // ,JSON_UNESCAPED_UNICODE);
     }
 
     public function rateAndScore($id,$groupID)

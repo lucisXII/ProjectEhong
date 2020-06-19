@@ -40,6 +40,8 @@ import { GroupsEditComponent } from './pages/groups/groups-edit/groups-edit.comp
 import { SearchPastComponent } from './pages/conclude/search-past/search-past.component';
 import { PointPastComponent } from './pages/conclude/point-past/point-past.component';
 import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
+import { GroupsCheckedComponent } from './pages/groups/groups-checked/groups-checked.component';
+import { GroupsShowComponent } from './pages/groups/groups-show/groups-show.component';
 
 
 const routes: Routes = [
@@ -60,6 +62,8 @@ const routes: Routes = [
   { path: 'branch/checked' , component: CheckedComponent},
   { path: 'branch/checked/:id' , component: CheckedListComponent },
   { path: 'branch/:id/groups' , component: GroupsListComponent },
+  { path: 'branch/:id/groups/checked' , component: GroupsCheckedComponent },
+  { path: 'branch/:id/groups/checked/:groupId' , component: GroupsShowComponent },
   { path: 'branch/:id/groups/:groupId/add' , component: GroupsAddComponent},
   { path: 'branch/:id/groups/:groupId/edit' , component: GroupsEditComponent},
   { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent },

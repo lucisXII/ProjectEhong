@@ -21,20 +21,23 @@ export class GroupsService {
     return this.http.get<{data: any}>(BACKEND_URL + '/group');
   }
 
-  checkedGroups(id: string, groupId: string) {
-    let check: any;
-    // return this.http.get<{data: any}>(BACKEND_URL + '/ChekedRateAndScore/' + branchId + '/' + groupId);
-    this.http.get<{data: any}>(BACKEND_URL + '/ChekedRateAndScore/' + id + '/' + groupId)
-    .subscribe(response => {
-      check = response;
-      if(check == '0') {
-        this.router.navigate(['branch/' + id + '/groups/' + groupId + '/add']);
-      }
-      else {
-        this.router.navigate(['branch/' + id + '/groups/' + groupId + '/edit']);
-      }
-    });
+  getCheckedGroups(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/checkedGroup/' + id);
   }
+
+  // checkedGroups(id: string, groupId: string) {
+  //   let check: any;
+  //   this.http.get<{data: any}>(BACKEND_URL + '/ChekedRateAndScore/' + id + '/' + groupId)
+  //   .subscribe(response => {
+  //     check = response;
+  //     if(check == '0') {
+  //       this.router.navigate(['branch/' + id + '/groups/' + groupId + '/add']);
+  //     }
+  //     else {
+  //       this.router.navigate(['branch/' + id + '/groups/' + groupId + '/edit']);
+  //     }
+  //   });
+  // }
 
   getShowCheckedGroups(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/showGroupChecked/' + id);
@@ -57,6 +60,7 @@ export class GroupsService {
       console.log(response);
       this.router.navigate(['/branch/' + id + '/groups']);
       this.loading.dismiss();
+      this.loading.presentToast();
     });
   }
 
@@ -67,8 +71,9 @@ export class GroupsService {
     this.http.patch<{data: any}>(BACKEND_URL + '/updateRateAndScore/' + id + '/' + groupId ,data)
     .subscribe(response => {
       console.log(response);
-      // this.router.navigate(['/branch/' + id + '/groups']);
-      // this.loading.dismiss();
+      this.router.navigate(['/branch/' + id + '/groups']);
+      this.loading.dismiss();
+      this.loading.presentToast();
     });
   }
 }

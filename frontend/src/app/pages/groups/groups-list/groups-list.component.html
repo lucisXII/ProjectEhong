@@ -13,10 +13,15 @@
   <ion-grid>
     <ion-row>
       <ion-col size-md="3" size="6" *ngFor="let group of groups">
-        <ion-card class="ion-text-center" (click)="viewGroup(group.group_id)">
-          <!-- <ion-button color="light" expand="block" fill="clear" class="ion-margin-bottom">
-            <ion-icon color="danger" slot="icon-only" name="enter-outline"></ion-icon>
-          </ion-button> -->
+        <ion-card class="ion-text-center" *ngIf="group.status == 0" (click)="viewUncheckedGroup(group.group_id)">
+          <ion-card-header>
+            <ion-card-title>{{group.group_id}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{group.groupsName}}
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="ion-text-center" color="danger" *ngIf="group.status == 1" (click)="viewCheckedGroup(group.group_id)">
           <ion-card-header>
             <ion-card-title>{{group.group_id}}</ion-card-title>
           </ion-card-header>

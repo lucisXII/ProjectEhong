@@ -26,7 +26,6 @@ import { CheckedListComponent } from './pages/branch/checked-list/checked-list.c
 import { SparesUncheckedComponent } from './pages/spares/spares-unchecked/spares-unchecked.component';
 import { SparesCheckedComponent } from './pages/spares/spares-checked/spares-checked.component';
 import { GroupsListComponent } from './pages/groups/groups-list/groups-list.component';
-import { GroupShowComponent } from './pages/groups/group-show/group-show.component';
 import { MotorcyclesCheckedComponent } from './pages/motorcycles/motorcycles-checked/motorcycles-checked.component';
 import { MotorcyclesUncheckedComponent } from './pages/motorcycles/motorcycles-unchecked/motorcycles-unchecked.component';
 import { ToolsCheckedComponent } from './pages/tools/tools-checked/tools-checked.component';
@@ -53,6 +52,8 @@ import { GroupsEditComponent } from './pages/groups/groups-edit/groups-edit.comp
 import { SearchPastComponent } from './pages/conclude/search-past/search-past.component';
 import { PointPastComponent } from './pages/conclude/point-past/point-past.component';
 import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
+import { GroupsCheckedComponent } from './pages/groups/groups-checked/groups-checked.component';
+import { GroupsShowComponent } from './pages/groups/groups-show/groups-show.component';
 
 
 @NgModule({
@@ -69,9 +70,10 @@ import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.compo
     SparesUncheckedComponent,
     SparesShowComponent,
     GroupsListComponent,
-    GroupShowComponent,
+    GroupsShowComponent,
     GroupsAddComponent,
     GroupsEditComponent,
+    GroupsCheckedComponent,
     MotorcyclesCheckedComponent,
     MotorcyclesUncheckedComponent,
     MotorcyclesShowComponent,

@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { GroupsService } from 'src/app/services/groups.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-groups-edit',
-  templateUrl: './groups-edit.component.html',
-  styleUrls: ['./groups-edit.component.scss'],
+  selector: 'app-groups-show',
+  templateUrl: './groups-show.component.html',
+  styleUrls: ['./groups-show.component.scss'],
 })
-export class GroupsEditComponent implements OnInit {
+export class GroupsShowComponent implements OnInit {
   private id:string;
   private groupId:string;
   headings: any;
 
   constructor(
     private route: ActivatedRoute,
-    private groupService: GroupsService,
-    private loading: LoadingService
+    private groupService: GroupsService
   ) { }
 
   ngOnInit() {
@@ -24,8 +22,6 @@ export class GroupsEditComponent implements OnInit {
       if(paraMap.has('id') && paraMap.has('groupId')){
         this.id = paraMap.get('id');
         this.groupId = paraMap.get('groupId');
-        console.log(this.groupId);
-        console.log(this.id);
 
         this.groupService.getRateAndScore(this.id, this.groupId)
         .subscribe(response => {
@@ -33,11 +29,6 @@ export class GroupsEditComponent implements OnInit {
         });
       }
     });
-  }
-
-  updateScore() {
-    this.loading.present();
-    this.groupService.updateScore(this.id, this.groupId, this.headings);
   }
 
 }

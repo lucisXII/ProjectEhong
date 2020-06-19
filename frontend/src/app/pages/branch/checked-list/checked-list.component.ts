@@ -37,7 +37,7 @@ export class CheckedListComponent implements OnInit {
   }
 
   viewGroups() {
-    this.router.navigate(['branch/' + this.id + '/groups']);
+    this.router.navigate(['branch/' + this.id + '/groups/checked']);
   }
 
   viewSpares() {

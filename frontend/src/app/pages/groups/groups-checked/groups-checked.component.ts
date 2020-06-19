@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GroupsService } from 'src/app/services/groups.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Router } from '@angular/router';
-
 
 @Component({
-  selector: 'app-groups-list',
-  templateUrl: './groups-list.component.html',
-  styleUrls: ['./groups-list.component.scss'],
+  selector: 'app-groups-checked',
+  templateUrl: './groups-checked.component.html',
+  styleUrls: ['./groups-checked.component.scss'],
 })
-export class GroupsListComponent implements OnInit {
+export class GroupsCheckedComponent implements OnInit {
   private id:string;
   groups: any;
 
@@ -31,13 +29,10 @@ export class GroupsListComponent implements OnInit {
       });
       }
     });
-   
   }
 
-  viewUncheckedGroup(GroupId) {
-    this.router.navigate(['branch/' + this.id + '/groups/' + GroupId + '/add']);
+  viewGroup(id) {
+    this.router.navigate(['branch/' + this.id + '/groups/checked/' + id]);
   }
-  viewCheckedGroup(GroupId) {
-    this.router.navigate(['branch/' + this.id + '/groups/' + GroupId + '/edit']);
-  }
+
 }

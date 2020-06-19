@@ -86,6 +86,7 @@ class RateAndScoreController extends Controller
      */
     public function update($branchID, $groupID, Request $request)
     {
+        $user_id = \Auth::id();
         foreach($request->headings as $RateAndScores){
             foreach ($RateAndScores['sub_heading'] as $score) {
                 if ($score['get'] != null) {
@@ -94,22 +95,12 @@ class RateAndScoreController extends Controller
                     $updateScore = $score['rate_and_score']['score'];
                 }
                 $updateRateAndScores = RateAndScore::findOrFail($score['rate_and_score']['rs_id']);
-                $updateRateAndScores->user_id = '2';
+                $updateRateAndScores->user_id = $user_id;
                 $updateRateAndScores->score = $updateScore;
                 $updateRateAndScores->date = date('Y-m-d');
                 $updateRateAndScores->save();
             }
         }
-        // $user_id = \Auth::id();
-        // foreach($request->RateAndScore as $RateAndScores){
-        //     $updateRateAndScores = RateAndScores::findOrFail($id);
-        //     $updateRateAndScores->user_id = $user_id;
-        //     $updateRateAndScores->score = $RateAndScores->score;
-        //     $checkingmotorcycle->date = date('Y-m-d');
-        //     $checkingmotorcycle->save();
-        // }
-
-        // return $checkingTool;
     }
 
     /**

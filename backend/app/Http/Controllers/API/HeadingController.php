@@ -29,33 +29,31 @@ class HeadingController extends Controller
 
     }
 
-    public function showRateAndScore($branchID ,$groupID)
+    public function showRateAndScore($branchID, $groupID)
     {
         // return $branchID;
         // $rateAndScore = Subheading::with('rateAndScore')->get();
 
-        return $heading = Heading::where('group_id', $groupID)->with('group')
+        $heading = Heading::where('group_id', $groupID)->with('group')
                 ->with(['subHeading.rateAndScore' => function ($query) use ($branchID) {
                     $query->whereMonth('date', today()->month)->where('br_id', $branchID);
                 }])
                 ->get();
 
-                // $deliveries = Delivery::with('order.product')
-                // ->whereHas('order', function($query) use ($customerID) {
-                //     $query->whereUserId($customerID);
-                // })
-                // ->orderBy('date')
-                // ->get();
-        // $users = App\User::with(['posts' => function ($query) {
-        //     $query->where('title', 'like', '%first%');
-        // }])->get();
-        // $rateAndScore = RateAndScore::all();
-        // $heading = Heading::where('group_id', $groupID)->with('group')
-        //         ->with('subHeading')
-        //         ->get();
+        return response()->json($heading , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
+    }
 
-        // return response()->json($rateAndScore , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
-        // ,JSON_UNESCAPED_UNICODE);
+    public function showRateAndScoreFormer($branchID, $groupID, $month, $year)
+    {
+        $heading = Heading::where('group_id', $groupID)->with('group')
+                ->with(['subHeading.rateAndScore' => function ($query) use ($branchID, $month, $year) {
+                    $query->whereMonth('date', $month)->whereYear('date', $year)->where('br_id', $branchID);
+                }])
+                ->get();
+
+        return response()->json($heading , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
+        ,JSON_UNESCAPED_UNICODE);
     }
 
     public function rateAndScore($id,$groupID)

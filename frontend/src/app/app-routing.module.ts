@@ -42,6 +42,8 @@ import { PointPastComponent } from './pages/conclude/point-past/point-past.compo
 import { RanksPastComponent } from './pages/conclude/ranks-past/ranks-past.component';
 import { GroupsCheckedComponent } from './pages/groups/groups-checked/groups-checked.component';
 import { GroupsShowComponent } from './pages/groups/groups-show/groups-show.component';
+import { GroupsListFormerComponent } from './pages/former/groups-list-former/groups-list-former.component';
+import { GroupsFormerComponent } from './pages/former/groups-former/groups-former.component';
 
 
 const routes: Routes = [
@@ -92,6 +94,43 @@ const routes: Routes = [
   { path: 'conclude/search' , component: SearchPastComponent , canActivate: [AuthGuard]},
   { path: 'conclude/result/point/:year/:month' , component: PointPastComponent , canActivate: [AuthGuard]},
   { path: 'conclude/result/ranks/:year' , component: RanksPastComponent , canActivate: [AuthGuard]},
+  { path: 'branch/unchecked' , component: UncheckedComponent},
+  { path: 'branch/unchecked/:id' , component: UncheckedListComponent },
+  { path: 'branch/checked' , component: CheckedComponent},
+  { path: 'branch/checked/:id' , component: CheckedListComponent },
+  { path: 'branch/:id/groups' , component: GroupsListComponent },
+  { path: 'branch/:id/groups/checked' , component: GroupsCheckedComponent },
+  { path: 'branch/:id/groups/checked/:groupId' , component: GroupsShowComponent },
+  { path: 'branch/:id/groups/:groupId/add' , component: GroupsAddComponent},
+  { path: 'branch/:id/groups/:groupId/edit' , component: GroupsEditComponent},
+  { path: 'branch/:id/spares/unchecked' , component: SparesUncheckedComponent },
+  { path: 'branch/:id/spares/checked' , component: SparesCheckedComponent},
+  { path: 'branch/:id/spares' , component: SparesShowComponent},
+  { path: 'branch/:id/motocycles/unchecked' , component: MotorcyclesUncheckedComponent},
+  { path: 'branch/:id/motocycles/checked' , component: MotorcyclesCheckedComponent},
+  { path: 'branch/:id/motocycles' , component: MotorcyclesShowComponent},
+  { path: 'branch/:id/tools/unchecked' , component: ToolsUncheckedComponent},
+  { path: 'branch/:id/tools/checked' , component: ToolsCheckedComponent},
+  { path: 'branch/:id/tools' , component: ToolsShowComponent},
+  { path: 'branch/:id/cost/unchecked' , component: CostUncheckedComponent},
+  { path: 'branch/:id/cost/checked' , component: CostCheckedComponent },
+  { path: 'branch/:id/cost' , component: CostShowComponent },
+  { path: 'branch/:id/report' , component: ReportCheckedComponent},
+  { path: 'search' , component: SearchComponent },
+  { path: 'result/:year/:month' , component: ResultComponent },
+  { path: 'result/:year/:month/branch/:id' , component: BranchFormerComponent },
+  { path: 'result/:year/:month/branch/:id/Motorcycles' , component: MotorcyclesFormerComponent },
+  { path: 'result/:year/:month/branch/:id/Spares' , component: SparesFormerComponent },
+  { path: 'result/:year/:month/branch/:id/Tools' , component: ToolsFormerComponent },
+  { path: 'result/:year/:month/branch/:id/Costs' , component: CostsFormerComponent },
+  { path: 'result/:year/:month/branch/:id/Report' , component: ReportFormerComponent },
+  { path: 'result/:year/:month/branch/:id/groups' , component: GroupsListFormerComponent },
+  { path: 'result/:year/:month/branch/:id/groups/:groupId' , component: GroupsFormerComponent },
+  { path: 'conclude/point' , component: PointComponent },
+  { path: 'conclude/ranks' , component: RanksComponent },
+  { path: 'conclude/search' , component: SearchPastComponent },
+  { path: 'conclude/result/point/:year/:month' , component: PointPastComponent },
+  { path: 'conclude/result/ranks/:year' , component: RanksPastComponent },
 ];
 
 @NgModule({

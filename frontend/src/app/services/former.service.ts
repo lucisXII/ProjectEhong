@@ -16,6 +16,10 @@ export class FormerService {
     private router: Router,
     private loading: LoadingService
   ) { }
+
+  getRateAndScore(id: string, groupId: string, month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/watchAlldataRateAndScore/' + id + '/' + groupId + '/' + month + '/' + year);
+  }
  
   //Motocycles
   getMotocyclesOld(id: string, month: string, year: string) {

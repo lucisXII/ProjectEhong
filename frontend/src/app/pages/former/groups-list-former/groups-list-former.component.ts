@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GroupsService } from 'src/app/services/groups.service';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-groups-checked',
-  templateUrl: './groups-checked.component.html',
-  styleUrls: ['./groups-checked.component.scss'],
+  selector: 'app-groups-list-former',
+  templateUrl: './groups-list-former.component.html',
+  styleUrls: ['./groups-list-former.component.scss'],
 })
-export class GroupsCheckedComponent implements OnInit {
+export class GroupsListFormerComponent implements OnInit {
   private id:string;
+  private month: string;
+  private year: string;
   groups: any;
 
   constructor(
@@ -21,6 +23,8 @@ export class GroupsCheckedComponent implements OnInit {
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
       if(paraMap.has('id')){
         this.id = paraMap.get('id');
+        this.year = paraMap.get('year');
+        this.month = paraMap.get('month');
 
       this.groupsService.getGroups()
         .subscribe(response => {
@@ -32,7 +36,7 @@ export class GroupsCheckedComponent implements OnInit {
   }
 
   viewGroup(id) {
-    this.router.navigate(['branch/' + this.id + '/groups/checked/' + id]);
+    this.router.navigate(['result/' + this.year + '/' + this.month + '/branch/' + this.id + '/groups/' + id]);
   }
 
 }

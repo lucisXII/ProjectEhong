@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger" defaultHref="/result/{{year}}/{{month}}/branch/{{id}}/groups"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ผลประเมิน
+    </ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content fullscreen="true">
+    <ion-grid *ngFor="let heading of headings" class="ion-margin-top">
+      <ion-row>
+        <ion-col>
+          <ion-title size="large">{{heading.headingName}}</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-card>
+        <ion-row class="ion-text-center ion-margin-vertical">
+          <ion-col class="ion-text-left" size="8"><ion-title>รายละเอียด</ion-title></ion-col>
+          <ion-col size="2"><ion-title>คะแนนเต็ม</ion-title></ion-col>
+          <ion-col size="2"><ion-title>คะแนนได้</ion-title></ion-col>
+        </ion-row>
+        
+        <ion-row class="ion-text-center ion-margin-bottom ion-margin-start" *ngFor="let sub of heading.sub_heading;let i = index;">
+         <ion-col class="ion-text-left ion-padding-start" size="8">
+           <ion-text><h5>{{sub.subheadingName}}</h5></ion-text>
+          </ion-col>
+         <ion-col size="2"><h5>{{sub.score}}</h5></ion-col>
+         <!-- <ion-col size="2"><h5>{{sub.rate_and_score?.score}}</h5></ion-col> -->
+         <ion-col size="2">
+          <ion-list class="checked-input ion-padding-horizontal">
+            <ion-item>
+              <ion-input type="number" value="{{sub.rate_and_score?.score}}" disabled></ion-input>
+            </ion-item>
+          </ion-list>
+         </ion-col>
+       </ion-row>
+       </ion-card>
+    </ion-grid>
+  </ion-content>
+

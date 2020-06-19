@@ -123,6 +123,9 @@ Route::get('ShowBranchExcel100ForYear','API\ReportController@ShowBranchExcel100F
 Route::post('branchs/search','API\BranchController@search');
 Route::get('branchs/search/result','API\BranchController@result');
 
+//แสดงข้อมูลสาขาย้อนหลัง -> ประเมิน
+Route::get('watchAlldataRateAndScore/{branchID}/{groupID}/{month}/{year}','API\HeadingController@showRateAndScoreFormer');
+
 //แสดงข้อมูลสาขาย้อนหลัง -> มอเตอร์ไซต์
 Route::get('watchAlldataChekedMotorcycle/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchAlldataChekedMotorcycle');
 Route::get('watchShowvolume/{branchID}/{month}/{year}','API\CheckingMotorcyclesController@watchShowvolume');

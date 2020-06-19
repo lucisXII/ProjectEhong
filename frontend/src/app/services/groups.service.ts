@@ -44,6 +44,10 @@ export class GroupsService {
     return this.http.get<{data: any}>(BACKEND_URL + '/showheading/' + id);
   }
 
+  getRateAndScore(id: string, groupId: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showrate/' + id + '/' + groupId);
+  }
+
   addScore(id: string, headings: string) {
     const data = {
       headings : headings
@@ -53,6 +57,18 @@ export class GroupsService {
       console.log(response);
       this.router.navigate(['/branch/' + id + '/groups']);
       this.loading.dismiss();
+    });
+  }
+
+  updateScore(id: string, groupId: string, headings: string) {
+    const data = {
+      headings : headings
+    };
+    this.http.patch<{data: any}>(BACKEND_URL + '/updateRateAndScore/' + id + '/' + groupId ,data)
+    .subscribe(response => {
+      console.log(response);
+      // this.router.navigate(['/branch/' + id + '/groups']);
+      // this.loading.dismiss();
     });
   }
 }

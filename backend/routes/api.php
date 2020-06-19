@@ -33,11 +33,12 @@ Route::get('conclude/{branchID}','API\ConcludeController@confirm');
 Route::post('addconclude','API\ConcludeController@store');
 
 Route::get('group','API\GroupController@index');
+Route::get('checkedGroup','API\GroupController@indexChecked');
 Route::get('heading','API\HeadingController@index');
 Route::get('subheading/{groupID}','API\SubheadingController@showlist');
 Route::get('FullscoreGroup/{groupID}','API\SubheadingController@showFullscoreGroup');
 Route::get('showheading/{groupID}','API\HeadingController@showHeading');
-Route::get('showrate/{groupID}','API\HeadingController@showRateAndScore');
+Route::get('showrate/{branchID}/{groupID}','API\HeadingController@showRateAndScore');
 
 Route::get('alldataCheckedHeading/{groupID}','API\HeadingController@rateAndScore');
 
@@ -98,7 +99,7 @@ Route::get('showRatesFullScore/{branchID}/{groupID}','API\RateAndScoreController
 Route::get('showGroupChecked/{branchID}','API\RateAndScoreController@showGroupChecked');
 //เพิ่ม insert,update RateAndScore
 Route::post('addRateAndScore/{id}','API\RateAndScoreController@store')->middleware('auth:api');
-Route::patch('updateRateAndScore/{id}','API\RateAndScoreController@update')->middleware('auth:api');
+Route::patch('updateRateAndScore/{branchID}/{groupID}','API\RateAndScoreController@update');
 
 Route::get('ShowHeadReportPDF/{branchID}','API\ReportController@ShowHeadReportPDF');
 Route::get('ShowHeadReportPDFdate/{branchID}','API\ReportController@ShowHeadReportPDFdate');

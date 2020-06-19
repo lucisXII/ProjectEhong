@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { GroupsService } from 'src/app/services/groups.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
-import { Console } from 'console';
 
 @Component({
   selector: 'app-groups-list',

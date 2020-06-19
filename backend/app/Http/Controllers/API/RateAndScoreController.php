@@ -84,18 +84,32 @@ class RateAndScoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($branchID, $groupID, Request $request)
     {
-        $user_id = \Auth::id();
-        foreach($request->RateAndScore as $RateAndScores){
-            $updateRateAndScores = RateAndScores::findOrFail($id);
-            $updateRateAndScores->user_id = $user_id;
-            $updateRateAndScores->score = $RateAndScores->score;
-            $checkingmotorcycle->date = date('Y-m-d');
-            $checkingmotorcycle->save();
+        foreach($request->headings as $RateAndScores){
+            foreach ($RateAndScores['sub_heading'] as $score) {
+                if ($score['get'] != null) {
+                    $updateScore = $score['get'];
+                } else {
+                    $updateScore = $score['rate_and_score']['score'];
+                }
+                $updateRateAndScores = RateAndScore::findOrFail($score['rate_and_score']['rs_id']);
+                $updateRateAndScores->user_id = '2';
+                $updateRateAndScores->score = $updateScore;
+                $updateRateAndScores->date = date('Y-m-d');
+                $updateRateAndScores->save();
+            }
         }
+        // $user_id = \Auth::id();
+        // foreach($request->RateAndScore as $RateAndScores){
+        //     $updateRateAndScores = RateAndScores::findOrFail($id);
+        //     $updateRateAndScores->user_id = $user_id;
+        //     $updateRateAndScores->score = $RateAndScores->score;
+        //     $checkingmotorcycle->date = date('Y-m-d');
+        //     $checkingmotorcycle->save();
+        // }
 
-        return $checkingTool;
+        // return $checkingTool;
     }
 
     /**
@@ -142,7 +156,7 @@ class RateAndScoreController extends Controller
         //             ->select('group_id.group_id')
         //             ->get();
 
-        $groups = DB::table('rate_and_scores')
+        return $groups = DB::table('rate_and_scores')
                     ->join('subheadings','rate_and_scores.sh_id','=','subheadings.sh_id' )
                     ->join('headings','subheadings.hd_id','=','headings.hd_id' )
                     ->where('rate_and_scores.br_id', '=', $branchID)
@@ -221,7 +235,7 @@ class RateAndScoreController extends Controller
 
         $Cheked = 0;
         if(count($groups) == 6){
-            
+
             $Cheked = 1;
             return response()->json($Cheked, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             ,JSON_UNESCAPED_UNICODE);

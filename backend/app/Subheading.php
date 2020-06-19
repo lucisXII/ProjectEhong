@@ -14,6 +14,6 @@ class Subheading extends Model
     ];
 
     public function rateAndScore(){
-        return $this->hasMany('App\RateAndScore', 'sh_id', 'sh_id');
+        return $this->hasOne('App\RateAndScore', 'sh_id', 'sh_id');
     }
 }

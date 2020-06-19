@@ -34,11 +34,11 @@ export class PointPastComponent implements OnInit {
           this.points = response;
           console.log(this.points);
         });
-        this.concludeService.getPointsPercentPast(this.month, this.year)
-        .subscribe(response => {
-          this.percents = response;
-          console.log(this.percents);
-        });
+        // this.concludeService.getPointsPercentPast(this.month, this.year)
+        // .subscribe(response => {
+        //   this.percents = response;
+        //   console.log(this.percents);
+        // });
       }
     });
   }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
+    protected $primaryKey = 'br_id';
     protected $fillable = [
         'zone_id',
     	'branchName',
@@ -15,6 +16,6 @@ class Branch extends Model
 
     public function conclude()
     {
-        return $this->hasMany('App\conclude');
+        return $this->hasMany('App\conclude', 'br_id', 'br_id');
     }
 }

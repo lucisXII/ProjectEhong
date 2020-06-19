@@ -15,4 +15,9 @@ class Conclude extends Model
     const CREATED_AT = 'date';
     const UPDATED_AT = null;
     // public $timestamps = true;
+
+    public function branch()
+    {
+        return $this->hasOne('App\Branch', 'br_id', 'br_id');
+    }
 }

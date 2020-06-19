@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Conclude;
+use App\Branch;
 
 class ReportController extends Controller
 {
@@ -396,14 +397,25 @@ class ReportController extends Controller
     //----------------- [ Report Excel ]  API ใหม่ -------------
     public function ShowScoreExcelforMonth()
     {
-        $scores = DB::table('concludes')
-                    ->join('branches','branches.br_id','=','concludes.br_id' )
-                    ->whereMonth('concludes.date', '=', today()->month)
-                    ->whereYear('concludes.date', '=', today()->year)
-                    //->whereMonth('concludes.date', '=', '6')
-                    ->select('branches.branchName','concludes.score')
-                    ->orderby('concludes.br_id', 'ASC')
-                    ->get();
+        // $scores = DB::table('concludes')
+        //             ->join('branches','branches.br_id','=','concludes.br_id' )
+        //             ->whereMonth('concludes.date', '=', today()->month)
+        //             ->whereYear('concludes.date', '=', today()->year)
+        //             //->whereMonth('concludes.date', '=', '6')
+        //             ->select('branches.branchName','concludes.score')
+        //             ->orderby('concludes.br_id', 'ASC')
+        //             ->get();
+        $scores = Conclude::whereMonth('date', today()->month)
+                            ->whereYear('date', today()->year)->with('branch')
+                            ->get();
+        
+        $percent = array();
+        foreach($scores as $score){
+            $num = ($score->score * 100 )/175;
+            $num2 = number_format((float)$num, 2, '.', '');
+            $score['percent'] = $num2;
+            array_push($percent,$score);
+        }
 
         return response()->json($scores, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
@@ -1039,14 +1051,17 @@ class ReportController extends Controller
      //----------------- [ Report Excel ]  API ใหม่ -------------
      public function ShowScoreExcelforMonthOld($month,$year)
      {
-         $scores = DB::table('concludes')
-                     ->join('branches','branches.br_id','=','concludes.br_id' )
-                     ->whereMonth('concludes.date', '=', $month)
-                     ->whereYear('concludes.date', '=', $year)
-                     //->whereMonth('concludes.date', '=', '6')
-                     ->select('branches.branchName','concludes.score')
-                     ->orderby('concludes.br_id', 'ASC')
-                     ->get();
+        $scores = Conclude::whereMonth('date', $month)
+                        ->whereYear('date', $year)->with('branch')
+                        ->get();
+
+        $percent = array();
+        foreach($scores as $score){
+            $num = ($score->score * 100 )/175;
+            $num2 = number_format((float)$num, 2, '.', '');
+            $score['percent'] = $num2;
+            array_push($percent,$score);
+        }
  
          return response()->json($scores, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
          ,JSON_UNESCAPED_UNICODE);

@@ -8,6 +8,7 @@ import { ConcludeService } from 'src/app/services/conclude.service';
 })
 export class RanksComponent implements OnInit {
   year: string;
+  ranks: any;
   startToEnd: any;
 
   constructor(
@@ -19,6 +20,11 @@ export class RanksComponent implements OnInit {
         .subscribe(response => {
         this.startToEnd = response;
         console.log(this.startToEnd);
+   });
+   this.concludeService.getRanks()
+        .subscribe(response => {
+        this.ranks = response;
+        console.log(this.ranks);
    });
 
     this.getYear();

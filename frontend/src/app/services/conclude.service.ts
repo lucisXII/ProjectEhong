@@ -16,6 +16,10 @@ export class ConcludeService {
     return this.http.get<{data: any}>(BACKEND_URL + '/ShowScoreExcelforMonth');
   }
 
+  getRanks() {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowBranchExcel100ForYear');
+  }
+
   getStartToEnd() {
     return this.http.get<{data: any}>(BACKEND_URL + '/ShowMonthExcel100ForYear');
   }

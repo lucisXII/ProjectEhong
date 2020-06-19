@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GroupsService } from 'src/app/services/groups.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-groups-list',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class GroupsListComponent implements OnInit {
   private id:string;
   groups: any;
+  checked: any;
 
   constructor(
     private groupsService: GroupsService,
@@ -22,15 +24,21 @@ export class GroupsListComponent implements OnInit {
     this.route.paramMap.subscribe((paraMap: ParamMap) => {
       if(paraMap.has('id')){
         this.id = paraMap.get('id');
-        console.log(this.id);
-        }
-    });
 
-    this.groupsService.getGroups()
+        this.groupsService.getGroups()
+        .subscribe(response => {
+          this.groups = response;
+          console.log(this.groups);
+      });
+
+      this.groupsService.getShowCheckedGroups(this.id)
       .subscribe(response => {
-        this.groups = response;
-        console.log(this.groups);
+        this.checked = response;
+        console.log(this.checked);
+      });
+      }
     });
+   
    
   }
 

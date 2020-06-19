@@ -88,7 +88,7 @@ export class AuthService {
         }
       } , error => {
         this.loading.dismiss();
-        console.log('ผิดพลาด');
+        this.loading.presentToastLogin();
         // console.log(error.error.error);
         // this.alertService.danger('Username or Passsword is incorrect');
         // this.showAlerts(error.error.error, 'error');

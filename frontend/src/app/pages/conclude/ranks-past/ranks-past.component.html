@@ -9,7 +9,39 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      สรุปรายชื่อสาขาย้อนหลัง
+      สรุปรายชื่อสาขา
     </ion-title>
   </ion-toolbar>
   </ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-text>
+          <h3>รายชื่อสาขาที่ได้คะแนน 100%</h3>
+        </ion-text>
+        <ion-text>
+          <h4>ประจำปี {{yearThai}}</h4>
+        </ion-text>
+        <ion-text color="medium">
+          ( {{startToEnd}} )
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list *ngFor="let rank of ranks">
+          <ion-list-header>
+            <ion-title class="ion-no-padding">สาขา {{rank[0]}}</ion-title> 
+          </ion-list-header>
+          <ion-item>
+            <ion-label class="ion-no-padding ion-no-amrgin">เขต : {{rank[1]}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

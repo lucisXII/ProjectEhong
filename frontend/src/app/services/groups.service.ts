@@ -36,6 +36,10 @@ export class GroupsService {
     });
   }
 
+  getShowCheckedGroups(id: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/showGroupChecked/' + id);
+  }
+
   getHeadings(id: string) {
     return this.http.get<{data: any}>(BACKEND_URL + '/showheading/' + id);
   }

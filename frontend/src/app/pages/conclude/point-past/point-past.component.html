@@ -13,3 +13,32 @@
     </ion-title>
   </ion-toolbar>
   </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col class="ion-text-center">
+            <ion-text><h3>สรุปคะแนนการตรวจสาขาย้อนหลัง</h3></ion-text>
+            <ion-text> ประจำเดือน {{monthThai}} ปี {{yearThai}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+       <ion-card color="dark">
+       <ion-row class="ion-text-center ion-margin-vertical">
+         <ion-col size="2"><ion-title>ลำดับ</ion-title></ion-col>
+         <ion-col size="7"><ion-title>รายชื่อสาขา</ion-title></ion-col>
+         <ion-col size="3"><ion-title>คะแนน</ion-title></ion-col>
+         <!-- <ion-col size="2"><ion-title>เปอร์เซ็นต์</ion-title></ion-col> -->
+       </ion-row>
+       </ion-card>
+      <ion-card>
+      <ion-row class="ion-text-center ion-margin-vertical" *ngFor="let point of points;let i = index">
+       <ion-col size="2"><ion-text><h5>{{i + 1}}</h5></ion-text></ion-col>
+       <ion-col size="7"><ion-text><h5>{{point.branchName}}</h5></ion-text></ion-col>
+       <ion-col size="3"><ion-text><h5>{{point.score}}</h5></ion-text></ion-col>
+       <!-- <ion-col size="2"><ion-text><h5>{{percent}} %</h5></ion-text></ion-col> -->
+     </ion-row>
+     </ion-card>
+    </ion-grid>
+  </ion-content>

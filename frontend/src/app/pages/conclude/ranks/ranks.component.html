@@ -30,10 +30,10 @@
       <ion-col>
         <ion-list *ngFor="let rank of ranks">
           <ion-list-header>
-            <ion-title class="ion-no-padding">{{rank[0]}}</ion-title> 
+            <ion-title class="ion-no-padding">สาขา {{rank[0]}}</ion-title> 
           </ion-list-header>
           <ion-item>
-            <ion-label>{{rank}}</ion-label>
+            <ion-label class="ion-no-padding ion-no-amrgin">เขต : {{rank[1]}}</ion-label>
           </ion-item>
         </ion-list>
       </ion-col>

@@ -12,6 +12,10 @@ export class ConcludeService {
     private http: HttpClient,
   ) { }
 
+  getStartToEnd() {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowMonthExcel100ForYear');
+  }
+
   getPoints() {
     return this.http.get<{data: any}>(BACKEND_URL + '/ShowScoreExcelforMonth');
   }
@@ -20,8 +24,24 @@ export class ConcludeService {
     return this.http.get<{data: any}>(BACKEND_URL + '/ShowBranchExcel100ForYear');
   }
 
-  getStartToEnd() {
-    return this.http.get<{data: any}>(BACKEND_URL + '/ShowMonthExcel100ForYear');
+  getPointsPast(month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowScoreExcelforMonthOld/' + month + '/' + year);
   }
+
+  getPointsPercentPast(month: string, year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowScoreExcelforMonthPercentOld/' + month + '/' + year);
+  }
+
+  getStartToEndPast(year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowMonthExcel100ForYearOld/' + year);
+  }
+
+  getRanksPast(year: string) {
+    return this.http.get<{data: any}>(BACKEND_URL + '/ShowBranchExcel100forYearOld/' + year);
+  }
+
+  
+
+  
 
 }

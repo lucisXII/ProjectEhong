@@ -60,6 +60,18 @@ export class LoadingService {
     });
   }
 
+  async presentToastLogin() {
+    return await this.toastController.create({
+      color: 'dark',
+      message: 'Username หรือ Password ของคุณไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง',
+      duration: 4000
+    }).then(t => {
+      t.present().then(() => {
+        console.log('toast warning');
+      });
+    });
+  }
+
   async present() {
     this.isLoading = true;
     return await this.loadingController.create({

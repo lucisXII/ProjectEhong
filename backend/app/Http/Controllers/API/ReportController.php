@@ -84,21 +84,32 @@ class ReportController extends Controller
 
         //คัด user ที่ซ้ำกันออก
         $user=array($userID[0]);
+        //return $userID[5];
         for($j=0; $j< count($userID) ;$j++){
             $check = 0;
             $num = count($user);
+            $num2 = 0;
             for($i=0; $i< $num ;$i++){
                 if($userID[$j] != $user[$i]){
                    $check = 1;
+                   $num2 = $userID[$j];
                 }else{
                     $check = 0;
                 }
             }
             if($check == 1){
-                array_push($user,$userID[$j]);
+                $check2 = 0;
+                for($k=0; $k< $num ;$k++){
+                    if($user[$k] ==  $num2){
+                        $check2 = 1;
+                    }
+                }
+                if($check2 == 0){
+                    array_push($user,$num2);
+                }
              }
         }
-
+        //return $user;
         //เพิ่มชื่อของ user ลงใน array
         $userName=array();
         $names1 = DB::table('users')

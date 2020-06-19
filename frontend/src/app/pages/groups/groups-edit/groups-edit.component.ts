@@ -36,8 +36,35 @@ export class GroupsEditComponent implements OnInit {
   }
 
   updateScore() {
-    this.loading.present();
-    this.groupService.updateScore(this.id, this.groupId, this.headings);
+    let count = 0;
+    let check = 0;
+    let text: string;
+    let text2: string;
+    this.headings.forEach(score => {
+      score.sub_heading.forEach(rate => {
+        if (rate.get > rate.score) {
+          check++;
+          console.log('check : '+ rate.subheadingName);
+          text = rate.subheadingName;
+          if(text2 == null){
+            text2 = text.substring(0,4);
+          }else{
+            text2 = text2 + ", " + text.substring(0,4);
+          }
+        }
+      });
+    });
+    console.log(count);
+    console.log(check);
+      if (check > 0) {
+        //this.loading.presentToastMore();
+        this.loading.presentToastWarningText(text2);
+      }
+      else {
+      this.loading.present();
+      this.groupService.updateScore(this.id, this.groupId, this.headings);
+      }
+    
   }
 
 }

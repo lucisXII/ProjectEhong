@@ -210,7 +210,7 @@ class ReportController extends Controller
             $strYear = date("Y",strtotime($ReportDate2->date))+543;
             $strHour= date("H",strtotime($ReportDate2->date));
             $strMinute= date("i",strtotime($ReportDate2->date));
-            $strSeconds= date("s",strtotime($ReportDate2->date));
+           $strSeconds= date("s",strtotime($ReportDate2->date));
             $strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤษจิกายน","ธันวาคม");
 
             for($i=1; $i<= 12 ;$i++) {
@@ -218,8 +218,8 @@ class ReportController extends Controller
                     $strMonthThai = $strMonthCut[$i];
                 }
             }
-        } 
-        $date = "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
+        } //เวลา $strHour:$strMinute
+        $date = "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear";
         return response()->json($date , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
         ,JSON_UNESCAPED_UNICODE);
         // return "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
@@ -661,7 +661,7 @@ class ReportController extends Controller
         $end = 12;
         $numend = count($numMount);
         $z = 0;
-        if($numend >1){
+        //if($numend >1){
             for($i=1; $i<= 12 ;$i++) {
                 if(strpos($numMount[0], ''.$i) !== false){
                     array_push($nameMonth,$strMonthCut[$i]);
@@ -670,17 +670,18 @@ class ReportController extends Controller
                     array_push($nameMonth,$strMonthCut[$i]);
                 }
             }
-        }else{
+        // }else{
 
-            array_push($nameMonth,$strMonthCut[12]);
+        //     array_push($nameMonth,$strMonthCut[12]);
 
-        }
+        // }
 
-        if(count($nameMonth) == 1){
-            $note = "เริ่มและสิ้นสุด เดือน$nameMonth[0]";
-        }else{
-            $note = "ตั้งแต่ เดือน$nameMonth[0] ถึง เดือน$nameMonth[1]";
-        }
+        // if(count($nameMonth) == 1){
+        //     $note = "เริ่มและสิ้นสุด เดือน$nameMonth[0]";
+        // }else{
+            $z = count($nameMonth)-1;
+            $note = "ตั้งแต่ เดือน$nameMonth[0] ถึง เดือน$nameMonth[$z]";
+        // }
 
  
         return response()->json($note, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
@@ -928,21 +929,32 @@ class ReportController extends Controller
 
         //คัด user ที่ซ้ำกันออก
         $user=array($userID[0]);
+        //return $userID[5];
         for($j=0; $j< count($userID) ;$j++){
             $check = 0;
             $num = count($user);
+            $num2 = 0;
             for($i=0; $i< $num ;$i++){
                 if($userID[$j] != $user[$i]){
                    $check = 1;
+                   $num2 = $userID[$j];
                 }else{
                     $check = 0;
                 }
             }
             if($check == 1){
-                array_push($user,$userID[$j]);
+                $check2 = 0;
+                for($k=0; $k< $num ;$k++){
+                    if($user[$k] ==  $num2){
+                        $check2 = 1;
+                    }
+                }
+                if($check2 == 0){
+                    array_push($user,$num2);
+                }
              }
         }
-
+        //return $user;
         //เพิ่มชื่อของ user ลงใน array
         $userName=array();
         $names1 = DB::table('users')
@@ -1053,8 +1065,8 @@ class ReportController extends Controller
                 if(strpos($strMonth, ''.$i) !== false){
                     $strMonthThai = $strMonthCut[$i];
                 }
-            }
-            $date = "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute";
+            }//เวลา $strHour:$strMinute
+            $date = "วันที่ $strDay เดือน $strMonthThai พ.ศ. $strYear ";
             return response()->json($date , 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
             ,JSON_UNESCAPED_UNICODE);
         }
@@ -1140,7 +1152,7 @@ class ReportController extends Controller
         $end = 12;
         $numend = count($numMount);
         $z = 0;
-        if($numend >1){
+        //if($numend >1){
             for($i=1; $i<= 12 ;$i++) {
                 if(strpos($numMount[0], ''.$i) !== false){
                     array_push($nameMonth,$strMonthCut[$i]);
@@ -1149,17 +1161,18 @@ class ReportController extends Controller
                     array_push($nameMonth,$strMonthCut[$i]);
                 }
             }
-        }else{
+        // }else{
 
-            array_push($nameMonth,$strMonthCut[12]);
+        //     array_push($nameMonth,$strMonthCut[12]);
 
-        }
+        // }
 
-        if(count($nameMonth) == 1){
-            $note = "เริ่มและสิ้นสุด เดือน$nameMonth[0]";
-        }else{
-            $note = "ตั้งแต่ เดือน$nameMonth[0] ถึง เดือน$nameMonth[1]";
-        }
+        // if(count($nameMonth) == 1){
+        //     $note = "เริ่มและสิ้นสุด เดือน$nameMonth[0]";
+        // }else{
+            $z = count($nameMonth)-1;
+            $note = "ตั้งแต่ เดือน$nameMonth[0] ถึง เดือน$nameMonth[$z]";
+        // }
 
  
         return response()->json($note, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8']
